@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import '../../styles/style.scss';
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
-	</footer>
+	<nav className="navbar footer fixed-bottom rg-background justify-content-center">
+	<ul className="nav ">
+		
+		<li className="nav-item">
+			<a className="nav-link rg-textlink" href="#">Nosotros</a>
+		</li>
+		<li className="nav-item">
+			<a className="nav-link rg-textlink" href="#">Contacto</a>
+		</li>
+		<li className="nav-item">
+			<a className="nav-link rg-textlink" href="#">Preguntas Frecuentes</a>
+		</li>
+	</ul>
+	</nav>
 );
