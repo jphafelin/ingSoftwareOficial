@@ -47,6 +47,12 @@ def user():
         return response_body, 400
 
 
+@api.route('/user/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
 
 
 @api.route('/participante', methods=['GET', 'POST'])
@@ -79,6 +85,14 @@ def funcionparticipante():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+    
+
+@api.route('/participante/<int:user_id>', methods=['DELETE'])
+def delete_participante(user_id):
+    user = Participante.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
 
 
 @api.route('/administradores', methods=['GET', 'POST'])
@@ -106,6 +120,14 @@ def funcionadministradores():
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
 
+
+@api.route('/administradores/<int:user_id>', methods=['DELETE'])
+def delete_administrador(user_id):
+    user = Administradores.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
+
 @api.route('/monitor', methods=['GET', 'POST'])
 def funcionmonitor():
     if request.method == "GET":
@@ -131,6 +153,14 @@ def funcionmonitor():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+
+
+@api.route('/monitor/<int:user_id>', methods=['DELETE'])
+def delete_monitor(user_id):
+    user = Monitor.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
 
 
 @api.route('/evento', methods=['GET', 'POST'])
@@ -164,6 +194,14 @@ def evento():
         return response_body, 400
 
 
+@api.route('/evento/<int:user_id>', methods=['DELETE'])
+def delete_evento(user_id):
+    user = Evento.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
+
+
 @api.route('/tipo-de-evento', methods=['GET', 'POST'])
 def tiposdeeventos():
     if request.method == "GET":
@@ -192,6 +230,15 @@ def tiposdeeventos():
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
 
+
+@api.route('/tipo-de-evento/<int:user_id>', methods=['DELETE'])
+def delete_tipo_de_evento(user_id):
+    user = Tipo_de_Evento.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
+
+
 @api.route('/participantes_de_evento', methods=['GET','POST'])
 def participantes():
     if request.method == "GET":
@@ -218,3 +265,11 @@ def participantes():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+
+
+@api.route('/participantes_de_evento/<int:user_id>', methods=['DELETE'])
+def delete_participante_de_evento(user_id):
+    user = Participantes_de_Eventos.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify('OK'), 200
