@@ -27,8 +27,8 @@ export const Navbar = () => {
 
 						</li>
 						<form class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<a href="#" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a>
-							<a href="#" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</a>
+							<Link to="/login"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a></Link>
+							<Link to="/register"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</a></Link>
 						</form>
 					</ul>
 				</div>
