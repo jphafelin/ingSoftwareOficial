@@ -8,7 +8,7 @@ export const Navbar = () => {
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
 					<a class="navbar-brand" href="#">
-						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"/>
+						<img src="..." alt="" width="30" height="24" class="d-inline-block align-text-top"/>
 							RUT-GREEN
 					</a>
 				</div>
