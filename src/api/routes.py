@@ -6,6 +6,9 @@ from api.models import db, User, Participante, Monitor,Administradores, Evento, 
 from api.utils import generate_sitemap, APIException
 import requests
 import json
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 api = Blueprint('api', __name__)
 
@@ -34,7 +37,7 @@ def user():
     elif request.method == "POST":
          
          request_body = request.get_json()
-         user = User(id=request_body['id'],            
+         user = User(            
                      email=request_body['email'],
                      password=request_body['password'],
                      is_active=request_body['is_active']
@@ -446,3 +449,28 @@ def update_participantes_de_evento(client_id):
                      'asistencia': client.asistencia}
 
     return jsonify(response_body), 200
+
+@api.route("/login", methods=["POST"])
+def login():
+    username = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(email = username).first()
+    if not username or not password:
+        return jsonify({"msg": "You need to send username and password"}), 400
+    if not user:
+        return jsonify({"msg": "User doesn't exist"}), 404
+    if user and user.password == password:
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify({"msg": "Error. Password is wrong."}), 400
+
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    if current_user:
+        return jsonify(logged_in_as=current_user), 200
+    else:
+        return jsonify({"msg": "Not authorized."}), 400

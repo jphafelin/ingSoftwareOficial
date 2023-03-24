@@ -3,9 +3,32 @@ export const Register = () => {
     const [email, setEmail]= useState("")
     const [password, setPassword]= useState("")
     const handleClick = () =>{
-        console.log("Estas registrado") 
+       var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var raw = JSON.stringify({
+  		"email": email,
+  		"password": password,
+  		"is_active": true
+		});
+
+		var requestOptions = {
+  		method: 'POST',
+  		headers: myHeaders,
+  		body: raw,
+  		redirect: 'follow'
+		};
+
+		fetch("https://3001-jphafelin-rutgreen-a2181wyfwey.ws-eu92.gitpod.io/api/user", requestOptions)
+  		.then(response => response.text())
+  		.then(result => console.log(result))
+  		.catch(error => console.log('error', error));
+
+        
+		
         setEmail("") 
         setPassword("")
+        console.log("Estas registrado") 
     }
 
    console.log(email);
