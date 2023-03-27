@@ -19,7 +19,7 @@ export const Register = () => {
   		redirect: 'follow'
 		};
 
-		fetch("https://3001-jphafelin-rutgreen-a2181wyfwey.ws-eu92.gitpod.io/api/user", requestOptions)
+		fetch("https://3001-jphafelin-rutgreen-26xhugp3x6y.ws-eu92.gitpod.io/api/user", requestOptions)
   		.then(response => response.text())
   		.then(result => console.log(result))
   		.catch(error => console.log('error', error));
@@ -29,6 +29,11 @@ export const Register = () => {
         setEmail("") 
         setPassword("")
         console.log("Estas registrado") 
+
+        //return (
+        //    <div class="alert alert-primary" role="alert">
+        //        A simple primary alert—check it out!
+        //    </div>)
     }
 
    console.log(email);

@@ -2,44 +2,52 @@ import React, {useState} from "react";
 export const Login = () => {
     const [email, setEmail]= useState("")
     const [password, setPassword]= useState("")
-    const handleClick = () =>{
+    const token = sessionStorage.getItem("token");
+    
+    const handleClick = (e) => {
+        e.preventDefault();
+        const opts ={
+            method: 'POST',
+            headers: {"Content-Type": "application/json"
+            },
+            body: JSON.stringify({"email": email,
+            "password": password
+            })
+    };
+        
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
-        "email": email,
-        "password": password
-        });
-
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
-
-        fetch("https://3001-jphafelin-rutgreen-a2181wyfwey.ws-eu92.gitpod.io/api/login", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
+        fetch("https://3001-jphafelin-rutgreen-26xhugp3x6y.ws-eu92.gitpod.io/api/login", opts)
+        .then(resp => {
+            if(resp.status === 200) return resp.json();
+            else alert("Hay algún error");
+        })  
+        .then(data => {
+            console.log(data)
+            sessionStorage.setItem("token", data.access_token)
+        })
         .catch(error => console.log('error', error));
         
         //console.log(access_token) 
         setEmail("") 
         setPassword("")
-    }
+
+        //return (
+           // <div class="alert alert-primary" role="alert">
+                //A simple primary alert—check it out!
+            //</div>)
+    };
 
    console.log(email);
    console.log(password);
 
     return (
-        <div className="wrapper">
-            <form className="form-signin"onSubmit={handleClick}>
-                <h2 className="form-signin-heading">Ingresar</h2>
-                <input type="text" className="form-control" name="username" placeholder="Email"value={email} onChange={ (e)=> {setEmail(e.target.value)}} required="" autoFocus="" />
-                <input type="password" className="form-control" name="password" placeholder="Contraseña"value={password} onChange={ (e)=> {setPassword(e.target.value)}} required="" />
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-            </form>
+        <div >
+            <div >
+                <h2 >Ingresar</h2>
+                <input type="text" name="username" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                <input type="password" name="password" placeholder="Contraseña" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                <button type="submit" onClick={(e) => handleClick(e)}>Ingresar</button>
+            </div>
         </div>
 
     );

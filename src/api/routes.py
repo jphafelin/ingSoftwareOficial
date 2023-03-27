@@ -452,16 +452,17 @@ def update_participantes_de_evento(client_id):
 
 @api.route("/login", methods=["POST"])
 def login():
-    username = request.json.get("email", None)
+    email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = User.query.filter_by(email = username).first()
-    if not username or not password:
+    user = User.query.filter_by(email = email).first()
+    if not email or not password:
         return jsonify({"msg": "You need to send username and password"}), 400
     if not user:
         return jsonify({"msg": "User doesn't exist"}), 404
     if user and user.password == password:
-        access_token = create_access_token(identity=username)
-        return jsonify(access_token=access_token), 200
+        access_token = create_access_token(identity=email)
+        response_body = {"access_token": access_token, "msg":"usuario logeado ok"}
+        return response_body, 200
     else:
         return jsonify({"msg": "Error. Password is wrong."}), 400
 
