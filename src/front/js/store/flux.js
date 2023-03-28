@@ -114,7 +114,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			isAdmin: true, // crear logica
+			enrolled: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -147,7 +149,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getEnrolled: async () => {
+				const store= getStore();
+ 				const host= process.env.BACKEND_URL;
+				const url= host + "api/user";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data User: ", data.results );
+					setStore({enrolled:data.results,});
+			  }
+			},
+		
 		}
 	};
 };

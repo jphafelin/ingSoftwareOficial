@@ -27,6 +27,7 @@ def user():
         response_body = {"message": "ok",
                         "results": results,
                         "Total_records": len(results)}
+        
         return response_body, 200
     
     elif request.method == "POST":
