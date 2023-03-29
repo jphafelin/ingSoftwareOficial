@@ -7,8 +7,8 @@ export const Administradores = () => {
     console.log(myArray);
     console.log(myArray[0]);
     return (
-        <div className="container enrolledtb">
-            <table className="table table-primary table-bordered">
+        <div className="container tablas_admin">
+            <table className="table table-bordered">
             <thead>
                             <tr>
                             <th className="col">Id</th>
