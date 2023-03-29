@@ -23,7 +23,7 @@ export const Login = () => {
         })  
         .then(data => {
             console.log(data)
-            sessionStorage.setItem("token", data.access_token)
+            localStorage.setItem("token", data.access_token)
         })
         .catch(error => console.log('error', error));
         
@@ -37,8 +37,13 @@ export const Login = () => {
             //</div>)
     };
 
-   console.log(email);
-   console.log(password);
+    const handleClickLogOut = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+				
+
+    };
+   
 
     return (
         <div >
@@ -47,6 +52,7 @@ export const Login = () => {
                 <input type="text" name="username" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                 <input type="password" name="password" placeholder="Contraseña" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                 <button type="submit" onClick={(e) => handleClick(e)}>Ingresar</button>
+                <button type="submit" onClick={(e) => handleClickLogOut(e)}>LogOut</button>
             </div>
         </div>
 

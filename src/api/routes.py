@@ -475,3 +475,112 @@ def protected():
         return jsonify(logged_in_as=current_user), 200
     else:
         return jsonify({"msg": "Not authorized."}), 400
+
+
+# REGISTER
+
+@api.route('/register-participante', methods=['POST'])
+def register_participante():
+    
+    if request.method == "POST":
+         
+         request_body = request.get_json()
+         user = User(      
+                     email=request_body['email'],
+                     password=request_body['password'],
+                     is_active=request_body['is_active']
+                    )
+
+         participante = Participante(            
+                     id_user=request_body['id_user'],
+                     name=request_body['name'],
+                     last_name=request_body['last_name'],
+                     #url_image=request_body['url_image'],
+                     numero_telefono=request_body['numero_telefono'],
+                     nombre_contacto_emergencia=request_body['nombre_contacto_emergencia'],
+                     numero_contacto_emergencia=request_body['numero_contacto_emergencia'],
+                     asistencia_medica=request_body['asistencia_medica']
+                    )
+        
+         db.session.add(user)
+         db.session.commit()
+         db.session.add(participante)
+         db.session.commit()
+         return jsonify(request_body), 200
+        
+ 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
+
+
+@api.route('/register-monitor', methods=['GET','POST'])
+def register_monitor():
+
+    if request.method == "GET":
+        monitor = Monitor.query.all()
+        #users = User.query.all() HACER JOIN
+        results = [monitorserialize.serialize() for monitorserialize in monitor]
+        
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
+    
+    elif request.method == "POST":
+         
+         request_body = request.get_json()
+         user = User(      
+                     email=request_body['email'],
+                     password=request_body['password'],
+                     is_active=request_body['is_active']
+                    )
+
+         monitor = Monitor(            
+                     id_user=request_body['id_user'],
+                     name=request_body['name'],
+                     last_name=request_body['last_name'],
+                     
+                    )
+        
+         db.session.add(user)
+         db.session.commit()
+         db.session.add(monitor)
+         db.session.commit()
+         return jsonify(request_body), 200
+        
+ 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
+
+
+@api.route('/register-administrador', methods=['POST'])
+def register_administrador():
+    
+    if request.method == "POST":
+         
+         request_body = request.get_json()
+         user = User(      
+                     email=request_body['email'],
+                     password=request_body['password'],
+                     is_active=request_body['is_active']
+                    )
+
+         administrador = Administradores(            
+                     id_user=request_body['id_user'],
+                     name=request_body['name']
+                     
+                     
+                    )
+        
+         db.session.add(user)
+         db.session.commit()
+         db.session.add(administrador)
+         db.session.commit()
+         return jsonify(request_body), 200
+        
+ 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
