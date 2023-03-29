@@ -21,9 +21,11 @@ export const Navbar = () => {
 						<li className="nav-item">
 
 						</li>
+
 						<form className="d-grid gap-2 d-md-flex justify-content-md-end">
 							<a href="#" className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a>
 							<a href="#" className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</a>
+
 						</form>
 					</ul>
 				</div>
