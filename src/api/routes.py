@@ -23,7 +23,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 ## USER
-
+#@jwt_required()
 @api.route('/user', methods=['GET', 'POST'])
 def user():
     if request.method == "GET":
@@ -488,11 +488,14 @@ def register_participante():
          user = User(      
                      email=request_body['email'],
                      password=request_body['password'],
-                     is_active=request_body['is_active']
+                     is_active=True #  true
                     )
-
+         
+         db.session.add(user)
+         db.session.commit()
+         
          participante = Participante(            
-                     id_user=request_body['id_user'],
+                     id_user= user.id,
                      name=request_body['name'],
                      last_name=request_body['last_name'],
                      #url_image=request_body['url_image'],
@@ -502,8 +505,7 @@ def register_participante():
                      asistencia_medica=request_body['asistencia_medica']
                     )
         
-         db.session.add(user)
-         db.session.commit()
+         
          db.session.add(participante)
          db.session.commit()
          return jsonify(request_body), 200
@@ -519,8 +521,13 @@ def register_monitor():
 
     if request.method == "GET":
         monitor = Monitor.query.all()
-        #users = User.query.all() HACER JOIN
-        results = [monitorserialize.serialize() for monitorserialize in monitor]
+        results = []
+        result_monitor = [monitorserialize.serialize() for monitorserialize in monitor]
+        # Recorrer result_monitor y asignar a item ((for item in result_monitor):)
+        # Dentro del for hacer un User.filter(item.user_id == User.id).first() ((Asignar a variable))
+        # Agregar en results el resultado de result_moitor + la variable que creo arriba
+        
+        
         
         response_body = {"message": "ok",
                         "results": results,

@@ -16,8 +16,6 @@ export const Register = () => {
         
   		"email": email,
   		"password": password,
-  		"is_active": true,
-        "id_user": 37,
         "name": name,
         "last_name": last_name,
         //"url_image": url_image,
