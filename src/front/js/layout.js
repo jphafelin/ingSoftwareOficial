@@ -4,7 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Enrolled } from "./pages/Enrolled.jsx";
-import { Participante } from "./pages/Participante.jsx";
+import { Monitor } from "./pages/Monitor.jsx";
+import { Administradores } from "./pages/Administradores.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -29,7 +30,8 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Enrolled />} path="/Enrolled" />
-                        <Route element={<Participante />} path="/participante" />
+                        <Route element={<Monitor />} path="/Monitor" />
+                        <Route element={<Administradores />} path="/Administradores" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<Single />} path="/single/:theid" />

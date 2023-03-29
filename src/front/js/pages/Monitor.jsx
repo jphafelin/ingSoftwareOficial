@@ -1,9 +1,9 @@
-
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-export const Enrolled = () => {
+
+export const Monitor = () => {
     const { store, actions } = useContext(Context);
-    const myArray = store.enrolled;
+    const myArray = store.monitores;
     console.log(myArray);
     console.log(myArray[0]);
     return (
@@ -12,10 +12,10 @@ export const Enrolled = () => {
             <thead>
                             <tr>
                             <th className="col">Id</th>
+                            <th className="col">Id_User</th>
                             <th className="col">Nombre</th>
                             <th className="col">Apellido</th>
-                            <th className="col">Email</th>
-                            <th className="col">Estado</th>
+                            <th className="col">e-mail</th>
                             </tr>
                             </thead>
                 {myArray.length === 0 ? (
@@ -25,10 +25,10 @@ export const Enrolled = () => {
                             <tbody>
                             <tr>
                             <td >{item.id}</td>
+                            <td >{item.id_user}</td>
                             <td>{item.name}</td>
-                            <td >{item.last_name}</td>
+                            <td>{item.last_name}</td>
                             <td>{item.email}</td>
-                            <td>{item.is_active?<i id="is_active" class="fa-solid fa-check"></i> : <i id="not_active" class="fa-solid fa-xmark"></i>}</td>
                             </tr>
                             </tbody>
                     ))

@@ -1,9 +1,9 @@
-
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-export const Enrolled = () => {
+
+export const Administradores = () => {
     const { store, actions } = useContext(Context);
-    const myArray = store.enrolled;
+    const myArray = store.administradores;
     console.log(myArray);
     console.log(myArray[0]);
     return (
