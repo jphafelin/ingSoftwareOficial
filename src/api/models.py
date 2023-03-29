@@ -15,7 +15,7 @@ class User(db.Model):
     
 
     def __repr__(self):
-        return f'<User {self.id}>'
+        return f'<User {self.email}>'
 
     def serialize(self):
         return {
@@ -65,7 +65,7 @@ class Administradores(db.Model):
     
 
     def __repr__(self):
-        return f'<Administradores {self.id}>'
+        return f'<Administradores {self.name}>'
 
     def serialize(self):
         return {

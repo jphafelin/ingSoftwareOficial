@@ -11,9 +11,6 @@
 				if (token && token != "" && token != undefined) setStore({token: token}); 
 			},  
 
-
-
-
 		login: async (email, password) => {
 			    
 					const requestOptions = {
@@ -36,18 +33,12 @@
 						localStorage.setItem("token", data.access_token);
 						setStore({token: data.access_token})
 
-
-
-
 						return true;
 					}
 					catch(error){
 						console.error("There has been an error login in")
 					}
 			},
-
-
-
 
 			register: async (email, password)=>{
 				const requestOptions = {
@@ -68,9 +59,6 @@
 					} 
 					const data = await resp.json(); 
 					console.log(data);                  
-
-
-
 
 					return true;
 				}
@@ -97,21 +85,16 @@
 					}
 			},
 
-
-
-
 			logout: ()=>{
 				const token = localStorage.removeItem("token");
 				setStore({token:null}); 
 			},
-
 
 		}
 	};
 };
 
 export default getState;
-
 
  */
 
@@ -131,9 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			],
-			isAdmin: true, // crear logica
-			enrolled: [],
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -166,30 +147,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			},
-			getEnrolled: async () => {
-				const store= getStore();
- 				const host= process.env.BACKEND_URL;
-				const url= "https://3001-jphafelin-rutgreen-26xhugp3x6y.ws-eu92.gitpod.io/api/user";
-				const requestOptions= {
-					method:"GET",
-					ContentType: "application/json",
-				}
-				const response = await fetch(url,requestOptions);
-				console.log(response)
-				if (response.ok) {
-					const data = await response.json();
-					console.log( " Data User: ", data.results );
-					setStore({enrolled:data.results,});
-			  }
-			},
-		
+			}
 		}
 	};
 };
 
-
 export default getState;
-
 
 
