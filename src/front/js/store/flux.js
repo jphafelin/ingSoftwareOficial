@@ -10,6 +10,10 @@
 				console.log("App just loaded, synching the local storage");
 				if (token && token != "" && token != undefined) setStore({token: token}); 
 			},  
+
+
+
+
 		login: async (email, password) => {
 			    
 					const requestOptions = {
@@ -31,12 +35,20 @@
 						const data = await resp.json();                     
 						localStorage.setItem("token", data.access_token);
 						setStore({token: data.access_token})
+
+
+
+
 						return true;
 					}
 					catch(error){
 						console.error("There has been an error login in")
 					}
 			},
+
+
+
+
 			register: async (email, password)=>{
 				const requestOptions = {
 					method : "POST",
@@ -56,6 +68,10 @@
 					} 
 					const data = await resp.json(); 
 					console.log(data);                  
+
+
+
+
 					return true;
 				}
 				catch(error){
@@ -80,14 +96,23 @@
 					  console.log(error);
 					}
 			},
+
+
+
+
 			logout: ()=>{
 				const token = localStorage.removeItem("token");
 				setStore({token:null}); 
 			},
+
+
 		}
 	};
 };
+
 export default getState;
+
+
  */
 
 
@@ -163,4 +188,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	};
 };
 
+
 export default getState;
+
+
+
