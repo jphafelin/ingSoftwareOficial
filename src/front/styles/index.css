@@ -3,3 +3,10 @@
 */
 
 /* https: //thenounproject.com/icon/montain-1950281/   LOGO MONTAÑA */
+#is_active {
+    color: green;
+}
+
+#not_active {
+    color: red;
+}
