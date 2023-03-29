@@ -145,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getEnrolled: async () => {
 				const store= getStore();
  				const host= process.env.BACKEND_URL;
-				const url= "https://3001-jphafelin-rutgreen-26xhugp3x6y.ws-eu92.gitpod.io/api/user";
+				const url= "https://3001-jphafelin-rutgreen-26xhugp3x6y.ws-eu92.gitpod.io/api/register-monitor";
 				const requestOptions= {
 					method:"GET",
 					ContentType: "application/json",

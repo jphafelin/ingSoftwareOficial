@@ -73,6 +73,7 @@ class Administradores(db.Model):
             "id_user": self.id_user,
             "name": self.name,
             
+            
             # do not serialize the password, its a security breach
             }
 
