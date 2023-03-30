@@ -15,11 +15,11 @@ export const Tipo_de_Eventos = () => {
             <thead>
                             <tr>
                             
-                            <th className="col">Nombre</th>
-                            <th className="col">Descripción</th>
-                            <th className="col">Dificultad</th>
-                            <th className="col">Categoría</th>
-                            <th className="col">Acciones</th>
+                            <th className="col celdas_admin">Nombre</th>
+                            <th className="col celdas_admin">Descripción</th>
+                            <th className="col celdas_admin">Dificultad</th>
+                            <th className="col celdas_admin">Categoría</th>
+                            <th className="col celdas_admin">Acciones</th>
                             </tr>
                             </thead>
                 {myArray.length === 0 ? (
