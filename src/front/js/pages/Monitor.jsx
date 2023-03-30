@@ -4,13 +4,28 @@ import { Context } from "../store/appContext";
 export const Monitor = () => {
     const { store, actions } = useContext(Context);
     const myArray = store.monitores;
+    function deleteMonitor(e) {
+        e.preventDefault();
+        alert("Desarrollar funcionalidad");
+    }
+    function editMonitor(e) {
+        e.preventDefault();
+        alert("Desarrollar funcionalidad");
+    }
+    function registerMonitor(e) {
+        e.preventDefault();
+        const host= process.env.BACKEND_URL;
+        const url= host +"/api/register-monitor";
+        return (location.href = url);
+    }
     console.log(myArray);
     console.log(myArray[0]);
-
+    
     if (store.isAdmin) {
+       
     return (
         <div className="container tablas_admin ">
-           <div className="d-grid gap-2 d-md-flex justify-content-md-end"><button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin">Create Monitor</button> </div>
+           <div className="d-grid gap-2 d-md-flex justify-content-md-end"><button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={registerMonitor}>Create Monitor</button> </div>
             <table className="table table-bordered">
             <thead>
                             <tr>
@@ -35,8 +50,8 @@ export const Monitor = () => {
                             <td>{item.email}</td>
                             <td>
                                     <div className="container justify-content acciones">
-                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin"><i class="far fa-trash-alt"></i></button> 
-                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin"><i class="fas fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={deleteMonitor} ><i class="far fa-trash-alt"></i></button> 
+                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={editMonitor}><i class="fas fa-pencil"></i></button>
                                     </div> 
                                     </td>
                             </tr>

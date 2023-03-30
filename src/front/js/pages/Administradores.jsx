@@ -5,6 +5,20 @@ import { Context } from "../store/appContext";
 export const Administradores = () => {
     const { store, actions } = useContext(Context);
     const myArray = store.administradores;
+    function registerAdmin(e) {
+        e.preventDefault();
+        const host= process.env.BACKEND_URL;
+        const url= host +"/api/register-administrador";
+        return (location.href = url);
+    }
+    function deleteAdmin(e) {
+        e.preventDefault();
+        alert("Desarrollar funcionalidad");
+    }
+    function editAdmin(e) {
+        e.preventDefault();
+        alert("Desarrollar funcionalidad");
+    }
     console.log(myArray);
     console.log(myArray[0]);
 
@@ -13,7 +27,7 @@ export const Administradores = () => {
 
 
             <div className="container tablas_admin">
-                <div className="d-grid gap-2 d-md-flex justify-content-md-end"><button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin">Create Admin</button> </div>
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end"><button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={registerAdmin}>Create Admin</button> </div>
                 
                 <table className="table table-bordered">
                     <thead>
@@ -39,8 +53,8 @@ export const Administradores = () => {
                                     <td>{item.is_active ? <i id="is_active" class="fa-solid fa-check"></i> : <i id="not_active" class="fa-solid fa-xmark"></i>}</td>
                                     <td>
                                     <div className="container justify-content acciones">
-                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin"><i class="far fa-trash-alt"></i></button> 
-                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin"><i class="fas fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={deleteAdmin}><i class="far fa-trash-alt"></i></button> 
+                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={editAdmin}><i class="fas fa-pencil"></i></button>
                                     </div> 
                                     </td>
                                 </tr>
