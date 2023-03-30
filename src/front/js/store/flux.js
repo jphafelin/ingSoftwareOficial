@@ -114,7 +114,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			isAdmin: true, // crear logica
+			enrolled: [],
+			monitores: [],
+			administradores: [],
+			tipo_evento: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -147,7 +152,71 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getEnrolled: async () => {
+				const store= getStore();
+ 				const host= process.env.BACKEND_URL;
+				const url= host +"/api/register-participante";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data User: ", data.results );
+					setStore({enrolled:data.results,});
+			  }
+			},
+			getMonitores: async () => {
+				const store= getStore();
+				const host= process.env.BACKEND_URL;
+				const url= host +"/api/register-monitor";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data Monitores: ", data.results );
+					setStore({monitores:data.results,});
+			  }
+			},
+			getAdministradores: async () => {
+				const store= getStore();
+				const host= process.env.BACKEND_URL;
+				const url= host +"/api/register-administrador";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data Administrador: ", data.results );
+					setStore({administradores:data.results,});
+			  }
+			},
+			getTipo_de_Eventos: async () => {
+				const store= getStore();
+				const host= process.env.BACKEND_URL;
+				const url= host +"/api/tipo-de-evento";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data Administrador: ", data.results );
+					setStore({tipo_evento:data.results,});
+			  }
+			},
 		}
 	};
 };

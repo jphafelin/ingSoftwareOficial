@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
-
+import {Context} from "../store/appContext"
+import { Navbar_Admin} from "./navbar_admin.js"
 
 export const Navbar = () => {
+	const {store, actions} = useContext (Context)
+	// coordinar que la variable este cargada cuando un usuario se loguea
+	 if (store.isAdmin) {
+		return (<Navbar_Admin />)
+	}
+	 else {
 	return (
 		<nav className="navbar rg-header">
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
-					<a class="navbar-brand" href="#">
+					<a className="navbar-brand" href="#">
 						<img src="..." alt="" width="30" height="24" class="d-inline-block align-text-top"/>
 							RUT-GREEN
 					</a>
@@ -35,4 +42,5 @@ export const Navbar = () => {
 			</div>
 		</nav>
 	);
+};
 };
