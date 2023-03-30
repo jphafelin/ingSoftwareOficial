@@ -7,8 +7,8 @@ export const Navbar = () => {
 		<nav className="navbar rg-header">
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
-					<a class="navbar-brand" href="#">
-						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"/>
+					<a className="navbar-brand" href="#">
+						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top"/>
 							RUT-GREEN
 					</a>
 				</div>
@@ -26,9 +26,9 @@ export const Navbar = () => {
 						<li className="nav-item">
 
 						</li>
-						<form class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<Link to="/login"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a></Link>
-							<Link to="/register"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</a></Link>
+						<form className="d-grid gap-2 d-md-flex justify-content-md-end">
+							<Link to="/login"><a  className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a></Link>
+							<Link to="/register"><a  className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</a></Link>
 						</form>
 					</ul>
 				</div>
