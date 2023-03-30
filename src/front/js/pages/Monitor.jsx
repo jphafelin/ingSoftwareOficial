@@ -19,6 +19,7 @@ export const Monitor = () => {
                             <th className="col">Nombre</th>
                             <th className="col">Apellido</th>
                             <th className="col">e-mail</th>
+                            <th className="col">Acciones</th>
                             </tr>
                             </thead>
                 {myArray.length === 0 ? (

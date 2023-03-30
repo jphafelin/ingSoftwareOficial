@@ -47,7 +47,18 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    border: 1px solid #000
     
+}
+.table-bordered{
+    margin-top: 10px;
+    margin-left: 3px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+th, td, tr {
+   text-align: center;
+    border: 1px solid #000
 }
 
 .spam_no{
