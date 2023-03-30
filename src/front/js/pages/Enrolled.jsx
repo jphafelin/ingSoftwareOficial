@@ -1,13 +1,17 @@
 
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Home } from "./home.js"
+
 export const Enrolled = () => {
     const { store, actions } = useContext(Context);
     const myArray = store.enrolled;
     console.log(myArray);
     console.log(myArray[0]);
-    return (
-        <div className="container tablas_admin">
+    
+    if (store.isAdmin) {
+		return (
+            <div className="container tablas_admin">
             <table className="table table-bordered">
             <thead>
                             <tr>
@@ -34,6 +38,11 @@ export const Enrolled = () => {
                     ))
                 )}
             </table>
-        </div>
+        </div>)
+	}
+	 else {
+    return (
+       <Home />
     )
+}
 }

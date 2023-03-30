@@ -119,6 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			enrolled: [],
 			monitores: [],
 			administradores: [],
+			tipo_evento: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -198,6 +199,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 					console.log( " Data Administrador: ", data.results );
 					setStore({administradores:data.results,});
+			  }
+			},
+			getTipo_de_Eventos: async () => {
+				const store= getStore();
+				const host= process.env.BACKEND_URL;
+				const url= host +"/api/tipo-de-evento";
+				const requestOptions= {
+					method:"GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url,requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log( " Data Administrador: ", data.results );
+					setStore({tipo_evento:data.results,});
 			  }
 			},
 		}

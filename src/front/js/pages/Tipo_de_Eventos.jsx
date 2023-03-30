@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 
-export const Monitor = () => {
+export const Tipo_de_Eventos = () => {
     const { store, actions } = useContext(Context);
-    const myArray = store.monitores;
+    const myArray = store.tipo_evento;
     console.log(myArray);
     console.log(myArray[0]);
 
@@ -14,11 +14,12 @@ export const Monitor = () => {
             <table className="table table-bordered">
             <thead>
                             <tr>
-                            <th className="col">Id</th>
-                            <th className="col">Id_User</th>
+                            
                             <th className="col">Nombre</th>
-                            <th className="col">Apellido</th>
-                            <th className="col">e-mail</th>
+                            <th className="col">Descripción</th>
+                            <th className="col">Dificultad</th>
+                            <th className="col">Categoría</th>
+                            <th className="col">Acciones</th>
                             </tr>
                             </thead>
                 {myArray.length === 0 ? (
@@ -27,11 +28,10 @@ export const Monitor = () => {
                     myArray.map((item) => (
                             <tbody>
                             <tr>
-                            <td >{item.id}</td>
-                            <td >{item.id_user}</td>
-                            <td>{item.name}</td>
-                            <td>{item.last_name}</td>
-                            <td>{item.email}</td>
+                            <td >{item.name}</td>
+                            <td >{item.descripcion}</td>
+                            <td>{item.dificultad}</td>
+                            <td>{item.categoria}</td>
                             <td>
                                     <div className="container justify-content acciones">
                                         <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin"><i class="far fa-trash-alt"></i></button> 

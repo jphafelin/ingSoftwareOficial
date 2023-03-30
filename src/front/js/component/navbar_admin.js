@@ -25,11 +25,14 @@ export const Navbar_Admin = () => {
 							<Link className="nav-link rg-textlink link-secondary" to="/Monitor">Monitores</Link>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Eventos</Link>
+							<Link className="nav-link rg-textlink link-secondary" to="/Tipo_de_Eventos">Tipo_de_Eventos</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link rg-textlink link-secondary" to="/Eventos">Eventos</Link>
 						</li>
 						<form class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<Link to="/login"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</a></Link>
-						¡</form>
+							<Link to="/login"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Log Out</a></Link>
+						</form>
 					</ul>
 				</div>
 			</div>

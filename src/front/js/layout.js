@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Enrolled } from "./pages/Enrolled.jsx";
 import { Monitor } from "./pages/Monitor.jsx";
 import { Administradores } from "./pages/Administradores.jsx";
+import { Tipo_de_Eventos } from "./pages/Tipo_de_Eventos.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -32,6 +33,7 @@ const Layout = () => {
                         <Route element={<Enrolled />} path="/Enrolled" />
                         <Route element={<Monitor />} path="/Monitor" />
                         <Route element={<Administradores />} path="/Administradores" />
+                        <Route element={<Tipo_de_Eventos />} path="/Tipo_de_Eventos" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<Single />} path="/single/:theid" />

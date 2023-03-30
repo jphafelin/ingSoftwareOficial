@@ -10,6 +10,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
+
 api = Blueprint('api', __name__)
 
 
@@ -479,10 +480,35 @@ def protected():
 
 # REGISTER
 
-@api.route('/register-participante', methods=['POST'])
+@api.route('/register-participante', methods=['GET','POST'])
 def register_participante():
+    if request.method == "GET":
+        participante = Participante.query.all()
+        results = []
+        result_participante = [participanteserialize.serialize() for participanteserialize in participante]
+        
+
+        
+        for item in result_participante:
+            # print("#############", item)
+            # print("#############", item["id_user"])
+            
+            datos = User.query.filter(item["id_user"] == User.id).first()
+            result_datos = datos.serialize()
+            
+            item["email"] = result_datos["email"]
+            item["is_active"] = result_datos["is_active"]
+            
+            results.append(item)
+            print(results)
+        
+        
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
     
-    if request.method == "POST":
+    elif request.method == "POST":
          
          request_body = request.get_json()
          user = User(      
@@ -518,86 +544,115 @@ def register_participante():
 
 @api.route('/register-monitor', methods=['GET','POST'])
 def register_monitor():
+
     if request.method == "GET":
         monitor = Monitor.query.all()
         results = []
         result_monitor = [monitorserialize.serialize() for monitorserialize in monitor]
+        
+
+        
         for item in result_monitor:
             # print("#############", item)
             # print("#############", item["id_user"])
+            
             datos = User.query.filter(item["id_user"] == User.id).first()
             result_datos = datos.serialize()
+            
             item["email"] = result_datos["email"]
             item["is_active"] = result_datos["is_active"]
+            
             results.append(item)
             print(results)
+        
+        
         response_body = {"message": "ok",
                         "results": results,
                         "Total_records": len(results)}
         return response_body, 200
+    
     elif request.method == "POST":
+         
          request_body = request.get_json()
-         user = User(
+         user = User(      
                      email=request_body['email'],
                      password=request_body['password'],
                      is_active= True
                     )
          db.session.add(user)
          db.session.commit()
-         monitor = Monitor(
+         monitor = Monitor(            
                      id_user= user.id,
                      name=request_body['name'],
                      last_name=request_body['last_name'],
+                     
                     )
+        
+         
          db.session.add(monitor)
          db.session.commit()
          return jsonify(request_body), 200
+        
+ 
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
 
 
-
-
-
-
-
-
 @api.route('/register-administrador', methods=['GET','POST'])
 def register_administrador():
+
     if request.method == "GET":
         administrador = Administradores.query.all()
         results = []
         result_administrador = [administradorserialize.serialize() for administradorserialize in administrador]
+        
+
+        
         for item in result_administrador:
             # print("#############", item)
             # print("#############", item["id_user"])
+            
             datos = User.query.filter(item["id_user"] == User.id).first()
             result_datos = datos.serialize()
+            
             item["email"] = result_datos["email"]
             item["is_active"] = result_datos["is_active"]
+            
             results.append(item)
             print(results)
+        
+        
         response_body = {"message": "ok",
                         "results": results,
                         "Total_records": len(results)}
         return response_body, 200
+    
     elif request.method == "POST":
+         
          request_body = request.get_json()
-         user = User(
+         user = User(      
                      email=request_body['email'],
                      password=request_body['password'],
                      is_active= True
                     )
+        
          db.session.add(user)
          db.session.commit()
-         administrador = Administradores(
+
+         administrador = Administradores(            
                      id_user= user.id,
                      name=request_body['name']
+                     
+                     
                     )
+        
+         
          db.session.add(administrador)
          db.session.commit()
          return jsonify(request_body), 200
+        
+ 
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
