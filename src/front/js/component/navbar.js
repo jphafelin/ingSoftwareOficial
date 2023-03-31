@@ -8,7 +8,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 
 	const navigate = useNavigate()
-	
+
 	const handleClick = ()=> {
 		actions.logout();
 		navigate("/");
@@ -18,7 +18,7 @@ export const Navbar = () => {
 		<nav className="navbar rg-header">
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
-					<div className="navbar-brand" href="#">
+					<div className="navbar-brand">
 						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
 						RUT-GREEN
 					</div>
