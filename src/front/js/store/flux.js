@@ -1,16 +1,6 @@
 const BACKEND_URL = process.env.BACKEND_URL
-/* const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			
-			},
+/*
 		actions: {
-			// Use getActions to call a function within a fuction
-			
-
-		
-			
-		    
 			getUserData:
 				async () => {
 					const store = getStore();
@@ -28,17 +18,7 @@ const BACKEND_URL = process.env.BACKEND_URL
 					  console.log(error);
 					}
 			},
-
-			
-
-		}
-	};
-};
-
-export default getState;
-
  */
-
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -96,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				try {
 					const resp = await fetch(`${BACKEND_URL}/api/login`, requestOptions)
-					console.log(`${BACKEND_URL}/login`)
+				
 					if (resp.status != 200) {
 						alert("An error has occurred");
 						return false;
@@ -113,7 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			synctoken: () => {
 				const token = localStorage.getItem("token");
-				console.log("App just loaded, synchi	ng the local storage");
+				console.log("App just loaded, synching the local storage");
 				if (token && token != "" && token != undefined) setStore({ token: token });
 			},
 

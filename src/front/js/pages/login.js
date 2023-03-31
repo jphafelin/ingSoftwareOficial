@@ -11,7 +11,8 @@ export const Login = () => {
     const navigate = useNavigate();
 
 
-    const handleClick = async() =>{
+    const handleClick = async(e) =>{
+      e.preventDefault()
         try {
             const loginSuccesful = await actions.login(email, password);
             if (loginSuccesful) {
@@ -24,9 +25,6 @@ export const Login = () => {
             setError("Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.");
           }
     }
-
-   console.log(email);
-   console.log(password);
 
     return (
         <div className="wrapper">
