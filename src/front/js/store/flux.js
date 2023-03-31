@@ -115,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			isAdmin: true, // crear logica
+			isAdmin: false, // crear logica
 			enrolled: [],
 			monitores: [],
 			administradores: [],

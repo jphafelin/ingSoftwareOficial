@@ -25,7 +25,7 @@ export const Navbar = () => {
 							<Link className="nav-link rg-textlink link-secondary" to="#">Evento</Link>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Categoria</Link>
+							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categorias</Link>
 						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="#">Fecha</Link>
