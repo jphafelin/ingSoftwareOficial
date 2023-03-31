@@ -48,11 +48,12 @@ const dotsContainerStyles = {
 };
 
 const dotStyle = {
-  margin: "0 3px",
+  margin: "10px 10px",
   cursor: "pointer",
   fontSize: "18px",
-  color: "#c5c5c0"
+  color: "#c5c5c0",
 };
+
 
 const ImageSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -74,6 +75,7 @@ const ImageSlider = ({ slides }) => {
     backgroundImage: `url(${slides[currentIndex].url})`,
    
   };
+  
 
   return (
     <div style={sliderStyles}>
@@ -88,7 +90,7 @@ const ImageSlider = ({ slides }) => {
       <div style={slideStylesWidthBackground}></div>
       <div style={dotsContainerStyles}>
         {slides.map((slide, slideIndex) => (
-          <div
+          <div className="divDots" 
             style={dotStyle}
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}

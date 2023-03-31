@@ -7,6 +7,7 @@ import { Enrolled } from "./pages/Enrolled.jsx";
 import { Monitor } from "./pages/Monitor.jsx";
 import { Administradores } from "./pages/Administradores.jsx";
 import { Tipo_de_Eventos } from "./pages/Tipo_de_Eventos.jsx";
+import { Eventos_Running } from "./pages/Eventos_Running.jsx";
 import { Categorias } from "./pages/Categorias.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
@@ -15,6 +16,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import {AppSlider} from "./component/AppSlider";
 
 
 //create your first component
@@ -28,13 +30,14 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                 <Navbar />   
-                    
+                
                     <Routes>
-                        <Route element={<Home />} path="/" />
+                        <Route element={<Home />} path="/home" />
                         <Route element={<Enrolled />} path="/Enrolled" />
                         <Route element={<Monitor />} path="/Monitor" />
                         <Route element={<Administradores />} path="/Administradores" />
                         <Route element={<Tipo_de_Eventos />} path="/Tipo_de_Eventos" />
+                        <Route element={<Eventos_Running />} path="/Eventos_Running" />
                         <Route element={<Categorias />} path="/Categorias" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />
