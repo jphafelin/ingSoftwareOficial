@@ -2,17 +2,25 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { Navbar_Admin} from "./navbar_admin.js"
 import "../../styles/navbar.css"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
-
 	const navigate = useNavigate()
 
 	const handleClick = ()=> {
 		actions.logout();
 		navigate("/");
 	}
+
+
+
+	// coordinar que la variable este cargada cuando un usuario se loguea
+	 if (store.isAdmin) {
+		return (<Navbar_Admin />)
+	}
+	 else {
 
 	return (
 		<nav className="navbar rg-header">
@@ -22,6 +30,7 @@ export const Navbar = () => {
 						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
 						RUT-GREEN
 					</div>
+
 				</div>
 				<div>
 					<ul className="nav me-auto mb-2 mb-lg-0">
@@ -50,4 +59,5 @@ export const Navbar = () => {
 			</div>
 		</nav>
 	);
+};
 };
