@@ -38,10 +38,22 @@ def user():
          db.session.commit()
          return jsonify(request_body), 200
         
+        
  
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+    
+@api.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.filter_by(id=user_id, is_active=True).first()
+    if user:
+        result = user.serialize()
+        response_body = {'message': 'OK',
+                     'result': result}
+        return jsonify(response_body), 200  
+    else:
+        return jsonify({'message': 'User not found or not active'}), 404
 
 
 @api.route('/user/<int:user_id>', methods=['DELETE'])

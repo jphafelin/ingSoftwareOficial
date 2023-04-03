@@ -14,6 +14,7 @@ import injectContext from "./store/appContext";
 import { Private } from "./pages/private";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Edit_perfil } from "./pages/edit_perfil";
 
 
 //create your first component
@@ -39,6 +40,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                         <Route element={<Private/>} path="/private" />
+                        <Route element={<Edit_perfil />} path="/edit_perfil" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

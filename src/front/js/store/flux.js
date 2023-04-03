@@ -4,6 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
+			user: [], 
+			participante: [],
 			message: null,
 			isAdmin: true, // crear logica
 			enrolled: [],
@@ -11,6 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			administradores: [],
 			tipo_evento: [],
 		},
+
+
 		actions: {
 			// Use getActions to call a function within a fuction
 			register: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
@@ -151,10 +155,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 
 			},
-		}
-	};
+
+			getUserInfo: async () => {
+				const requestOptions = {
+					method: "GET",
+					headers: {
+						"Content-type": "application/json"
+					},
+				}
+				const userId = JSON.parse(localStorage.getItem("userId"))
+				try {
+					const response = await fetch(`${BACKEND_URL}/api/users/${userId.id}`, requestOptions)
+					const user = await response.json();
+					setStore({ ...getStore(), user })
+				} catch (error) {
+					console.log(error);
+				};
+		},
+	}
 };
 
 export default getState;
-
-
