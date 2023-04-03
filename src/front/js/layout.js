@@ -11,6 +11,7 @@ import { EventosRunning } from "./pages/EventosRunning.jsx";
 import { EventosSenderismo } from "./pages/EventosSenderismo.jsx";
 import { EventosTriatlon } from "./pages/EventosTriatlon.jsx";
 import { EventosCiclismo } from "./pages/EventosCiclismo.jsx";
+
 import { Categorias } from "./pages/Categorias.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
@@ -45,10 +46,12 @@ const Layout = () => {
                         <Route element={<Monitor />} path="/Monitor" />
                         <Route element={<Administradores />} path="/Administradores" />
                         <Route element={<Tipo_de_Eventos />} path="/Tipo_de_Eventos" />
+
                         <Route element={<EventosRunning />} path="/eventos-running" />
                         <Route element={<EventosSenderismo />} path="/eventos-senderismo" />
                         <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
                         <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
+
                         <Route element={<Categorias />} path="/Categorias" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />
