@@ -84,7 +84,7 @@ def update_user(client_id):
 
 
 
-## PARTICIPANTE
+
 
 
 ## PARTICIPANTE
@@ -119,6 +119,18 @@ def funcionparticipante():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+
+@api.route('/participante/<user_id>', methods=['GET'])
+def get_participante_by_user_id(user_id):
+    participante = Participante.query.filter(Participante.id_user == int(user_id)).first()
+    if participante:
+        result = participante.serialize()
+        response_body = {'message': 'OK',
+                         'result': result}
+        return jsonify(response_body), 200
+    else:
+        response_body = {'message': 'No participante found for that user ID'}
+        return jsonify(response_body), 404
     
 
 @api.route('/participante/<int:user_id>', methods=['DELETE'])
@@ -129,7 +141,7 @@ def delete_participante(user_id):
     return jsonify('OK'), 200
 
 
-@api.route('/participante/<int:client_id>', methods=['PUT'])
+""" @api.route('/participante/<int:client_id>', methods=['PUT'])
 def update_participante(client_id):
     client = Participante.query.get(client_id)
     if client is None:
@@ -156,9 +168,25 @@ def update_participante(client_id):
                      'numero_contacto_emergencia': client.numero_contacto_emergencia,
                      'asistencia_medica': client.asistencia_medica}
 
-    return jsonify(response_body), 200
+    return jsonify(response_body), 200 """
 
-## ADMINISTRADORES
+@api.route('/participante/<int:user_id>', methods=['PUT'])
+def actualizar_participante(user_id):
+    participante = Participante.query.filter_by(id_user=user_id).first_or_404()
+    request_body = request.get_json()
+    participante.name = request_body.get('name', participante.name)
+    participante.last_name = request_body.get('last_name', participante.last_name)
+    participante.url_image = request_body.get('url_image', participante.url_image)
+    participante.numero_telefono = request_body.get('numero_telefono', participante.numero_telefono)
+    participante.nombre_contacto_emergencia = request_body.get('nombre_contacto_emergencia', participante.nombre_contacto_emergencia)
+    participante.numero_contacto_emergencia = request_body.get('numero_contacto_emergencia', participante.numero_contacto_emergencia)
+    participante.asistencia_medica = request_body.get('asistencia_medica', participante.asistencia_medica)
+    db.session.commit()
+    response_body = {"message": "Participante actualizado exitosamente.",
+                     "result": participante.serialize()}
+    return response_body, 200
+
+
 
 
 
@@ -465,13 +493,14 @@ def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     user = User.query.filter_by(email = email).first()
+    id = user.id
     if not email or not password:
         return jsonify({"msg": "You need to send username and password"}), 400
     if not user:
         return jsonify({"msg": "User doesn't exist"}), 404
     if user and user.password == password:
         access_token = create_access_token(identity=email)
-        response_body = {"access_token": access_token, "msg":"usuario logeado ok"}
+        response_body = {"access_token": access_token, "msg":"usuario logeado ok", "email":email, "id":id}
         return response_body, 200
     else:
         return jsonify({"msg": "Error. Password is wrong."}), 400
