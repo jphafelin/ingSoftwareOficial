@@ -14,8 +14,8 @@ export const Monitor = () => {
     }
     function registerMonitor(e) {
         e.preventDefault();
-        const host= process.env.BACKEND_URL;
-        const url= host +"/api/register-monitor";
+        const host= process.env.BACKEND_URL; // Cambiar a URL de Front
+        const url= "https://3000-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/register_monitor"; // CAmbiar a host + "register_monitor"
         return (location.href = url);
     }
     console.log(myArray);
