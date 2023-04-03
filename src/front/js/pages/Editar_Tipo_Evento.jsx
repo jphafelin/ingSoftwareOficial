@@ -1,14 +1,40 @@
 import React, {useState} from "react";
 export const EditarTipoEvento = () => {
-   
-    const [name, setName]= useState("Nuevo Nombre")
-    const [descripcion, setDescripcion]= useState("Nueva Descripcion")
-    const [dificultad, setDificultad]= useState("Nueva Dificultad")
-    const [categoria, setCategoria]= useState("Nueva Categoria")
-    const [url_imagen, setUrlImagen]= useState(" Nueva url_imagen")
+    
+        
+    
+    const [name, setName]= useState("")
+    const [descripcion, setDescripcion]= useState("")
+    const [dificultad, setDificultad]= useState("")
+    const [categoria, setCategoria]= useState("")
+    const [url_imagen, setUrlImagen]= useState("")
+    const edit_id = localStorage.getItem("")
+
+    
+    const get_tipo = () =>{
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+            };
+          
+            fetch("https://3001-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/api/tipo-de-evento/1", requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result.name))
+            
+            .catch(error => console.log('error', error));
+    
+    }
+    
+    get_tipo()
+
+    
+    
+    
+    
     
     
     const handleClick = () =>{
+        
         var myHeaders = new Headers();
          myHeaders.append("Content-Type", "application/json");
  
@@ -30,7 +56,7 @@ export const EditarTipoEvento = () => {
            redirect: 'follow'
          };
  
-         fetch("https://3001-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/api/tipo-de-evento/1", requestOptions) // Es id - 1
+         fetch("https://3001-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/api/tipo-de-evento/" + edit_id  , requestOptions) // Es id - 1
            .then(response => response.text())
            .then(result => console.log(result))
            .catch(error => console.log('error', error));
