@@ -34,6 +34,7 @@ const injectContext = PassedComponent => {
 			state.actions.getAdministradores();
 			state.actions.getTipo_de_Eventos();
 			state.actions.synctoken();
+			state.actions.getEvento();
 			
 		}, []);
 

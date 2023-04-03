@@ -121,11 +121,12 @@ const getState = ({
             token: null,
             user: [],
             participante: [],
-            isAdmin: true, // crear logica
+            isAdmin: false, // crear logica
             enrolled: [],
             monitores: [],
             administradores: [],
             tipo_evento: [],
+			evento: [],
         },
         actions: {
 
@@ -311,6 +312,24 @@ const getState = ({
                     console.log(" Data Administrador: ", data.results);
                     setStore({
                         tipo_evento: data.results,
+                    });
+                }
+            },
+			getEvento: async () => {
+                const store = getStore();
+                const host = process.env.BACKEND_URL;
+                const url = host + "/api/evento";
+                const requestOptions = {
+                    method: "GET",
+                    ContentType: "application/json",
+                }
+                const response = await fetch(url, requestOptions);
+                console.log(response)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(" Data Administrador: ", data.results);
+                    setStore({
+                        evento: data.results,
                     });
                 }
             },

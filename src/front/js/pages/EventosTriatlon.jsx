@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Enrolled } from "./Enrolled.jsx"
 
-export const EventosRunning = () => {
+export const EventosTriatlon = () => {
     const { store, actions } = useContext(Context);
     const myArray = store.evento;
     
@@ -12,6 +12,7 @@ export const EventosRunning = () => {
     function Registrate(e) {
         e.preventDefault();
         alert("Desarrollar funcionalidad");
+    
     }
     if (store.isAdmin) {
         return (
@@ -21,7 +22,7 @@ export const EventosRunning = () => {
     else {
         return (
             <div className="container-fluid d-flex divEventos">
-                <div className="container-fluid justify-content-evenly mx-md-4 mt-2 mb-2 divCategorias">RUNNING</div>
+                <div className="container-fluid justify-content-evenly mx-md-4 mt-2 mb-2 divCategorias">TRIATLON</div>
                 <div className="row justify-content-evenly mx-md-4 mt-2 mb-2">
                     {myArray.map((valor) => (
                         
