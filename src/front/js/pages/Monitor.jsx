@@ -10,12 +10,15 @@ export const Monitor = () => {
     }
     function editMonitor(e) {
         e.preventDefault();
-        alert("Desarrollar funcionalidad");
+        const host= process.env.BACKEND_URL; // Cambiar a la URL del Front
+        const url= "https://3000-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/editar_monitor"; // Cambiar por host +"/register_administrador"
+        
+        return (location.href = url);
     }
     function registerMonitor(e) {
         e.preventDefault();
-        const host= process.env.BACKEND_URL;
-        const url= host +"/api/register-monitor";
+        const host= process.env.BACKEND_URL; // Cambiar a URL de Front
+        const url= "https://3000-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/register_monitor"; // CAmbiar a host + "register_monitor"
         return (location.href = url);
     }
     console.log(myArray);
@@ -40,7 +43,7 @@ export const Monitor = () => {
                 {myArray.length === 0 ? (
                     <h1><span className="spam_no">No element in Array</span></h1>
                 ) : (
-                    myArray.map((item) => (
+                    myArray.map((item, key=item.id) => (
                             <tbody>
                             <tr>
                             <td >{item.id}</td>

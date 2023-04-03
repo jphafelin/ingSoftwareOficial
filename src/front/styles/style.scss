@@ -1,17 +1,18 @@
-
 .rg-header {
-    background-color:#c9bf3b;
+    background-color: #c9bf3b;
     padding: auto;
     border-radius: 10px;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .navbar-brand {
     color: white;
     font-weight: 500;
     font-size: 20px;
 }
+
 .footer {
     border-radius: 10px;
     margin-top: 80px;
@@ -19,54 +20,61 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .rg-background {
     background-color: #c9bf3b;
 }
+
 .rg-textlink {
     color: white;
     font-weight: 500;
     font-size: 20px;
     padding: px;
 }
+
 .btn-rounded {
     background-color: #eceacb;
     border-radius: 20px;
     color: #0e0304;
     font-weight: 500;
 }
+
 .h-100 {
+
     background-color: #004362;
 }
 
-
-.tablas_admin{
-    background-color:#ddd455 ;
+.tablas_admin {
+    background-color: #ddd455;
     opacity: .8;
     max-width: 99%;
-   border-radius: 10px;
+    border-radius: 10px;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     border: 1px solid #000
-    
 }
-.table-bordered{
+
+.table-bordered {
     margin-top: 10px;
     margin-left: 3px;
     margin-right: 10px;
     margin-bottom: 10px;
 }
-th, td, tr {
-   text-align: center;
+
+th,
+td,
+tr {
+    text-align: center;
     border: 1px solid #000
 }
 
-.spam_no{
-    background-color:#ddd455 ;
+.spam_no {
+    background-color: #ddd455;
     opacity: .8;
     max-width: 99%;
-   border-radius: 10px;
+    border-radius: 10px;
     margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
@@ -80,27 +88,30 @@ th, td, tr {
     border-radius: 20px;
     color: #0e0304;
     font-weight: 500;
-    margin-top: 30px;  
+    margin-top: 30px;
     align-items: right;
-    
+
 }
-.acciones{
-       width: fit-content;
+
+.acciones {
+    width: fit-content;
 }
-.divEventos{
+
+.divEventos {
     background-color: #e9e8c9;
     padding: 0%;
     border-radius: 10px;
+    width: auto;
     margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    max-width: 98%;
     height: 300%;
     align-items: center;
-  justify-content: center;
+    justify-content: center;
 }
-.btn-categoriasRg{
+
+.btn-categoriasRg {
     background-color: #004362;
     border-radius: 20px;
     color: white;
@@ -109,9 +120,10 @@ th, td, tr {
     width: 180px;
     padding: 0%;
     margin-left: 10px;
-    
+
 }
-.btn-categoriasLf{
+
+.btn-categoriasLf {
     background-color: #004362;
     border-radius: 20px;
     color: white;
@@ -120,18 +132,19 @@ th, td, tr {
     width: 180px;
     margin-left: 50px;
     padding: 0%;
-    
+
 }
-.divCategorias{
+
+.divCategorias {
     background-color: #e9e8c9;
     display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: 210px;
-  padding: 0%;
-  font-weight: 1000;
-  font-size: 1.2em;
-  color: #004362;
-    
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 210px;
+    padding: 0%;
+    font-weight: 1000;
+    font-size: 1.2em;
+    color: #004362;
+
 }
