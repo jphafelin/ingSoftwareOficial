@@ -21,7 +21,7 @@ import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
-
+import { Private } from "./pages/private";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import {AppSlider} from "./component/AppSlider";
@@ -61,6 +61,7 @@ const Layout = () => {
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
+                        <Route element={<Private/>} path="/private" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

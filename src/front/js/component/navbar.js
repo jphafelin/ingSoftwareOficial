@@ -27,9 +27,11 @@ export const Navbar = () => {
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
 					<div className="navbar-brand">
+
 						
 						<Link className="nav-link rg-textlink link-secondary" to="/">RUT-GREEN</Link>
 						
+
 					</div>
 
 				</div>

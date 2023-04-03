@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			monitores: [],
 			administradores: [],
 			tipo_evento: [],
-            evento: [],
+      evento: [],
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -75,6 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				}
 
+
 			],
 			isAdmin: false, // crear logica
 			enrolled: [],
@@ -98,6 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return data;
 				} catch (error) {
 					console.log("Error loading message from backend", error)
+
 
 				}
 			},
