@@ -15,6 +15,7 @@ import { Private } from "./pages/private";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { EditPerfil } from "./pages/edit_perfil";
+import { Equipo } from "./component/equipo";
 
 
 //create your first component
@@ -41,6 +42,7 @@ const Layout = () => {
                         <Route element={<h1>Not found!</h1>} />
                         <Route element={<Private/>} path="/private" />
                         <Route element={<EditPerfil />} path="/edit_perfil" />
+                        <Route element={<Equipo />} path="/equipo" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
