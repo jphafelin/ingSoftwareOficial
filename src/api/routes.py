@@ -345,7 +345,7 @@ def tiposdeeventos():
     elif request.method == "POST":
          
          request_body = request.get_json()
-         tipo_de_evento = Tipo_de_Evento(id=request_body['id'],            
+         tipo_de_evento = Tipo_de_Evento(           
                      name=request_body['name'],
                      descripcion=request_body['descripcion'],
                      dificultad=request_body['dificultad'],
@@ -656,3 +656,24 @@ def register_administrador():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+
+
+@api.route('/register-administrador/<int:client_id>', methods=['PUT'])
+def update_user_administrador(client_id):
+    client = User.query.get(client_id)
+    if client is None:
+        return 'Not found', 404
+
+    client.id = request.json.get('id', client.id)
+    client.email = request.json.get('email', client.email)
+    client.password = request.json.get('password', client.password)
+    client.is_active = request.json.get('is_active', client.is_active)
+    db.session.commit()
+
+    response_body = {'id': client.id,
+                     'email': client.email,
+                     'password': client.password,
+                     'is_active': client.is_active
+                     } ## Falta el nombre que está en la tabla de administradores
+
+    return jsonify(response_body), 200        
