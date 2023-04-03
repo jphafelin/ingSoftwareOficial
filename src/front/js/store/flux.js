@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			message: null,
-			isAdmin: true, // crear logica
+			isAdmin: false, // crear logica
 			enrolled: [],
 			monitores: [],
 			administradores: [],
