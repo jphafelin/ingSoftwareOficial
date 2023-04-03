@@ -393,6 +393,15 @@ def update_tipo_de_evento(client_id):
     return jsonify(response_body), 200
 
 
+@api.route('/tipo-de-evento/<int:id>', methods=['GET'])
+def get_tipo_de_evento(id):
+    tipo_de_evento = Tipo_de_Evento.query.get(id)
+    if tipo_de_evento is None:
+        return jsonify({'error': 'Reader not found'}), 404
+
+    return jsonify(tipo_de_evento.serialize()), 200
+
+
 ## PARTICIPANTES DE EVENTOS
 
 @api.route('/participantes_de_evento', methods=['GET','POST'])

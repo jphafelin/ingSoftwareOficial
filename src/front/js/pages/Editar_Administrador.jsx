@@ -1,6 +1,6 @@
 // Ver por qué no se crea el input de name
 import React, {useState} from "react";
-export const RegisterAdmin = () => {
+export const EditAdmin = () => {
     const [email, setEmail]= useState("")
     const [password, setPassword]= useState("")
     const [name, setName]= useState("")
@@ -22,7 +22,7 @@ export const RegisterAdmin = () => {
 		});
 
 		var requestOptions = {
-  		method: 'POST',
+  		method: 'PUT',
   		headers: myHeaders,
   		body: raw,
   		redirect: 'follow'
@@ -30,13 +30,43 @@ export const RegisterAdmin = () => {
 
 
 
-        const host= process.env.BACKEND_URL;
-        const url= host + "/api/register-administrador"
+        const host2= process.env.BACKEND_URL;
+        const url2= host2 + "/api/user/2"
 
-		fetch(url, requestOptions)
+		fetch(url2, requestOptions)
   		.then(response => response.text())
   		.then(result => console.log(result))
   		.catch(error => console.log('error', error));
+    
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+  
+        var raw = JSON.stringify({
+          
+            
+        "name": name
+          
+          
+  
+        });
+  
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+  
+  
+  
+        const host= process.env.BACKEND_URL;
+        const url= host + "/api/administradores/1"
+  
+        fetch(url, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));    
+        
 
         
 		

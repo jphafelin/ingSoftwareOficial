@@ -29,7 +29,6 @@ export const Navbar = () => {
 					<div className="navbar-brand">
 						
 						<Link className="nav-link rg-textlink link-secondary" to="/">RUT-GREEN</Link>
-						
 					</div>
 
 				</div>
@@ -39,9 +38,7 @@ export const Navbar = () => {
 							<Link className="nav-link rg-textlink link-secondary" to="#">Evento</Link>
 						</li>
 						<li className="nav-item">
-
 							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
-
 						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="#">Fecha</Link>
