@@ -148,34 +148,7 @@ def update_participante(client_id):
 
 ## ADMINISTRADORES
 
-@api.route('/participante/<int:client_id>', methods=['PUT'])
-def update_participante(client_id):
-    client = Participante.query.get(client_id)
-    if client is None:
-        return 'Not found', 404
 
-    client.id = request.json.get('id', client.id)
-    client.id_user = request.json.get('id_user', client.id_user)
-    client.name = request.json.get('name', client.name)
-    client.last_name = request.json.get('last_name', client.last_name)
-    client.url_image = request.json.get('url_image', client.url_image)
-    client.numero_telefono = request.json.get('numero_telefono', client.numero_telefono)
-    client.nombre_contacto_emergencia = request.json.get('nombre_contacto_emergencia', client.nombre_contacto_emergencia)
-    client.numero_contacto_emergencia = request.json.get('numero_contacto_emergencia', client.numero_contacto_emergencia)
-    client.asistencia_medica = request.json.get('asistencia_medica', client.asistencia_medica)
-    db.session.commit()
-
-    response_body = {'id': client.id,
-                     'id_user': client.user_id,
-                     'name': client.name,
-                     'last_name': client.is_active,
-                     'url_image': client.url_image,
-                     'numero_telefono': client.numero_telefono,
-                     'nombre_contacto_emergencia': client.nombre_contacto_emergencia,
-                     'numero_contacto_emergencia': client.numero_contacto_emergencia,
-                     'asistencia_medica': client.asistencia_medica}
-
-    return jsonify(response_body), 200
 
 ## ADMINISTRADORES
 
