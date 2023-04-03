@@ -33,6 +33,9 @@ const injectContext = PassedComponent => {
 			state.actions.getMonitores();
 			state.actions.getAdministradores();
 			state.actions.getTipo_de_Eventos();
+			state.actions.synctoken();
+			state.actions.getEvento();
+			
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

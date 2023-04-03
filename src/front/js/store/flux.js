@@ -10,6 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			monitores: [],
 			administradores: [],
 			tipo_evento: [],
+      evento: [],
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -73,8 +75,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					return true;
 				}
-				catch (error) {
-					console.error("There has been an error login in")
+
+
+			],
+			isAdmin: false, // crear logica
+			enrolled: [],
+			monitores: [],
+			administradores: [],
+			tipo_evento: [],
+		},
+		actions: {
+			// Use getActions to call a function within a fuction
+			exampleFunction: () => {
+				getActions().changeColor(0, "green");
+			},
+
+			getMessage: async () => {
+				try {
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const data = await resp.json()
+					setStore({ message: data.message })
+					// don't forget to return something, that is how the async resolves
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+
 				}
 			},
 			synctoken: () => {
@@ -151,6 +178,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 
 			},
+            getEvento: async () => {
+                const store = getStore();
+                const host = process.env.BACKEND_URL;
+                const url = host + "/api/evento";
+                const requestOptions = {
+                    method: "GET",
+                    ContentType: "application/json",
+                }
+                const response = await fetch(url, requestOptions);
+                console.log(response)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(" Data Evento: ", data.results);
+                    setStore({
+                        evento: data.results,
+                    });
+                }
+            },
 		}
 	};
 };

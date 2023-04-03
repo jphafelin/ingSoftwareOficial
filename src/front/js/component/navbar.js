@@ -27,8 +27,11 @@ export const Navbar = () => {
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
 					<div className="navbar-brand">
-						<img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
-						RUT-GREEN
+
+						
+						<Link className="nav-link rg-textlink link-secondary" to="/">RUT-GREEN</Link>
+						
+
 					</div>
 
 				</div>
@@ -38,7 +41,9 @@ export const Navbar = () => {
 							<Link className="nav-link rg-textlink link-secondary" to="#">Evento</Link>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Categoria</Link>
+
+							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
+
 						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="#">Fecha</Link>

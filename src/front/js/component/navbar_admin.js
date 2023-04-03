@@ -7,7 +7,7 @@ export const Navbar_Admin = () => {
 		<nav className="navbar rg-header">
 			<div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
 				<div className="conteiner-logo">
-					<a className="navbar-brand" href="#">
+					<a className="navbar-brand" href="/">
 						<img src="..." alt="" width="30" height="24" className="d-inline-block align-text-top"/>
 							RUT-GREEN-ADMIN
 					</a>
@@ -30,8 +30,8 @@ export const Navbar_Admin = () => {
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="/Eventos">Eventos</Link>
 						</li>
-						<form class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<Link to="/login"><a  class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Log Out</a></Link>
+						<form className="d-grid gap-2 d-md-flex justify-content-md-end">
+							<Link to="/login"><a  className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Log Out</a></Link>
 						</form>
 					</ul>
 				</div>

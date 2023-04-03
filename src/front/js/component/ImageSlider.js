@@ -65,6 +65,7 @@ const ImageSlider = ({ slides }) => {
     const isLastSlide = currentIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
+    console.log("goToNext")
   };
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
@@ -74,7 +75,7 @@ const ImageSlider = ({ slides }) => {
     backgroundImage: `url(${slides[currentIndex].url})`,
    
   };
-
+//useEffect(()=>{setInterval(goToNext,1000)},[])
   return (
     <div style={sliderStyles}>
       <div>
