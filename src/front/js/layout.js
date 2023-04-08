@@ -16,6 +16,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { EditPerfil } from "./pages/edit_perfil";
 import { Equipo } from "./component/equipo";
+import { PreguntasFrecuentes } from "./pages/preguntasFrecuentes";
+import { Nosotros } from "./pages/nosotros";
 
 
 //create your first component
@@ -43,6 +45,8 @@ const Layout = () => {
                         <Route element={<Private/>} path="/private" />
                         <Route element={<EditPerfil />} path="/edit_perfil" />
                         <Route element={<Equipo />} path="/equipo" />
+                        <Route element={<PreguntasFrecuentes />} path="/preguntasFrecuentes" />
+                        <Route element={<Nosotros />} path="/nosotros" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

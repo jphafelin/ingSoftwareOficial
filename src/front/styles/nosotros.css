@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+
+.nosotros-section{
+    font-family: sans-serif;
+    background: url("https://picsum.photos/2500/1667?image=353") no-repeat center center fixed;
+    background-size: cover;
+    background-position-y: 30%;
+    margin-bottom: 20px;
+  } 
+
+ul.qa {
+  list-style: none;
+  width: 500px;
+  padding-left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  li {
+    margin-bottom: 1em;
+    a.question {
+      display: block;
+      padding: 0.5em;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      box-sizing: border-box;
+      &.active {
+        background-color: yellow;
+        color: #000;
+      }
+    }
+    .answer {
+      display: none;
+      padding: 0.5em;
+      background-color: #f7f7f7;
+      box-sizing: border-box;
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
