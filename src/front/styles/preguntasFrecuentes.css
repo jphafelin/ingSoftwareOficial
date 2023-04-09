@@ -1,41 +1,50 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+.qa-section{
+  padding-top: 3em;
+  background: url("https://picsum.photos/2500/1667?image=353") no-repeat center center fixed;
+  background-size: cover;
+  background-position-y: 30%;
+  margin-bottom: 20px;
+}
 
-.preguntasfrecuentes-section{
-    font-family: sans-serif;
-    background: url("https://picsum.photos/2500/1667?image=353") no-repeat center center fixed;
-    background-size: cover;
-    background-position-y: 30%;
-    margin-bottom: 20px;
-  } 
+.qa-title{
+  font-size: larger;
+  color: #f7f7f7;
+  margin-bottom: 1em;
+  text-align: center;
+}
 
 ul.qa {
   list-style: none;
   width: 500px;
   padding-left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  li {
-    margin-bottom: 1em;
-    a.question {
-      display: block;
-      padding: 0.5em;
-      background-color: #000;
-      color: #fff;
-      text-decoration: none;
-      box-sizing: border-box;
-      &.active {
-        background-color: yellow;
-        color: #000;
-      }
-    }
-    .answer {
-      display: none;
-      padding: 0.5em;
-      background-color: #f7f7f7;
-      box-sizing: border-box;
-      &.active {
-        display: block;
-      }
-    }
-  }
+  margin: auto;
+}
+ul.qa li {
+  margin-bottom: 1em;
+}
+.qa-question {
+  display: block;
+  padding: 0.5em;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 38rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.qa-question:hover{
+  color: #c9bf3b;
+}
+
+.qa-answer {
+  display: none;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  width: 38rem;
+}
+.qa-answer:active {
+  display: block;
 }
