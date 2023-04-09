@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
 
-.sec-team {
+/* .sec-team {
   align-items: center;
-  background-color: #f2f2f2;
   display: flex;
   font-family: "Merriweather", serif;
   flex-wrap: wrap;
   justify-content: center;
   height: 100vh;
   margin: 0;
-}
+  background: url("https://picsum.photos/2500/1667?image=353") ;
+  background-size: cover;
+
+} */
 .team-person {
   align-items: center;
   display: flex;
@@ -79,16 +81,11 @@
   top: 144px;
   width: 466px;
 }
-.divider {
-  background-color: #ca6060;
-  height: 1px;
-  width: 160px;
-}
+
 .name {
-  color: #404245;
-  font-size: 36px;
+  color: #ffffff;
+  font-size: 16px;
   font-weight: 600;
-  margin-top: 16px;
   text-align: center;
 }
 .title {
@@ -97,4 +94,12 @@
   font-size: 14px;
   font-style: italic;
   margin-top: 4px;
+}
+
+.team-people{
+  display: flex;
+  flex-direction: row;
+  font-family: "Merriweather", serif;
+  flex-wrap: wrap;
+  justify-content: center;
 }

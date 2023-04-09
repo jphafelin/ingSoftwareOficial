@@ -21,7 +21,6 @@ export const Equipo = () => {
             />
           </div>
         </div>
-        <div className="divider"></div>
         <div className="name">Norkys González</div>
       </div>
       <div className="team-person">
@@ -37,7 +36,6 @@ export const Equipo = () => {
             />
           </div>
         </div>
-        <div className="divider"></div>
         <div className="name">José Pablo Häfelin</div>
       </div>
       <div className="team-person">
@@ -53,7 +51,6 @@ export const Equipo = () => {
             />
           </div>
         </div>
-        <div className="divider"></div>
         <div className="name">Sonia Pagano Doval</div>
       </div>
     </section>

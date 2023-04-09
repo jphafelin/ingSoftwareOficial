@@ -21,7 +21,7 @@ export class PreguntasFrecuentes extends Component {
             ¿Cómo puedo registrarme para el evento ?{" "}
           </a>{" "}
           <div className="qa-answer">
-            <p>
+            <p className="text-center">
               {" "}
               Puedes registrarte para el evento en línea a través de nuestra
               página web oficial.También puedes registrarte en persona en
@@ -39,7 +39,7 @@ export class PreguntasFrecuentes extends Component {
             ¿Cuál es la fecha límite para la inscripción ?{" "}
           </a>{" "}
           <div className="qa-answer">
-            <p>
+            <p className="text-center">
               {" "}
               La fecha límite para la inscripción es 72 hr habiles antes del
               evento.Te recomendamos que te inscribas lo antes posible para
@@ -53,7 +53,7 @@ export class PreguntasFrecuentes extends Component {
             ¿Hay estaciones de hidratación a lo largo del recorrido ?{" "}
           </a>{" "}
           <div className="qa-answer">
-            <p>
+            <p className="text-center">
               {" "}
               Nuestro equipo de organización del evento ha planificado
               cuidadosamente las estaciones de hidratación a lo largo del
@@ -68,7 +68,7 @@ export class PreguntasFrecuentes extends Component {
             ¿Puedo recibir un reembolso si no puedo asistir al evento ?{" "}
           </a>{" "}
           <div className="qa-answer">
-            <p>
+            <p className="text-center">
               {" "}
               Lo sentimos, pero no se realizarán reembolsos por cancelaciones de
               último momento.Sin embargo, puedes transferir tu inscripción a
@@ -82,7 +82,7 @@ export class PreguntasFrecuentes extends Component {
             ¿Habrá algún tipo de ceremonia de premiación después del evento ?{" "}
           </a>{" "}
           <div className="qa-answer">
-            <p>
+            <p className="text-center">
               {" "}
               Después del evento, se llevará a cabo una ceremonia de premiación
               para los primeros lugares en cada categoría.También habrá medallas
