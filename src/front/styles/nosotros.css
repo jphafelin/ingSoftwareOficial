@@ -3,7 +3,7 @@
     background: url("https://picsum.photos/2500/1667?image=353");
     background-size: cover;
     background-position-y: 30%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     min-height: 100vh;
 }
 
