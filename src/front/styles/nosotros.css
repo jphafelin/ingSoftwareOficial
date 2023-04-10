@@ -1,20 +1,20 @@
-.about-section{
-  padding-top: 2em;
-  background: url("https://picsum.photos/2500/1667?image=353") ;
-  background-size: cover;
-  background-position-y: 30%;
-  margin-bottom: 20px;
-  height: 100%; 
+.about-section {
+    padding-top: 2em;
+    background: url("https://picsum.photos/2500/1667?image=353");
+    background-size: cover;
+    background-position-y: 30%;
+    margin-bottom: 20px;
+    min-height: 100vh;
 }
 
 
 
-.intro-about{
-  width: 40rem;
-  text-align: center;
-  margin:auto;
-  padding-bottom: 2rem;
-  
+.intro-about {
+    width: 40rem;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 2rem;
+
 }
 
 /* .about-title{
@@ -25,37 +25,40 @@
 } */
 
 ul.qa {
-  list-style: none;
-  /* width: 500px; */
-  padding-left: 0;
-  /* margin: auto; */
-}
-ul.qa li {
-  margin-bottom: 1em;
-}
-.question {
-  display: block;
-  padding: 0.5em;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  box-sizing: border-box;
-  width: 30rem;
-  text-align: center;
-  cursor: pointer;
+    list-style: none;
+    /* width: 500px; */
+    padding-left: 0;
+    /* margin: auto; */
 }
 
-.question:hover{
-  color: #c9bf3b;
+ul.qa li {
+    margin-bottom: 1em;
+}
+
+.question {
+    display: block;
+    padding: 0.5em;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 30rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.question:hover {
+    color: #c9bf3b;
 }
 
 .answer {
-  display: none;
-  padding: 0.5em;
-  background-color: rgba(255, 255, 255, 0.5);
-  box-sizing: border-box;
-  width: 30rem;
+    display: none;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    width: 30rem;
 }
+
 .answer:active {
-  display: block;
+    display: block;
 }

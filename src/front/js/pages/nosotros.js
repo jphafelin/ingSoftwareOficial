@@ -21,7 +21,7 @@ export class Nosotros extends Component {
 
   render() {
     return (
-      <section className="about-section vh-100 vw-100">
+      <section className="about-section vw-100">
         <p className="intro-about fw-bolder fs-5">
           Somos un equipo compuesto por tres personas, con alma aventurera en
           busqueda de nuevos desafios estando en contacto con la naturaleza por
