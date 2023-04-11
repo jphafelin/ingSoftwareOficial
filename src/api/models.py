@@ -10,6 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean)
+    is_admin = db.Column(db.Boolean)
 
 
     
@@ -21,7 +22,8 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "is_admin":self.is_admin
             # do not serialize the password, its a security breach
         }
 
@@ -60,6 +62,7 @@ class Administradores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer, ForeignKey(User.id))
     name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
     
     user = relationship("User")
     
@@ -72,6 +75,7 @@ class Administradores(db.Model):
             "id": self.id,
             "id_user": self.id_user,
             "name": self.name,
+            "last_name":self.last_name
             
             # do not serialize the password, its a security breach
             }
@@ -176,6 +180,27 @@ class Participantes_de_Eventos(db.Model):
             "id_participante": self.id_participante,
             "apto_medico": self.apto_medico,
             "asistencia": self.asistencia
+           
+            # do not serialize the password, its a security breach
+        }
+
+class Imagenes_Carrusel(db.Model):
+    __tablename__ = 'imagenes_carrusel'
+    id = db.Column(db.Integer, primary_key=True)
+    id_tipo = db.Column(db.Integer, ForeignKey(Tipo_de_Evento.id))
+    url_imagen = db.Column(db.String(255))
+    texto = db.Column(db.String(255))
+    tipo_evento = relationship(Tipo_de_Evento)
+
+    def __repr__(self):
+        return f'<Imagen_Carrusel {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "id_tipo": self.id_tipo,
+            "url_imagen": self.url_imagen,
+            "texto": self.texto
            
             # do not serialize the password, its a security breach
         }

@@ -32,7 +32,8 @@ def user():
          user = User(            
                      email=request_body['email'],
                      password=request_body['password'],
-                     is_active=request_body['is_active']
+                     is_active=request_body['is_active'],
+                     is_admin=request_body['is_admin']
                     )
          db.session.add(user)
          db.session.commit()
@@ -73,12 +74,14 @@ def update_user(client_id):
     client.email = request.json.get('email', client.email)
     client.password = request.json.get('password', client.password)
     client.is_active = request.json.get('is_active', client.is_active)
+    client.is_admin = request.json.get('is_admin', client.is_admin)
     db.session.commit()
 
     response_body = {'id': client.id,
                      'email': client.email,
                      'password': client.password,
-                     'is_active': client.is_active}
+                     'is_active': client.is_active,
+                     'is_admin': client.is_admin}
 
     return jsonify(response_body), 200
 
@@ -535,6 +538,7 @@ def register_participante():
             
             item["email"] = result_datos["email"]
             item["is_active"] = result_datos["is_active"]
+            item["is_admin"] = result_datos["is_admin"]
             
             results.append(item)
             print(results)
@@ -552,7 +556,8 @@ def register_participante():
          user = User(      
                      email=request_body['email'],
                      password=request_body['password'],
-                     is_active=True #  true
+                     is_active=True,
+                     is_admin=False #  true
                     )
          
          db.session.add(user)
@@ -593,6 +598,7 @@ def register_monitor():
             result_datos = datos.serialize()
             item["email"] = result_datos["email"]
             item["is_active"] = result_datos["is_active"]
+            item["is_admin"] = result_datos["is_admin"]
             results.append(item)
             print(results)
         response_body = {"message": "ok",
@@ -604,7 +610,8 @@ def register_monitor():
          user = User(      
                      email=request_body['email'],
                      password=request_body['password'],
-                     is_active= True
+                     is_active= True,
+                     is_admin= False
                     )
          db.session.add(user)
          db.session.commit()
@@ -634,6 +641,7 @@ def register_administrador():
             result_datos = datos.serialize()
             item["email"] = result_datos["email"]
             item["is_active"] = result_datos["is_active"]
+            item["is_admin"] = result_datos["is_admin"]
             results.append(item)
             print(results)
 
@@ -646,7 +654,8 @@ def register_administrador():
          user = User(
                      email=request_body['email'],
                      password=request_body['password'],
-                     is_active= True
+                     is_active= True,
+                     is_admin= True,
                     )
          db.session.add(user)
          db.session.commit()
