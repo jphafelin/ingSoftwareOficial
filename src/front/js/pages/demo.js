@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
@@ -7,35 +8,34 @@ export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
+		<div className="container text-center col-2">
+			
+			<PayPalScriptProvider options={{"client-id":"Afo8929WhwV4xTsDyJ3y5Q5XH4S8o4f2kv380sIBebbr7Qp6nwyXxexAAtfa5ZSrDnt2FNBJalkZA6TK"}}>
+				<PayPalButtons 
+				createOrder={(data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
+                                amount: {
+                                    value: "10",
+                                },
+                            },
+                        ],
+                    });
+                }}
+				onApprove={(data, actions) => {
+					return actions.order.capture().then(function (details) {
+						
+						alert(
+							"Transacción Correcta"
+						);
+
+					});
+				}}
+				/>
+			</PayPalScriptProvider>
+		
 		</div>
 	);
 };
+

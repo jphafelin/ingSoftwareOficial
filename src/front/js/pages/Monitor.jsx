@@ -1,25 +1,33 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Home } from "./home";
+import { useNavigate } from "react-router-dom"
 
 export const Monitor = () => {
     const { store, actions } = useContext(Context);
     const myArray = store.monitores;
+    const navigate = useNavigate();
+
+
     function deleteMonitor(e) {
         e.preventDefault();
         alert("Desarrollar funcionalidad");
     }
-    function editMonitor(e) {
-        e.preventDefault();
-        alert("Desarrollar funcionalidad");
+    function editMonitor(key, user) {
+        console.log(key)
+        console.log(user)
+        localStorage.setItem("id_edit", key)
+        localStorage.setItem("id_user_edit", user)
+
+        return navigate("/editar_monitor");
+        
     }
     function registerMonitor(e) {
         e.preventDefault();
-        const host= process.env.BACKEND_URL;
-        const url= host +"/api/register-monitor";
-        return (location.href = url);
+    
+        return navigate("/register_monitor");
     }
-    console.log(myArray);
-    console.log(myArray[0]);
+    
     
     if (store.isAdmin) {
        
@@ -40,7 +48,7 @@ export const Monitor = () => {
                 {myArray.length === 0 ? (
                     <h1><span className="spam_no">No element in Array</span></h1>
                 ) : (
-                    myArray.map((item) => (
+                    myArray.map((item, key=item.id, user=item.id_user) => (
                             <tbody>
                             <tr>
                             <td >{item.id}</td>
@@ -51,7 +59,7 @@ export const Monitor = () => {
                             <td>
                                     <div className="container justify-content acciones">
                                         <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={deleteMonitor} ><i class="far fa-trash-alt"></i></button> 
-                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={editMonitor}><i class="fas fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-admin" onClick={()=>editMonitor(item.id, item.id_user)}><i class="fas fa-pencil"></i></button>
                                     </div> 
                                     </td>
                             </tr>

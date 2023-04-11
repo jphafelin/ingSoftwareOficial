@@ -18,6 +18,15 @@ import { EditPerfil } from "./pages/edit_perfil";
 import { Equipo } from "./component/equipo";
 import { PreguntasFrecuentes } from "./pages/preguntasFrecuentes";
 import { Nosotros } from "./pages/nosotros";
+import { Demo } from "./pages/demo";
+import { Categorias } from "./pages/Categorias.jsx";
+import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
+import { EditAdmin } from "./pages/Editar_Administrador.jsx";
+import { EditMonitor } from "./pages/Editar_Monitor.jsx";
+import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
+import { EventosRunning } from "./pages/EventosRunning.jsx";
+import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
+import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 
 
 //create your first component
@@ -47,6 +56,15 @@ const Layout = () => {
                         <Route element={<Equipo />} path="/equipo" />
                         <Route element={<PreguntasFrecuentes />} path="/preguntasFrecuentes" />
                         <Route element={<Nosotros />} path="/nosotros" />
+                        <Route element={<Categorias />} path="/categorias" />
+                        <Route element={<CrearTipoEvento />} path="/crear_tipo_evento" />
+                        <Route element={<EditAdmin />} path="/editar_administrador" />
+                        <Route element={<EditMonitor />} path="/editar_monitor" />
+                        <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
+                        <Route element={<EventosRunning />} path="/eventos_running" />
+                        <Route element={<RegisterAdmin />} path="/register_administrador" />
+                        <Route element={<RegisterMonitor />} path="/register_monitor" />
+                        <Route element={<Demo />} path="/demo" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
