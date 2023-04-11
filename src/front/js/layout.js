@@ -18,6 +18,7 @@ import { EditPerfil } from "./pages/edit_perfil";
 import { Equipo } from "./component/equipo";
 import { PreguntasFrecuentes } from "./pages/preguntasFrecuentes";
 import { Nosotros } from "./pages/nosotros";
+import { Contacto } from "./pages/contacto";
 
 
 //create your first component
@@ -47,6 +48,7 @@ const Layout = () => {
                         <Route element={<Equipo />} path="/equipo" />
                         <Route element={<PreguntasFrecuentes />} path="/preguntasFrecuentes" />
                         <Route element={<Nosotros />} path="/nosotros" />
+                        <Route element={<Contacto />} path="/contacto" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
