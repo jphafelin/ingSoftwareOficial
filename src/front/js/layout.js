@@ -21,6 +21,10 @@ import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 import { EditMonitor } from "./pages/Editar_Monitor.jsx";
 import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
+import { PreguntasFrecuentes } from "./pages/preguntasFrecuentes";
+import { Nosotros } from "./pages/nosotros";
+import { Contacto } from "./pages/contacto";
+import { EditPerfil } from "./pages/edit_perfil";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -61,6 +65,10 @@ const Layout = () => {
                         <Route element={<CrearTipoEvento />} path="/crear_tipo_evento" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<EditPerfil />} path="/edit_perfil" />
+                        <Route element={<PreguntasFrecuentes />} path="/preguntasFrecuentes" />
+                        <Route element={<Nosotros />} path="/nosotros" />
+                        <Route element={<Contacto />} path="/contacto" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

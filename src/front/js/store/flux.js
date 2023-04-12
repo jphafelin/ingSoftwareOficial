@@ -100,37 +100,37 @@ export default getState;
 
 
 const getState = ({
-    getStore,
-    getActions,
-    setStore
+	getStore,
+	getActions,
+	setStore
 }) => {
-    return {
-        store: {
-            message: null,
-            demo: [{
-                    title: "FIRST",
-                    background: "white",
-                    initial: "white"
-                },
-                {
-                    title: "SECOND",
-                    background: "white",
-                    initial: "white"
-                }
-            ],
-            token: null,
-            user: [],
-            participante: [],
-            isAdmin: false, // crear logica
-            enrolled: [],
-            monitores: [],
-            administradores: [],
-            tipo_evento: [],
+	return {
+		store: {
+			message: null,
+			demo: [{
+				title: "FIRST",
+				background: "white",
+				initial: "white"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white"
+			}
+			],
+			token: null,
+			user: [],
+			participante: [],
+			isAdmin: false, // crear logica
+			enrolled: [],
+			monitores: [],
+			administradores: [],
+			tipo_evento: [],
 			evento: [],
-        },
-        actions: {
+		},
+		actions: {
 
-            register: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
+			register: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
 				const requestOptions = {
 					method: "POST",
 					headers: {
@@ -179,7 +179,7 @@ const getState = ({
 				};
 				try {
 					const resp = await fetch(`${BACKEND_URL}/api/login`, requestOptions)
-				
+
 					if (resp.status != 200) {
 						console.log("An error has occurred");
 						return false;
@@ -208,133 +208,202 @@ const getState = ({
 			},
 
 
-            // Use getActions to call a function within a fuction
-            exampleFunction: () => {
-                getActions().changeColor(0, "green");
-            },
+			// Use getActions to call a function within a fuction
+			exampleFunction: () => {
+				getActions().changeColor(0, "green");
+			},
 
-            getMessage: async () => {
-                try {
-                    // fetching data from the backend
-                    const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-                    const data = await resp.json()
-                    setStore({
-                        message: data.message
-                    })
-                    // don't forget to return something, that is how the async resolves
-                    return data;
-                } catch (error) {
-                    console.log("Error loading message from backend", error)
-                }
-            },
-            changeColor: (index, color) => {
-                //get the store
-                const store = getStore();
+			getMessage: async () => {
+				try {
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const data = await resp.json()
+					setStore({
+						message: data.message
+					})
+					// don't forget to return something, that is how the async resolves
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
+			},
+			changeColor: (index, color) => {
+				//get the store
+				const store = getStore();
 
-                //we have to loop the entire demo array to look for the respective index
-                //and change its color
-                const demo = store.demo.map((elm, i) => {
-                    if (i === index) elm.background = color;
-                    return elm;
-                });
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const demo = store.demo.map((elm, i) => {
+					if (i === index) elm.background = color;
+					return elm;
+				});
 
-                //reset the global store
-                setStore({
-                    demo: demo
-                });
-            },
-            getEnrolled: async () => {
-                const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = host + "/api/register-participante";
-                const requestOptions = {
-                    method: "GET",
-                    ContentType: "application/json",
-                }
-                const response = await fetch(url, requestOptions);
-                console.log(response)
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(" Data User: ", data.results);
-                    setStore({
-                        enrolled: data.results,
-                    });
-                }
-            },
-            getMonitores: async () => {
-                const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = host + "/api/register-monitor";
-                const requestOptions = {
-                    method: "GET",
-                    ContentType: "application/json",
-                }
-                const response = await fetch(url, requestOptions);
-                console.log(response)
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(" Data Monitores: ", data.results);
-                    setStore({
-                        monitores: data.results,
-                    });
-                }
-            },
-            getAdministradores: async () => {
-                const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = host + "/api/register-administrador";
-                const requestOptions = {
-                    method: "GET",
-                    ContentType: "application/json",
-                }
-                const response = await fetch(url, requestOptions);
-                console.log(response)
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(" Data Administrador: ", data.results);
-                    setStore({
-                        administradores: data.results,
-                    });
-                }
-            },
-            getTipo_de_Eventos: async () => {
-                const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = host + "/api/tipo-de-evento";
-                const requestOptions = {
-                    method: "GET",
-                    ContentType: "application/json",
-                }
-                const response = await fetch(url, requestOptions);
-                console.log(response)
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(" Data Administrador: ", data.results);
-                    setStore({
-                        tipo_evento: data.results,
-                    });
-                }
-            },
+				//reset the global store
+				setStore({
+					demo: demo
+				});
+			},
+			getEnrolled: async () => {
+				const store = getStore();
+				const host = process.env.BACKEND_URL;
+				const url = host + "/api/register-participante";
+				const requestOptions = {
+					method: "GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url, requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log(" Data User: ", data.results);
+					setStore({
+						enrolled: data.results,
+					});
+				}
+			},
+			getMonitores: async () => {
+				const store = getStore();
+				const host = process.env.BACKEND_URL;
+				const url = host + "/api/register-monitor";
+				const requestOptions = {
+					method: "GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url, requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log(" Data Monitores: ", data.results);
+					setStore({
+						monitores: data.results,
+					});
+				}
+			},
+			getAdministradores: async () => {
+				const store = getStore();
+				const host = process.env.BACKEND_URL;
+				const url = host + "/api/register-administrador";
+				const requestOptions = {
+					method: "GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url, requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log(" Data Administrador: ", data.results);
+					setStore({
+						administradores: data.results,
+					});
+				}
+			},
+			getTipo_de_Eventos: async () => {
+				const store = getStore();
+				const host = process.env.BACKEND_URL;
+				const url = host + "/api/tipo-de-evento";
+				const requestOptions = {
+					method: "GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url, requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log(" Data Administrador: ", data.results);
+					setStore({
+						tipo_evento: data.results,
+					});
+				}
+			},
 			getEvento: async () => {
-                const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = host + "/api/evento";
-                const requestOptions = {
-                    method: "GET",
-                    ContentType: "application/json",
-                }
-                const response = await fetch(url, requestOptions);
-                console.log(response)
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(" Data Administrador: ", data.results);
-                    setStore({
-                        evento: data.results,
-                    });
-                }
-            },
-        }
-    };
-};
+				const store = getStore();
+				const host = process.env.BACKEND_URL;
+				const url = host + "/api/evento-y-tipo-de-evento";
+				const requestOptions = {
+					method: "GET",
+					ContentType: "application/json",
+				}
+				const response = await fetch(url, requestOptions);
+				console.log(response)
+				if (response.ok) {
+					const data = await response.json();
+					console.log(" Data Administrador: ", data.results);
+					setStore({
+						evento: data.results,
+					});
+				}
+			},
 
-export default getState;
+
+
+			getUserInfo: async () => {
+				const requestOptions = {
+					method: "GET",
+					headers: {
+						"Content-type": "application/json"
+					},
+				}
+				const userId = JSON.parse(localStorage.getItem("userId"))
+				try {
+					const response = await fetch(`${BACKEND_URL}/api/users/${userId.id}`, requestOptions)
+					const user = await response.json();
+					setStore({ ...getStore(), user })
+				} catch (error) {
+					console.log(error);
+				};
+			},
+
+
+
+			getInfoParticipante: async () => {
+				const requestOptions = {
+					method: "GET",
+					headers: {
+						"Content-type": "application/json"
+					},
+				}
+				const userId = JSON.parse(localStorage.getItem("userId"))
+				try {
+					const response = await fetch(`${BACKEND_URL}/api/participante/${userId.id}`, requestOptions)
+					const participante = await response.json();
+					setStore({ ...getStore(), participante })
+				} catch (error) {
+					console.log(error);
+				};
+			},
+
+			getActualizarParticipante: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
+				const requestOptions = {
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json"
+					},
+
+					body: JSON.stringify({
+						...(email && { email }),
+						...(password && { password }),
+						...(name && { name }),
+						...(last_name && { last_name }),
+						...(numero_telefono && { numero_telefono }),
+						...(nombre_contacto_emergencia && { nombre_contacto_emergencia }),
+						...(numero_contacto_emergencia && { numero_contacto_emergencia }),
+						...(asistencia_medica && { asistencia_medica }),
+					})
+				}
+				console.log(requestOptions)
+
+				const userId = JSON.parse(localStorage.getItem("userId"))
+				try {
+					const response = await fetch(`${BACKEND_URL}/api/participante/${userId.id}`, requestOptions)
+					const participante = await response.json();
+					setStore({ ...getStore(), participante })
+					return true
+				} catch (error) {
+					console.log(error);
+				};
+			},
+		},
+	};
+	};
+
+	export default getState;

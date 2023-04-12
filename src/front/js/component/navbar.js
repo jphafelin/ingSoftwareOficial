@@ -33,28 +33,31 @@ export const Navbar = () => {
 
 				</div>
 				<div>
-					<ul className="nav me-auto mb-2 mb-lg-0">
+					
+					{!store.token ? (
+						<ul className="nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="#">Evento</Link>
 						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
 						</li>
-						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Fecha</Link>
-						</li>
-						<li className="nav-item">
-
-						</li>
-						{!store.token ? (
-							<div>
+						<div>
 								<Link to="/login"><span className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Iniciar Sesión</span></Link>
 								<Link to="/register"><span className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Regístrate</span></Link>
 							</div>
+						</ul>
 						) : (
-							<button className="log-out-btn" onClick={handleClick} ><span className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Cerrar Sesión</span></button>
+							<ul className="nav me-auto mb-2 mb-lg-0">
+						<li className="nav-item">
+							<Link className="nav-link rg-textlink link-secondary" to="/edit_perfil">Editar Perfil</Link>
+							</li>
+						<button className="log-out-btn" onClick={handleClick} ><span className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1" type="button">Cerrar Sesión</span></button>
+						
+						</ul>
 						)}
-					</ul>
+						
+					
 				</div>
 			</div>
 		</nav>

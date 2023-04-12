@@ -686,3 +686,29 @@ def update_user_administrador(client_id):
                      } ## Falta el nombre que está en la tabla de administradores
 
     return jsonify(response_body), 200        
+
+@api.route('/evento-y-tipo-de-evento', methods=['GET'])
+def evento_y_tipo_de_evento():
+    if request.method == "GET":
+        evento = Evento.query.all()
+        results = []
+        result_evento = [eventoserialize.serialize() for eventoserialize in evento]
+        for item in result_evento:
+            # print("#############", item)
+            # print("#############", item["id_user"])
+            datos = Tipo_de_Evento.query.filter(item["id_tipo"] == Tipo_de_Evento.id).first()
+            result_datos = datos.serialize()
+            item["name"] = result_datos["name"]
+            item["descripcion"] = result_datos["descripcion"]
+            item["dificultad"] = result_datos["dificultad"]
+            item["categoria"] = result_datos["categoria"]
+            item["url_imagen"] = result_datos["url_imagen"]
+            results.append(item)
+            print(results)
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
