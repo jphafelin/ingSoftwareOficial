@@ -30,6 +30,7 @@ import { EventosSenderismo } from "./pages/EventosSenderismo.jsx";
 import { EventosTriatlon } from "./pages/EventosTriatlon.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
+import { Contacto } from "./pages/contacto";
 
 
 //create your first component
@@ -70,6 +71,7 @@ const Layout = () => {
                         <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
+                        <Route element={<Contacto />} path="/contacto" />
                         <Route element={<Demo />} path="/demo" />
                     </Routes>
                     <Footer />
