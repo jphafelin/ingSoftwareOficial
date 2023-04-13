@@ -37,7 +37,7 @@ export const Navbar = () => {
 					{!store.token ? (
 						<ul className="nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Evento</Link>
+							<Link className="nav-link rg-textlink link-secondary" to="/eventos-todos">Evento</Link>
 						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
