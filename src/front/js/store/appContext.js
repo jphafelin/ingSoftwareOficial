@@ -34,6 +34,9 @@ const injectContext = PassedComponent => {
 			state.actions.getAdministradores();
 			state.actions.getTipo_de_Eventos();
 			state.actions.getEvento();
+
+			state.actions.getCharacters();
+			state.actions.getCharacter();
 			/* state.actions.getEnrolled(); // <---- calling this function from the flux.js actions
 			state.actions.getMonitores();
 			state.actions.getAdministradores();

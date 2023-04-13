@@ -17,11 +17,36 @@ const getState = ({
             administradores: [],
             tipo_evento: [],
             evento: [],
+
+            characters: [],
+            selectCharacter: [],
         },
 
 
 
         actions: {
+            getCharacters: async () => {
+                const store = getStore();
+                if (localStorage.getItem("characters") === null) {
+                  const url = `https://3001-jphafelin-rutgreen-r7kwrievmnq.ws-eu93.gitpod.io/api/evento-y-tipo-de-evento`;
+                  const requestOption = {
+                    method: "GET",
+                    ContentType: "application/json",
+                  };
+                  const response = await fetch(url, requestOption);
+                  if (response.ok) {
+                    const data = await response.json();
+                    setStore({ characters: data.results, });
+                    localStorage.setItem(`characters`, JSON.stringify(store.characters));
+                    let storage = localStorage.getItem("characters");
+                  } else {
+                    console.log("error: ", response.status, response.statusText);
+                  }
+                } else {
+                  setStore({ characters: JSON.parse(localStorage.getItem("characters")), });
+                };
+            },
+            getCharacter: (character) => { setStore({ selectCharacter: character, })},
             // Use getActions to call a function within a fuction
             register: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
                 const requestOptions = {

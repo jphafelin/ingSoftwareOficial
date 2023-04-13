@@ -32,6 +32,8 @@ import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 import { Contacto } from "./pages/contacto";
 import { EventosTodos } from "./pages/EventosTodos.jsx";
+import { CharactersDetails } from "./pages/CharactersDetails.jsx";
+import { Characters } from "./pages/Characters.jsx";
 
 
 //create your first component
@@ -74,6 +76,8 @@ const Layout = () => {
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<EventosTodos />} path="/eventos-todos" />
+                        <Route path="/characters/:theid" element={<CharactersDetails />} />
+                        <Route path="/characters" element={<Characters />} />
                         <Route element={<Demo />} path="/demo" />
                     </Routes>
                     <Footer />
