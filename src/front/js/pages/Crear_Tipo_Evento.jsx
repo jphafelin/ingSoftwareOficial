@@ -28,8 +28,10 @@ export const CrearTipoEvento = () => {
            body: raw,
            redirect: 'follow'
          };
- 
-         fetch("https://3001-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/api/tipo-de-evento", requestOptions)
+         
+         const host= process.env.BACKEND_URL;
+         
+         fetch(host +"/api/tipo-de-evento", requestOptions)
            .then(response => response.text())
            .then(result => console.log(result))
            .catch(error => console.log('error', error));

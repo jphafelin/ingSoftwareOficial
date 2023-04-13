@@ -70,7 +70,7 @@ def update_user(client_id):
     client = User.query.get(client_id)
     if client is None:
         return 'Not found', 404
-    client.id = request.json.get('id', client.id)
+    
     client.email = request.json.get('email', client.email)
     client.password = request.json.get('password', client.password)
     client.is_active = request.json.get('is_active', client.is_active)
@@ -144,34 +144,7 @@ def delete_participante(user_id):
     return jsonify('OK'), 200
 
 
-""" @api.route('/participante/<int:client_id>', methods=['PUT'])
-def update_participante(client_id):
-    client = Participante.query.get(client_id)
-    if client is None:
-        return 'Not found', 404
 
-    client.id = request.json.get('id', client.id)
-    client.id_user = request.json.get('id_user', client.id_user)
-    client.name = request.json.get('name', client.name)
-    client.last_name = request.json.get('last_name', client.last_name)
-    client.url_image = request.json.get('url_image', client.url_image)
-    client.numero_telefono = request.json.get('numero_telefono', client.numero_telefono)
-    client.nombre_contacto_emergencia = request.json.get('nombre_contacto_emergencia', client.nombre_contacto_emergencia)
-    client.numero_contacto_emergencia = request.json.get('numero_contacto_emergencia', client.numero_contacto_emergencia)
-    client.asistencia_medica = request.json.get('asistencia_medica', client.asistencia_medica)
-    db.session.commit()
-
-    response_body = {'id': client.id,
-                     'id_user': client.user_id,
-                     'name': client.name,
-                     'last_name': client.is_active,
-                     'url_image': client.url_image,
-                     'numero_telefono': client.numero_telefono,
-                     'nombre_contacto_emergencia': client.nombre_contacto_emergencia,
-                     'numero_contacto_emergencia': client.numero_contacto_emergencia,
-                     'asistencia_medica': client.asistencia_medica}
-
-    return jsonify(response_body), 200 """
 
 @api.route('/participante/<int:user_id>', methods=['PUT'])
 def actualizar_participante(user_id):
@@ -234,7 +207,7 @@ def update_administradores(client_id):
     if client is None:
         return 'Not found', 404
 
-    client.id = request.json.get('id', client.id)
+    
     client.id_user = request.json.get('id_user', client.id_user)
     client.name = request.json.get('name', client.name)
     db.session.commit()
@@ -289,7 +262,7 @@ def update_monitor(client_id):
     if client is None:
         return 'Not found', 404
 
-    client.id = request.json.get('id', client.id)
+    
     client.id_user = request.json.get('id_user', client.id_user)
     client.name = request.json.get('name', client.name)
     client.last_name = request.json.get('last_name', client.last_name)
@@ -349,7 +322,7 @@ def update_evento(client_id):
     if client is None:
         return 'Not found', 404
 
-    client.id = request.json.get('id', client.id)
+    
     client.fecha = request.json.get('fecha', client.fecha)
     client.id_tipo = request.json.get('id_tipo', client.id_tipo)
     client.lugar = request.json.get('lugar', client.lugar)
@@ -385,7 +358,7 @@ def tiposdeeventos():
     elif request.method == "POST":
          
          request_body = request.get_json()
-         tipo_de_evento = Tipo_de_Evento(id=request_body['id'],            
+         tipo_de_evento = Tipo_de_Evento(            
                      name=request_body['name'],
                      descripcion=request_body['descripcion'],
                      dificultad=request_body['dificultad'],
@@ -667,6 +640,33 @@ def register_administrador():
          db.session.commit()
          return jsonify(request_body), 200
 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
+
+
+@api.route('/evento-y-tipo-de-evento', methods=['GET'])
+def evento_y_tipo_de_evento():
+    if request.method == "GET":
+        evento = Evento.query.all()
+        results = []
+        result_evento = [eventoserialize.serialize() for eventoserialize in evento]
+        for item in result_evento:
+            # print("#############", item)
+            # print("#############", item["id_user"])
+            datos = Tipo_de_Evento.query.filter(item["id_tipo"] == Tipo_de_Evento.id).first()
+            result_datos = datos.serialize()
+            item["name"] = result_datos["name"]
+            item["descripcion"] = result_datos["descripcion"]
+            item["dificultad"] = result_datos["dificultad"]
+            item["categoria"] = result_datos["categoria"]
+            item["url_imagen"] = result_datos["url_imagen"]
+            results.append(item)
+            print(results)
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400

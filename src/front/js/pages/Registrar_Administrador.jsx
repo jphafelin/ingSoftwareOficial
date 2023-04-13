@@ -44,10 +44,7 @@ export const RegisterAdmin = () => {
         setPassword("")
         console.log("Estas registrado") 
 
-        //return (
-        //    <div class="alert alert-primary" role="alert">
-        //        A simple primary alert—check it out!
-        //    </div>)
+ 
     }
 
    console.log(email);

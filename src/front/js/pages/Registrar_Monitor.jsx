@@ -28,7 +28,10 @@ export const RegisterMonitor = () => {
   		redirect: 'follow'
 		};
 
-		fetch("https://3001-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/api/register-monitor", requestOptions)
+        const host= process.env.BACKEND_URL;
+        const url= host + "/api/register-monitor"
+
+		fetch(url, requestOptions)
   		.then(response => response.text())
   		.then(result => console.log(result))
   		.catch(error => console.log('error', error));

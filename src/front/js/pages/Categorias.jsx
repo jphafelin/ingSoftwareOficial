@@ -2,23 +2,21 @@ import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Enrolled } from "./Enrolled.jsx"
 import { useNavigate  } from "react-router-dom";
+
 export const Categorias = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
     function eventoSenderismo(e) {
-        e.preventDefault();
-        alert("Desarrollar funcionalidad");
+        navigate( "/eventos-senderismo")
     }
     function eventoRunning(e) {
         navigate( "/eventos-running")
     }
     function eventoTriatlon(e) {
-        e.preventDefault();
-        alert("Desarrollar funcionalidad");
+        navigate( "/eventos-triatlon")
     }
     function eventoCiclismo(e) {
-        e.preventDefault();
-        alert("Desarrollar funcionalidad");
+        navigate( "/eventos-ciclismo")
     }
     if (store.isAdmin) {
         return (

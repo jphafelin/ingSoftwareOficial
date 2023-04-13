@@ -12,28 +12,6 @@ export const EditarTipoEvento = () => {
     const host= process.env.BACKEND_URL;
 
     
-    // const get_tipo = () =>{
-    //     console.log(edit_id)
-    //     var requestOptions = {
-    //         method: 'GET',
-    //         redirect: 'follow'
-    //         };
-          
-    //         fetch(host +"/api/tipo-de-evento/1", requestOptions)
-    //         .then(response => response.json())
-    //         .then(result => console.log(result.name))
-            
-    //         .catch(error => console.log('error', error));
-    
-    // }
-    
-    // get_tipo()
-
-    
-    
-    
-    
-    
     
     const handleClick = () =>{
         

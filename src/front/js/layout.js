@@ -25,6 +25,9 @@ import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { EditMonitor } from "./pages/Editar_Monitor.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import { EventosRunning } from "./pages/EventosRunning.jsx";
+import { EventosCiclismo } from "./pages/EventosCiclismo.jsx";
+import { EventosSenderismo } from "./pages/EventosSenderismo.jsx";
+import { EventosTriatlon } from "./pages/EventosTriatlon.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 
@@ -61,7 +64,10 @@ const Layout = () => {
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<EditMonitor />} path="/editar_monitor" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
-                        <Route element={<EventosRunning />} path="/eventos_running" />
+                        <Route element={<EventosRunning />} path="/eventos-running" />
+                        <Route element={<EventosSenderismo />} path="/eventos-senderismo" />
+                        <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
+                        <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
                         <Route element={<Demo />} path="/demo" />
