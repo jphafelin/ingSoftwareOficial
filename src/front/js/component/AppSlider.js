@@ -14,14 +14,14 @@ export const AppSlider = () => {
   const containerStyles = {
     display: "flex",
     width: "auto",
-    height: "380px",
+    height: "600px",
     padding: "0px",
     
   };
   const containerStylesInt = {
     display: "flex",
     width: "100%",
-    height: "380px",
+    height: "480px",
     padding: "0px",
     margin:"10px",
     
@@ -36,4 +36,3 @@ export const AppSlider = () => {
     </div>
   );
 };
-

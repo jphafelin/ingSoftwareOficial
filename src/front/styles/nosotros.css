@@ -1,64 +1,71 @@
 .about-section {
-    padding-top: 2em;
-    background: url("https://picsum.photos/2500/1667?image=353");
-    background-size: cover;
-    background-position-y: 30%;
-    /* margin-bottom: 20px; */
-    min-height: 100vh;
-}
-
-
-
-.intro-about {
-    width: 40rem;
-    text-align: center;
-    margin: auto;
-    padding-bottom: 2rem;
-
-}
-
-/* .about-title{
-  font-size: larger;
-  color: #f7f7f7;
-  margin-bottom: 1em;
-  text-align: center;
-} */
-
-ul.qa {
-    list-style: none;
-    /* width: 500px; */
-    padding-left: 0;
-    /* margin: auto; */
-}
-
-ul.qa li {
-    margin-bottom: 1em;
-}
-
-.question {
-    display: block;
-    padding: 0.5em;
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    box-sizing: border-box;
-    width: 30rem;
-    text-align: center;
-    cursor: pointer;
-}
-
-.question:hover {
-    color: #c9bf3b;
-}
-
-.answer {
-    display: none;
-    padding: 0.5em;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-sizing: border-box;
-    width: 30rem;
-}
-
-.answer:active {
-    display: block;
-}
+    width: 100%;
+     border-radius: 10px;
+     background: url("https://picsum.photos/2500/1667?image=353");
+     background-size: cover;
+     background-position-y: 30%;
+     /* margin-bottom: 20px; */
+     min-height: 110vh;
+ }
+ 
+ 
+ 
+ .intro-about {
+     width: 40rem;
+     text-align: center;
+     margin: auto;
+     padding-bottom: 2rem;
+ 
+ }
+ 
+ /* .about-title{
+   font-size: larger;
+   color: #f7f7f7;
+   margin-bottom: 1em;
+   text-align: center;
+ } */
+ 
+ ul.qa1{
+     list-style: none;
+     /* width: 500px; */
+     padding-left: 0;
+     /* margin: auto; */
+ }
+ 
+ ul.qa1 li{
+     margin-bottom: 1em;
+ }
+ 
+ .question {
+     display: block;
+     padding: 0.5em;
+     background-color: #000;
+     color: #fff;
+     text-decoration: none;
+     box-sizing: border-box;
+     width: 30rem;
+     text-align: center;
+     cursor: pointer;
+ }
+ 
+ .question:hover {
+     color: #c9bf3b;
+ }
+ 
+ .answer {
+     display: none;
+     padding: 0.5em;
+     background-color: rgba(255, 255, 255, 0.5);
+     box-sizing: border-box;
+     width: 30rem;
+ }
+ 
+ .answer:active {
+     display: block;
+ }
+ .team-people{
+     margin-bottom: 20px;
+ }
+ .divNosotros{
+     margin-top:10px;
+ }

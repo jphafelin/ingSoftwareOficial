@@ -32,7 +32,7 @@ export const Navbar = () => {
 					</div>
 
 				</div>
-				<div>
+				<div className="justify-content-end">
 					
 					{!store.token ? (
 						<ul className="nav me-auto mb-2 mb-lg-0">
@@ -49,6 +49,12 @@ export const Navbar = () => {
 						</ul>
 						) : (
 							<ul className="nav me-auto mb-2 mb-lg-0">
+								<li className="nav-item">
+							<Link className="nav-link rg-textlink link-secondary" to="/eventos-todos">Evento</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
+						</li>
 						<li className="nav-item">
 							<Link className="nav-link rg-textlink link-secondary" to="/edit_perfil">Editar Perfil</Link>
 							</li>

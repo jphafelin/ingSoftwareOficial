@@ -52,7 +52,9 @@ export const Administradores = () => {
                         </tr>
                     </thead>
                     {myArray.length === 0 ? (
-                        <h1><span className="spam_no">No element in Array</span></h1>
+                       <div>
+                       <h1><span className="spam_no">No element in Array</span></h1>
+                       </div>
                     ) : (
                         myArray.map((item, key=item.id, user=item.id_user) => (
                             <tbody>

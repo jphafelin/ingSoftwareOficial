@@ -46,7 +46,9 @@ export const Tipo_de_Eventos = () => {
                                 </tr>
                                 </thead>
                     {myArray.length === 0 ? (
+                        <div>
                         <h1><span className="spam_no">No element in Array</span></h1>
+                        </div>
                     ) : (
                         myArray.map((item, key=item.id) => (
                                 <tbody>

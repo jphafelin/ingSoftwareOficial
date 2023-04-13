@@ -21,14 +21,18 @@ export class Nosotros extends Component {
 
   render() {
     return (
-      <section className="about-section vw-100">
+      <div className="container-fluid d-flex divNosotros">
+        
+      <section className="container-fluid d-block about-section ">
+      
         <p className="intro-about fw-bolder fs-5">
           Somos un equipo compuesto por tres personas, con alma aventurera en
           busqueda de nuevos desafios estando en contacto con la naturaleza por
           esta razon dicidimos enfocarnos a un proyecto de este tipo y queremos
           darles a conocer{" "}
         </p>{" "}
-        <ul className="qa">
+        <div className="container-fluid d-flex justify-content-center">
+        <ul className="qa1">
           <li>
             <a className="question" onClick={this.handleClick}>
               {" "}
@@ -78,6 +82,7 @@ export class Nosotros extends Component {
             </div>{" "}
           </li>{" "}
         </ul>{" "}
+        </div>
         <div className="team-people">
           <div className="team-person">
             <div className="team-container">
@@ -107,7 +112,12 @@ export class Nosotros extends Component {
             <div className="name">Sonia Pagano Doval</div>
           </div>
         </div>
+       
+        
       </section>
+      </div>
+      
+      
     );
   }
 }

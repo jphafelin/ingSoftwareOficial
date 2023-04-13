@@ -76,8 +76,9 @@ export const EditPerfil = () => {
 
 
     return (
-        <section className="register-section vh-100 vw-100">
-            <div className="register-box" >
+        <div className="container-fluid d-flex divEdit">
+        <section className="container register-box">
+            
                 <form className="form-signin" onSubmit={formik.handleSubmit}>
                     <h1>Editar Perfil</h1>
                     <div className="form-containter row">
@@ -184,8 +185,9 @@ export const EditPerfil = () => {
                     {error && <div className="text-white  text-center mt-3"><strong>{error}</strong></div>}
 
                 </form>
-            </div >
+           
         </section>
+        </div>
     );
 };
 

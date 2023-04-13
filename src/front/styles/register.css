@@ -1,14 +1,9 @@
-  
-  .register-section{
-    font-family: sans-serif;
-    background: url("https://picsum.photos/2500/1667?image=353") no-repeat center center fixed;
-    background-size: cover;
-    background-position-y: 30%;
-    margin-bottom: 20px;
-  } 
+
 
   .register-box {
-    width:fit-content;
+    margin-top: 100px;
+    margin: 10px 10px 10px 10px;
+    height: auto;
     padding: 20px;
     position: absolute;
     top: 55%;
@@ -19,6 +14,7 @@
     border-radius: 10px;
   }
   
+ 
   .register-box h1 {
     font-size: 30px;
     color: white;
@@ -75,4 +71,22 @@
     display: flex;
     flex-direction: row;
 
+  }
+
+  .divEdit{
+    font-family: sans-serif;
+    background: url("https://picsum.photos/2500/1667?image=353") no-repeat center center fixed;
+    background-size:cover;
+    background-position-y: 30%;
+    margin: 10px 10px 10px 10px;
+    min-height: 700px;
+    height: auto;
+    padding: 0%;
+    border-radius: 10px;
+    width: auto;
+  }
+
+  .sec{
+    width: auto;
+    margin: 10px 10px 10px 10px;
   }

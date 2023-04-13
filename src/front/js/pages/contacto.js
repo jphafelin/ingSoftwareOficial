@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import "../../styles/contacto.css";
 
@@ -13,8 +12,11 @@ export class Contacto extends Component {
 
   render() {
     return (
-    <section className="qa-section vh-100 vw-100">
+      <div className="counter-fluid divContacto">
+        <div className="counter-fluid d-flex justify-content-center ">
+    <section className="qa-section1 ">
       {/* <h1 className="qa-title">Contacto</h1> */}
+      
       <ul className="qa">
         <li>
           <a  className="qa-question text-uppercase " onClick={this.handleClick}>
@@ -53,7 +55,10 @@ export class Contacto extends Component {
           </div>{" "}
         </li>{" "}
       </ul>{" "}
+      
     </section>
+    </div>
+    </div>
   );
 }
 }

@@ -12,9 +12,11 @@ export class PreguntasFrecuentes extends Component {
 
   render() {
     return (
-    <section className="qa-section vh-100 vw-100">
+      <div className="container-fluid d-flex divPreguntasFrecuentes">
+    <section className="qa-section">
       {/* <h1 className="qa-title">Preguntas Frecuentes</h1> */}
-      <ul className="qa">
+      <div className="container-fluid divPreguntas">
+      <ul className="qa3">
         <li>
           <a  className="qa-question text-uppercase " onClick={this.handleClick}>
             {" "}
@@ -91,7 +93,11 @@ export class PreguntasFrecuentes extends Component {
           </div>{" "}
         </li>{" "}
       </ul>{" "}
+      </div>
+      
     </section>
+    
+    </div>
   );
 }
 }
