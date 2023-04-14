@@ -34,6 +34,8 @@ import { Contacto } from "./pages/contacto";
 import { EventosTodos } from "./pages/EventosTodos.jsx";
 import { CharactersDetails } from "./pages/CharactersDetails.jsx";
 import { Characters } from "./pages/Characters.jsx";
+import { Eventos } from "./pages/Eventos.jsx";
+import { EditarEvento } from "./pages/Editar_Evento.jsx";
 
 
 //create your first component
@@ -54,6 +56,7 @@ const Layout = () => {
                         <Route element={<Monitor />} path="/Monitor" />
                         <Route element={<Administradores />} path="/Administradores" />
                         <Route element={<Tipo_de_Eventos />} path="/Tipo_de_Eventos" />
+                        <Route element={<Eventos />} path="/Eventos" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<Single />} path="/single/:theid" />
@@ -68,6 +71,7 @@ const Layout = () => {
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<EditMonitor />} path="/editar_monitor" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
+                        <Route element={<EditarEvento />} path="/editar_evento" />
                         <Route element={<EventosRunning />} path="/eventos-running" />
                         <Route element={<EventosSenderismo />} path="/eventos-senderismo" />
                         <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
