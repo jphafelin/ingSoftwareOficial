@@ -28,15 +28,15 @@ export const Login = () => {
   }
 
   return (
-    <section className="login-section vh-100 vw-100">
+    <section className="login-section vh-100 divEdit">
       <div className="login-box">
         <form className="form-signin" onSubmit={handleClick}>
           <h1>Ingresar</h1>
-          <div className="textbox">
+          <div className="textbox1">
             <i class="fa-solid fa-envelope" />
             <input type="text" className="inp-form form-control" name="username" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} required="" autoFocus="" />
           </div>
-          <div className="textbox">
+          <div className="textbox1">
             <i className="fa fa-lock" aria-hidden="true" />
             <input type="password" className="inp-form form-control" name="password" placeholder="Contraseña" value={password} onChange={(e) => { setPassword(e.target.value) }} required="" />
           </div>

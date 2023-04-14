@@ -17,7 +17,7 @@ const getState = ({
             administradores: [],
             tipo_evento: [],
             evento: [],
-
+            participantesEventosId: [],
             characters: [],
             selectCharacter: [],
         },
@@ -313,7 +313,24 @@ const getState = ({
                     console.log(error);
                 };
             },
-
+            getParticipantesEventosId: async () => {
+                const store = getStore();
+                const host = process.env.BACKEND_URL;
+                const url = host + "/api/participantes_de_evento/<int:user_id>";
+                const requestOptions = {
+                    method: "GET",
+                    ContentType: "application/json",
+                }
+                const responsePart = await fetch(url, requestOptions);
+                console.log(responsePart)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(" Data PartEvent: ", data.results);
+                    setStore({
+                        participantesEventosId: data.results,
+                    });
+                }
+            },
             
         }
     };
