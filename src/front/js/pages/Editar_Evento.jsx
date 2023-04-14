@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 export const EditarEvento = () => {
     
-        
+       
     
     const [fecha, setFecha]= useState("")
     const [idTipo, setIdTipo]= useState("")
@@ -9,10 +9,10 @@ export const EditarEvento = () => {
     const [idMonitor, setIdMonitor]= useState("")
     const [cantidadMaximaParticipantes, setCantidadMaximaParticipantes]= useState("")
     const [precio, setPrecio]= useState("")
-    const [realizado, setRealizado]= useState("")
+    const [realizado, setRealizado]= useState(false)
     const edit_id = localStorage.getItem("id_edit")
     const host= process.env.BACKEND_URL;
-
+    
     
     
     const handleClick = () =>{
@@ -61,7 +61,7 @@ export const EditarEvento = () => {
                 <input type="text" className="form-control m-2" name="Id Monitor" placeholder="Id Monitor"value={idMonitor} onChange={ (e)=> {setIdMonitor(e.target.value)}} required="" autoFocus="" />
                 <input type="text" className="form-control m-2" name="Cantidad de participantes" placeholder="Cantidad de participantes"value={cantidadMaximaParticipantes} onChange={ (e)=> {setCantidadMaximaParticipantes(e.target.value)}} required="" autoFocus="" />
                 <input type="text" className="form-control m-2" name="Precio" placeholder="Precio"value={precio} onChange={ (e)=> {setPrecio(e.target.value)}} required="" autoFocus="" />
-                <input type="text" className="form-control m-2" name="Realizado" placeholder="Realizado"value={realizado} onChange={ (e)=> {setRealizado(e.target.value)}} required="" autoFocus="" />
+                <input type="checkbox" className="form-check-input mt-0" name="Realizado" value={realizado} onChange={ (e)=> {setRealizado(e.target.value)}} required="" autoFocus="" />
                 
                 <button className="btn btn-lg btn-primary btn-block m-2" type="submit">Editar</button>
             </form>
