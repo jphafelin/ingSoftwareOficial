@@ -11,7 +11,7 @@ const getState = ({
             user: [],
             participante: [],
             message: null,
-            isAdmin: true, // crear logica
+            isAdmin: false, // crear logica
             enrolled: [],
             monitores: [],
             administradores: [],
@@ -313,6 +313,8 @@ const getState = ({
                     console.log(error);
                 };
             },
+
+            
         }
     };
 }

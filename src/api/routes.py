@@ -670,3 +670,13 @@ def evento_y_tipo_de_evento():
     else:
         response_body = {"message": "Error. Method not allowed."}
         return response_body, 400
+
+
+
+
+
+@api.route('/participantes_de_eventos/<int:id_evento>', methods=['GET'])
+def get_participantes_de_evento(id_evento):
+    participantes_de_evento = Participantes_de_Eventos.query.filter_by(id_evento=id_evento).all()
+    participantes = [p.serialize() for p in participantes_de_evento]
+    return jsonify(participantes)

@@ -1,35 +1,29 @@
 import ImageSlider from "./ImageSlider";
 import React from "react";
-
-
+import maratonVigo from "../../img/Eventos/maratonVigo.jpg"
+import senderismo from "../../img/Eventos/senderismo.jpg"
+import triatlon from "../../img/Eventos/triatlon.jpg"
 export const AppSlider = () => {
     const slides = [
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/1%20maraton%20Vigo.jpg", title: "Maraton" },
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/2%20camino%20de%20santiago.webp", title: "Camino de Santiago" },
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/3%20ciclismo%20Lugo.jpg", title: "Ciclismo" },
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/4%20triatlon.jpg", title: "Triatlon" },
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/5%20Triatlon%20.jpg", title: "Triatlon" },
-        { url: "https://raw.githubusercontent.com/jphafelin/Rut-Green/fa412bd58168e37ca3649f3797aabc4af3f4f771/src/front/img/Eventos/6%20senderismo.jpg", title: "Senderismo" },
+        { url: `${maratonVigo}`, title: "Maraton" , text: "<<Comparte con nosotros experiencias INOLVIDABLES!>>"},
+        { url: `${senderismo}`, title: "Senderismo", text: "<<Amplia tus horizontes mientras disfrutas del aire libre>>" },
+        { url: `${triatlon}`, title: "Ciclismo",  text: "<<Registrate y pasala en GRANDE!!!>>"},
       ];
   const containerStyles = {
     display: "flex",
     width: "auto",
-    height: "600px",
+    height: "700px",
     padding: "0px",
-    
   };
   const containerStylesInt = {
     display: "flex",
     width: "100%",
-    height: "480px",
+    height: "580px",
     padding: "0px",
     margin:"10px",
-    
   };
-
   return (
     <div className="container-fluid" style={containerStyles}>
-      
       <div className="container-fluid" style={containerStylesInt} >
         <ImageSlider slides={slides} />
       </div>

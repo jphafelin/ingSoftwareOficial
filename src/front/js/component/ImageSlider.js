@@ -1,6 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 const slideStyles = {
   display: "flex",
   width: "100%",
@@ -8,52 +6,42 @@ const slideStyles = {
   borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
-   
 };
-
 const rightArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
   right: "32px",
   fontSize: "60px",
-  color: "#c5c5c0",
+  color: "#C5C5C0",
   zIndex: 1,
   cursor: "pointer",
 };
-
 const leftArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
   left: "32px",
   fontSize: "60px",
-  color: "#c5c5c0",
+  color: "#C5C5C0",
   zIndex: 1,
   cursor: "pointer",
 };
-
 const sliderStyles = {
   position: "relative",
   height: "100%",
   width: "100%",
-  
 };
-
-
 const dotsContainerStyles = {
   display: "flex",
   justifyContent: "center",
 };
-
 const dotStyle = {
   margin: "10px 10px",
   cursor: "pointer",
   fontSize: "18px",
-  color: "#c5c5c0",
+  color: "#C5C5C0",
 };
-
-
 const ImageSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
@@ -72,10 +60,13 @@ const ImageSlider = ({ slides }) => {
   const slideStylesWidthBackground = {
     ...slideStyles,
     backgroundImage: `url(${slides[currentIndex].url})`,
-   
   };
-  
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNext();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [currentIndex, goToNext]);
   return (
     <div style={sliderStyles}>
       <div>
@@ -86,10 +77,13 @@ const ImageSlider = ({ slides }) => {
           ❱
         </div>
       </div>
-      <div style={slideStylesWidthBackground}></div>
-      <div style={dotsContainerStyles}>
+      <div style={slideStylesWidthBackground} className="container-fluid d-black">
+        <div className="container-fluid  fixed-bottom justify-content-center textbox" >{slides[currentIndex].text}</div>
+      </div>
+      <div style={dotsContainerStyles} >
         {slides.map((slide, slideIndex) => (
-          <div className="divDots" 
+          <div
+            className="divDots"
             style={dotStyle}
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
@@ -101,5 +95,4 @@ const ImageSlider = ({ slides }) => {
     </div>
   );
 };
-
 export default ImageSlider;

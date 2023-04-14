@@ -53,7 +53,7 @@
     height: auto;
     max-width: 99%;
     border-radius: 10px;
-    
+
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -189,10 +189,22 @@ tr {
     width: 350px;
 }
 
-.form-check-input{
+.form-check-input {
     margin-top: 20px;
 }
 
-.form-check-label{
+.form-check-label {
     margin-top: 13px;
 }
+
+.textbox {
+    margin: 10px 10px;
+    font-size: 35px;
+    background-color: #E9E8C9;
+    color: rgba(197, 146, 7, 0.986);
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+}
+
+;
