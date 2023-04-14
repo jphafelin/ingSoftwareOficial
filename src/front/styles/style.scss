@@ -102,16 +102,16 @@ tr {
 }
 
 .divEventos {
-    background-color: #e9e8c9;
+    background-color: #E9E8C9;
     padding: 0%;
     border-radius: 10px;
     width: auto;
-    height: 720px;
+    min-height: 720px;
+    height: auto;
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 0px;
-
     align-items: center;
     justify-content: center;
 }
