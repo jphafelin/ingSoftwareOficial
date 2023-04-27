@@ -36,7 +36,7 @@ export const Navbar_Admin = () => {
 						<form className="d-grid gap-2 d-md-flex justify-content-md-end">
 						<div className="form-check">
 							<input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-							<label className="form-check-label" for="exampleRadios1">
+							<label className="form-check-label" htmlFor="exampleRadios1">
 								Go to User View
 							</label>
 						</div>

@@ -18,7 +18,7 @@ export const Tipo_de_Eventos = () => {
         // En la funcion debo recibir el parámetro del id.
         
         console.log(key)
-        localStorage.setItem("id_edit", key)
+        localStorage.setItem("id_edit", key-1)
     
         
         return navigate("/editar_tipo_evento");
