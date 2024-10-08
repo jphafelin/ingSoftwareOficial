@@ -11,10 +11,10 @@ import { EventosRunning } from "./pages/EventosRunning.jsx";
 import { EventosSenderismo } from "./pages/EventosSenderismo.jsx";
 import { EventosTriatlon } from "./pages/EventosTriatlon.jsx";
 import { EventosCiclismo } from "./pages/EventosCiclismo.jsx";
-import { Categorias } from "./pages/Categorias.jsx";
+import { Transferir } from "./pages/Categorias.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
-import { Register } from "./pages/register";
+import { Register2 } from "./pages/Register2.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
@@ -23,7 +23,7 @@ import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Footer } from "./component/footer";
 import {AppSlider} from "./component/AppSlider";
 
@@ -37,7 +37,7 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
-                <ScrollToTop>
+            <ScrollToTop>
                 <Navbar />   
                 
                     <Routes>
@@ -51,9 +51,9 @@ const Layout = () => {
                         <Route element={<EventosSenderismo />} path="/eventos-senderismo" />
                         <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
                         <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
-                        <Route element={<Categorias />} path="/Categorias" />
+                        <Route element={<Transferir />} path="/Categorias" />
                         <Route element={<Login />} path="/login" />
-                        <Route element={<Register />} path="/register" />
+                        <Route element={<Register2 />} path="/register" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
@@ -63,7 +63,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
+                    
                 </ScrollToTop>
             </BrowserRouter>
         </div>

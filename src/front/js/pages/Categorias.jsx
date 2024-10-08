@@ -1,39 +1,64 @@
-import React, { useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
-import { Enrolled } from "./Enrolled.jsx"
-import { useNavigate  } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import logo from "../../img/logo.png";
+import "./../../styles/transferir.css";
 
-export const Categorias = () => {
-    const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
-    function eventoSenderismo(e) {
-        navigate( "/eventos-senderismo")
-    }
-    function eventoRunning(e) {
-        navigate( "/eventos-running")
-    }
-    function eventoTriatlon(e) {
-        navigate( "/eventos-triatlon")
-    }
-    function eventoCiclismo(e) {
-        navigate( "/eventos-ciclismo")
-    }
-    if (store.isAdmin) {
-        return (
-            <Enrolled />
-        )
-    }
-    else {
-        return (
-            <div className="container-fluid d-flex divEventos">
-                <div className="row justify-content-evenly mx-md-4 mt-2 mb-2">
-                    <div className="col"><button type="button" className="btn btn-rounded justify-content-right mx-md-2 mt-1 mb-1 btn-categoriasLf" onClick={eventoRunning} >RUNNING</button> </div>
-                    <div className="col"><button type="button" className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-categoriasRg" onClick={eventoSenderismo} >SENDERISMO</button> </div>
-                    <div className="col"><button type="button" className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-categoriasLf" onClick={eventoTriatlon} >TRIATLON</button> </div>
-                    <div className="col"><button type="button" className="btn btn-rounded justify-content-between mx-md-2 mt-1 mb-1 btn-categoriasRg" onClick={eventoCiclismo} >CICLISMO</button> </div>
-                </div>
-                <div className="container-fluid justify-content-evenly mx-md-4 mt-2 mb-2 divCategorias">CATEGORÍAS</div>
+export const Transferir = () => {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("id_user");
+    localStorage.removeItem("nombre_user");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const bankDetails = {
+    bankName: "Banco Ejemplo",
+    accountNumber: "123456789",
+    swiftCode: "SWIFT123",
+    iban: "ES12345678901234567890",
+    accountHolder: "Club de Tenis Ejemplo",
+  };
+
+  return (
+    <div className="transferir justify-content-center">
+      {token ? (
+        <div>
+          
+
+          
+
+          <div
+            id="formulario"
+            className="col col-lg-3 col-md-12 text-center p-5 border border-3 border-dark bg-light"
+          >
+            <h2 className="mb-4">Datos Bancarios</h2> {/* Título más pequeño */}
+            <div className="bank-info">
+              <p>
+                <strong>Banco:</strong> {bankDetails.bankName}
+              </p>
+              <p>
+                <strong>Número de cuenta:</strong> {bankDetails.accountNumber}
+              </p>
+              <p>
+                <strong>Código SWIFT:</strong> {bankDetails.swiftCode}
+              </p>
+              <p>
+                <strong>IBAN:</strong> {bankDetails.iban}
+              </p>
+              <p>
+                <strong>Titular de la cuenta:</strong> {bankDetails.accountHolder}
+              </p>
             </div>
-        )
-    }
-}
+          </div>
+
+         
+        </div>
+      ) : (
+        <h1>DEBE INICIAR SESIÓN</h1>
+      )}
+    </div>
+  );
+};

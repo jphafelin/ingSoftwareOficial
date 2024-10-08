@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Participante, Monitor,Administradores, Evento, Participantes_de_Eventos, Tipo_de_Evento
+from api.models import db, User, Participante, Monitor,Administradores, Evento, Participantes_de_Eventos, Tipo_de_Evento, Socio
 from api.utils import generate_sitemap, APIException
 import requests
 import json
@@ -350,7 +350,7 @@ def tiposdeeventos():
                      descripcion=request_body['descripcion'],
                      dificultad=request_body['dificultad'],
                      categoria=request_body['categoria'],
-                     url_imagen=request_body['url_imagen'],
+                     apellido2=request_body['apellido2'],
                     )
          db.session.add(tipo_de_evento)
          db.session.commit()
@@ -380,7 +380,7 @@ def update_tipo_de_evento(client_id):
     client.descripcion = request.json.get('descripcion', client.descripcion)
     client.dificultad = request.json.get('dificultad', client.dificultad)
     client.categoria = request.json.get('categoria', client.categoria)
-    client.url_imagen = request.json.get('url_imagen', client.url_imagen)
+    client.apellido2 = request.json.get('apellido2', client.apellido2)
     db.session.commit()
 
     response_body = {'id': client.id,
@@ -388,7 +388,7 @@ def update_tipo_de_evento(client_id):
                      'descripcion': client.descripcion,
                      'dificultad': client.dificultad,
                      'categoria': client.categoria,
-                     'url_imagen': client.url_imagen}
+                     'apellido2': client.apellido2}
 
     return jsonify(response_body), 200
 
@@ -686,3 +686,75 @@ def update_user_administrador(client_id):
                      } ## Falta el nombre que está en la tabla de administradores
 
     return jsonify(response_body), 200        
+
+
+
+## SOCIO
+#@jwt_required()
+@api.route('/socio', methods=['GET', 'POST'])
+def socio():
+    if request.method == "GET":
+        socios = Socio.query.all()
+        results = [socio.serialize() for socio in socios]
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
+    
+    elif request.method == "POST":
+         
+         request_body = request.get_json()
+         socio = Socio(    
+                     nombre=request_body['nombre'],
+                     apellido=request_body['apellido'],           
+                     email=request_body['email'],
+                     rut=request_body['rut'],
+                     numero_telefono=request_body['numero_telefono'],
+                     genero=request_body['genero'],
+                     password=request_body['password']
+                    )
+         db.session.add(socio)
+         db.session.commit()
+         return jsonify(request_body), 200
+        
+ 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
+
+
+@api.route('/socio/<int:socio_id>', methods=['DELETE'])
+def delete_socio(socio_id):
+    socio = Socio.query.get(socio_id)
+    db.session.delete(socio)
+    db.session.commit()
+    return jsonify('OK'), 200
+
+
+@api.route('/socio/<int:client_id>', methods=['PUT'])
+def update_socio(client_id):
+    client = Socio.query.get(client_id)
+    if client is None:
+        return 'Not found', 404
+
+    client.id = request.json.get('id', client.id)
+    client.nombre = request.json.get('nombre', client.nombre)
+    client.apellido = request.json.get('apellido', client.apellido)
+    client.email = request.json.get('email', client.email)
+    client.rut = request.json.get('rut', client.rut)
+    client.numero_telefono = request.json.get('numero_telefono', client.numero_telefono)
+    client.genero = request.json.get('genero', client.genero)
+    client.password = request.json.get('password', client.password)
+    
+    db.session.commit()
+
+    response_body = {'id': client.id,
+                     'nombre': client.nombre,
+                     'apellido': client.apellido,
+                     'email': client.email,
+                     'rut': client.rut,
+                     'numero_telefono': client.numero_telefono,
+                     'genero': client.genero
+                     }
+
+    return jsonify(response_body), 200

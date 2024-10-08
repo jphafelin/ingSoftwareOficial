@@ -103,7 +103,7 @@ class Tipo_de_Evento(db.Model):
     descripcion = db.Column(db.String(1000), unique=False, nullable=False)
     dificultad = db.Column(db.String(120), unique=False, nullable=False)
     categoria = db.Column(db.String(120), unique=False, nullable=False)
-    url_imagen = db.Column(db.String(120), unique=False, nullable=False)
+    apellido2 = db.Column(db.String(120), unique=False, nullable=False)
 
     
 
@@ -117,7 +117,7 @@ class Tipo_de_Evento(db.Model):
             "descripcion": self.descripcion,
             "dificultad": self.dificultad,
             "categoria": self.categoria,
-            "url_imagen": self.url_imagen
+            "apellido2": self.apellido2
             # do not serialize the password, its a security breach
         }
 
@@ -180,32 +180,32 @@ class Participantes_de_Eventos(db.Model):
             # do not serialize the password, its a security breach
         }
 
-# class Evento(db.Model):
-#             id = db.Column(db.Integer, primary_key=True)
-#             name = db.Column(db.String(80), unique=False, nullable=False)
-#             id_participante = db.Column(db.String(80), unique=False, nullable=False)
-#             categoria = db.Column(db.String(80), unique=False, nullable=False)
-#             fecha = db.Column(db.String(120), unique=True, nullable=False)
-#             descripcion = db.Column(db.String(80), unique=False, nullable=False)
-#             lugar = db.Column(db.String(80), unique=False, nullable=False)
-#             dificultad = db.Column(db.String(80), unique=False, nullable=False)
-            
-
-    # def __repr__(self):
-    #     return f'<Evento {self.id}>'
-
-    # def serialize(self):
-    #     return {
-    #         "id": self.id,
-    #         "name": self.name,
-    #         "id_participante": self.participante,
-    #         "categoria": self.categoria,
-    #         "fecha": self.fecha,
-    #         "descripcion": self.descripcion,
-    #         "lugar": self.lugar,
-    #         "dificultad": self.dificultad,
+class Socio(db.Model):
+    __tablename__ = 'socio'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), unique=False, nullable=False)
+    apellido = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    rut = db.Column(db.String(120), unique=True, nullable=False)
+    numero_telefono = db.Column(db.String(120), unique=False, nullable=False)
+    genero = db.Column(db.String(120), unique=False, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
+    
 
 
+    
 
+    def __repr__(self):
+        return f'<Socio {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "email": self.email,
+            "rut": self.rut,
+            "numero_telefono": self.numero_telefono,
+            "genero": self.genero
             # do not serialize the password, its a security breach
-    #    }
+        }
