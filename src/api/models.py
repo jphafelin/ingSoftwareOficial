@@ -56,25 +56,7 @@ class Participante(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Administradores(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, ForeignKey(User.id))
-    name = db.Column(db.String(100))
-    
-    user = relationship("User")
-    
 
-    def __repr__(self):
-        return f'<Administradores {self.id}>'
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "id_user": self.id_user,
-            "name": self.name,
-            
-            # do not serialize the password, its a security breach
-            }
 
 class Monitor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -207,5 +189,33 @@ class Socio(db.Model):
             "rut": self.rut,
             "numero_telefono": self.numero_telefono,
             "genero": self.genero
+            # do not serialize the password, its a security breach
+        }
+
+class Administrador(db.Model):
+    __tablename__ = 'administradores'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), unique=False, nullable=False)
+    apellido = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    rut = db.Column(db.String(120), unique=True, nullable=False)
+    numero_telefono = db.Column(db.String(120), unique=False, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
+    
+
+
+    
+
+    def __repr__(self):
+        return f'<Administrador {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "email": self.email,
+            "rut": self.rut,
+            "numero_telefono": self.numero_telefono
             # do not serialize the password, its a security breach
         }

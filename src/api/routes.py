@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Participante, Monitor,Administradores, Evento, Participantes_de_Eventos, Tipo_de_Evento, Socio
+from api.models import db, User, Participante, Monitor,Administrador, Evento, Participantes_de_Eventos, Tipo_de_Evento, Socio
 from api.utils import generate_sitemap, APIException
 import requests
 import json
@@ -153,57 +153,7 @@ def update_participante(client_id):
 
     return jsonify(response_body), 200
 
-## ADMINISTRADORES
 
-@api.route('/administradores', methods=['GET', 'POST'])
-def funcionadministradores():
-    if request.method == "GET":
-        administradores = Administradores.query.all()
-        results = [administradorserialize.serialize() for administradorserialize in administradores]
-        response_body = {"message": "ok",
-                        "results": results,
-                        "Total_records": len(results)}
-        return response_body, 200
-    
-    elif request.method == "POST":
-         
-         request_body = request.get_json()
-         administrador = Administradores(id=request_body['id'],            
-                     id_user=request_body['id_user'],
-                     name=request_body['name']                     
-                    )
-         db.session.add(administrador)
-         db.session.commit()
-         return jsonify(request_body), 200
- 
-    else:
-        response_body = {"message": "Error. Method not allowed."}
-        return response_body, 400
-
-
-@api.route('/administradores/<int:user_id>', methods=['DELETE'])
-def delete_administrador(user_id):
-    user = Administradores.query.get(user_id)
-    db.session.delete(user)
-    db.session.commit()
-    return jsonify('OK'), 200
-
-@api.route('/administradores/<int:client_id>', methods=['PUT'])
-def update_administradores(client_id):
-    client = Administradores.query.get(client_id)
-    if client is None:
-        return 'Not found', 404
-
-    client.id = request.json.get('id', client.id)
-    client.id_user = request.json.get('id_user', client.id_user)
-    client.name = request.json.get('name', client.name)
-    db.session.commit()
-
-    response_body = {'id': client.id,
-                     'id_user': client.id_user,
-                     'name': client.name}
-
-    return jsonify(response_body), 200
 
 
 ## MONITOR
@@ -608,84 +558,7 @@ def register_monitor():
         return response_body, 400
 
 
-@api.route('/register-administrador', methods=['GET','POST'])
-def register_administrador():
 
-    if request.method == "GET":
-        administrador = Administradores.query.all()
-        results = []
-        result_administrador = [administradorserialize.serialize() for administradorserialize in administrador]
-        
-
-        
-        for item in result_administrador:
-            # print("#############", item)
-            # print("#############", item["id_user"])
-            
-            datos = User.query.filter(item["id_user"] == User.id).first()
-            result_datos = datos.serialize()
-            
-            item["email"] = result_datos["email"]
-            item["is_active"] = result_datos["is_active"]
-            
-            results.append(item)
-            print(results)
-        
-        
-        response_body = {"message": "ok",
-                        "results": results,
-                        "Total_records": len(results)}
-        return response_body, 200
-    
-    elif request.method == "POST":
-         
-         request_body = request.get_json()
-         user = User(      
-                     email=request_body['email'],
-                     password=request_body['password'],
-                     is_active= True
-                    )
-        
-         db.session.add(user)
-         db.session.commit()
-
-         administrador = Administradores(            
-                     id_user= user.id,
-                     name=request_body['name']
-                     
-                     
-                    )
-        
-         
-         db.session.add(administrador)
-         db.session.commit()
-         return jsonify(request_body), 200
-        
- 
-    else:
-        response_body = {"message": "Error. Method not allowed."}
-        return response_body, 400
-
-
-@api.route('/register-administrador/<int:client_id>', methods=['PUT'])
-def update_user_administrador(client_id):
-    client = User.query.get(client_id)
-    if client is None:
-        return 'Not found', 404
-
-    client.id = request.json.get('id', client.id)
-    client.email = request.json.get('email', client.email)
-    client.password = request.json.get('password', client.password)
-    client.is_active = request.json.get('is_active', client.is_active)
-    db.session.commit()
-
-    response_body = {'id': client.id,
-                     'email': client.email,
-                     'password': client.password,
-                     'is_active': client.is_active
-                     } ## Falta el nombre que está en la tabla de administradores
-
-    return jsonify(response_body), 200        
 
 
 
@@ -755,6 +628,74 @@ def update_socio(client_id):
                      'rut': client.rut,
                      'numero_telefono': client.numero_telefono,
                      'genero': client.genero
+                     }
+
+    return jsonify(response_body), 200
+
+
+## ADMINISTRADOR
+#@jwt_required()
+@api.route('/administrador', methods=['GET', 'POST'])
+def administrador():
+    if request.method == "GET":
+        administradores = Administrador.query.all()
+        results = [administrador.serialize() for administrador in administradores]
+        response_body = {"message": "ok",
+                        "results": results,
+                        "Total_records": len(results)}
+        return response_body, 200
+    
+    elif request.method == "POST":
+         
+         request_body = request.get_json()
+         administrador = Administrador(    
+                     nombre=request_body['nombre'],
+                     apellido=request_body['apellido'],           
+                     email=request_body['email'],
+                     rut=request_body['rut'],
+                     numero_telefono=request_body['numero_telefono'],
+                     password=request_body['password']
+                    )
+         db.session.add(administrador)
+         db.session.commit()
+         return jsonify(request_body), 200
+        
+ 
+    else:
+        response_body = {"message": "Error. Method not allowed."}
+        return response_body, 400
+
+
+@api.route('/administrador/<int:administrador_id>', methods=['DELETE'])
+def delete_administrador(administrador_id):
+    administrador = Administrador.query.get(administrador_id)
+    db.session.delete(administrador)
+    db.session.commit()
+    return jsonify('OK'), 200
+
+
+@api.route('/administrador/<int:client_id>', methods=['PUT'])
+def update_administrador(client_id):
+    client = Administrador.query.get(client_id)
+    if client is None:
+        return 'Not found', 404
+
+    client.id = request.json.get('id', client.id)
+    client.nombre = request.json.get('nombre', client.nombre)
+    client.apellido = request.json.get('apellido', client.apellido)
+    client.email = request.json.get('email', client.email)
+    client.rut = request.json.get('rut', client.rut)
+    client.numero_telefono = request.json.get('numero_telefono', client.numero_telefono)
+    client.password = request.json.get('password', client.password)
+    
+    db.session.commit()
+
+    response_body = {'id': client.id,
+                     'nombre': client.nombre,
+                     'apellido': client.apellido,
+                     'email': client.email,
+                     'rut': client.rut,
+                     'numero_telefono': client.numero_telefono
                      }
 
     return jsonify(response_body), 200
