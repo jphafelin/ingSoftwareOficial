@@ -227,13 +227,13 @@ def evento():
     elif request.method == "POST":
          
          request_body = request.get_json()
-         evento = Evento(id=request_body['id'],            
+         evento = Evento(id=request_body['id'],
+                     nombre=request_body['nombre'],           
                      fecha=request_body['fecha'],
                      id_tipo=request_body['id_tipo'],
                      lugar=request_body['lugar'],
                      id_monitor=request_body['id_monitor'],
-                     cantidad_maxima_participantes=request_body['cantidad_maxima_participantes'],
-                     precio=request_body['precio'],
+                     descripcion=request_body['descripcion'],
                      realizado=request_body['realizado']
                     )
          db.session.add(evento)
@@ -260,22 +260,22 @@ def update_evento(client_id):
         return 'Not found', 404
 
     client.id = request.json.get('id', client.id)
+    client.nombre = request.json.get('nombre', client.nombre)
     client.fecha = request.json.get('fecha', client.fecha)
     client.id_tipo = request.json.get('id_tipo', client.id_tipo)
     client.lugar = request.json.get('lugar', client.lugar)
     client.id_monitor = request.json.get('id_monitor', client.id_monitor)
-    client.cantidad_maxima_participantes = request.json.get('cantidad_maxima_participantes', client.cantidad_maxima_participantes)
-    client.precio = request.json.get('precio', client.precio)
+    client.descripcion = request.json.get('descripcion', client.descripcion)
     client.realizado = request.json.get('realizado', client.realizado)
     db.session.commit()
 
     response_body = {'id': client.id,
+                     'nombre': client.nombre,
                      'fecha': client.fecha,
                      'id_tipo': client.id_tipo,
                      'lugar': client.lugar,
                      'id_monitor': client.id_monitor,
-                     'cantidad_maxima_participantes': client.cantidad_maxima_participantes,
-                     'precio': client.precio,
+                     'descripcion': client.descripcion,
                      'realizado': client.realizado}
 
     return jsonify(response_body), 200

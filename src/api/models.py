@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -105,12 +106,12 @@ class Tipo_de_Evento(db.Model):
 
 class Evento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(80), unique=False, nullable=False)
     fecha = db.Column(db.String(80), unique=False, nullable=False)
     id_tipo = db.Column(db.Integer, ForeignKey(Tipo_de_Evento.id), unique=False, nullable=False)
     lugar = db.Column(db.String(120), unique=False, nullable=False)
     id_monitor = db.Column(db.Integer, ForeignKey(Monitor.id), unique=False, nullable=False)
-    cantidad_maxima_participantes = db.Column(db.Integer, unique=False, nullable=False)
-    precio = db.Column(db.Integer, unique=False, nullable=False)
+    descripcion = db.Column(db.Integer, unique=False, nullable=False)
     realizado = db.Column(db.Boolean)
 
     monitores = relationship("Monitor")
@@ -126,12 +127,12 @@ class Evento(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "nombre": self.nombre,
             "fecha": self.fecha,
             "id_tipo": self.id_tipo,
             "lugar": self.lugar,
             "id_monitor": self.id_monitor,
-            "cantidad_maxima_participantes": self.cantidad_maxima_participantes,
-            "precio": self.precio,
+            "descripcion": self.descripcion,
             "realizado": self.realizado
             # do not serialize the password, its a security breach
         }
