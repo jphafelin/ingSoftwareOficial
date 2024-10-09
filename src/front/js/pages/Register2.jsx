@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./../../styles/register.css";
 export const Register2 = () => {
     const [nombre, setNombre]= useState("")
     const [apellido, setApellido]= useState("")
@@ -51,8 +52,8 @@ export const Register2 = () => {
      }
     return (
         
-        <div className="wrapper row justify-content-center">
-            <form className="form-signin col-4 text-center bg-secondary p-4 rounded m-3"onSubmit={handleClick}>
+        <div className="wrapper row justify-content-center  ">
+            <form className="form-signin col-4 text-center p-4 rounded m-3 login-box "onSubmit={handleClick}>
                 <h2 className="form-signin-heading">Crea una cuenta</h2>
                 <input type="text" className="form-control m-2" name="nombre" placeholder="Nombre"value={nombre} onChange={ (e)=> {setNombre(e.target.value)}} required="" autoFocus="" />
                 <input type="text" className="form-control m-2" name="apellido" placeholder="Apellido"value={apellido} onChange={ (e)=> {setApellido(e.target.value)}} required="" autoFocus="" />

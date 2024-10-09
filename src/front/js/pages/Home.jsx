@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import fondoHome from "../../img/fondo_home.jpg";
 import "../../styles/home.css";
 import { AppSlider } from "../component/AppSlider";
 import { Enrolled } from "./Enrolled.jsx"
@@ -16,9 +16,11 @@ export const Home = () => {
 		</div>
 	);
 		} else {
-			return (<div className="text-center mt-5">
+			return (<div className="text-center" >
 			
-			<AppSlider />
+		
+		
+		
 		</div>)
 		}
 };

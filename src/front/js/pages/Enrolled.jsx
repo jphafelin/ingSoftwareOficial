@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Home } from "./home.js"
+import { Home } from "./Home.jsx"
 
 export const Enrolled = () => {
     const { store, actions } = useContext(Context);

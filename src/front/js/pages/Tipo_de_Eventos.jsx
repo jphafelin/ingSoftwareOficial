@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Home } from "./home";
+import { Home } from "./Home.jsx";
 import { useNavigate } from "react-router-dom";
 
 export const Tipo_de_Eventos = () => {

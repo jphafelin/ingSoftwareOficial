@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
-import { Home } from "./pages/home";
+import "../styles/home.css";
+import { Home } from "./pages/Home.jsx";
 import { Enrolled } from "./pages/Enrolled.jsx";
 import { Monitor } from "./pages/Monitor.jsx";
 import { Administradores } from "./pages/Administradores.jsx";
@@ -11,9 +11,9 @@ import { EventosRunning } from "./pages/EventosRunning.jsx";
 import { EventosSenderismo } from "./pages/EventosSenderismo.jsx";
 import { EventosTriatlon } from "./pages/EventosTriatlon.jsx";
 import { EventosCiclismo } from "./pages/EventosCiclismo.jsx";
-import { Transferir } from "./pages/Categorias.jsx";
+import { Transferir } from "./pages/Transferir.jsx";
 import { Single } from "./pages/single";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login.jsx";
 import { Register2 } from "./pages/Register2.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
@@ -35,7 +35,7 @@ const Layout = () => {
     const basename = process.env.BASENAME || "";
 
     return (
-        <div>
+        <div className="home" style={{ backgroundImage: "url(/fondo_home.jpg)"}}>
             <BrowserRouter basename={basename}>
             <ScrollToTop>
                 <Navbar />   
@@ -51,7 +51,7 @@ const Layout = () => {
                         <Route element={<EventosSenderismo />} path="/eventos-senderismo" />
                         <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
                         <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
-                        <Route element={<Transferir />} path="/Categorias" />
+                        <Route element={<Transferir />} path="/transferir" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register2 />} path="/register" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />

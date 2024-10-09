@@ -36,13 +36,11 @@ export const Navbar = () => {
 				<div>
 					<ul className="nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Datos de Transferencia</Link>
+							<Link className="nav-link rg-textlink link-secondary" to="/transferir">Datos de Transferencia</Link>
 						</li>
+						
 						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="/Categorias">Categoria</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link rg-textlink link-secondary" to="#">Fecha</Link>
+							<Link className="nav-link rg-textlink link-secondary" to="#">Eventos</Link>
 						</li>
 						<li className="nav-item">
 

@@ -14,13 +14,7 @@ export const Transferir = () => {
     navigate("/login");
   };
 
-  const bankDetails = {
-    bankName: "Banco Ejemplo",
-    accountNumber: "123456789",
-    swiftCode: "SWIFT123",
-    iban: "ES12345678901234567890",
-    accountHolder: "Club de Tenis Ejemplo",
-  };
+  
 
   return (
     <div className="transferir justify-content-center">
@@ -32,24 +26,24 @@ export const Transferir = () => {
 
           <div
             id="formulario"
-            className="col col-lg-3 col-md-12 text-center p-5 border border-3 border-dark bg-light"
+            className="col col-lg-3 col-md-12 text-center p-4 border border-3 border-dark bg-light mt-5"
           >
-            <h2 className="mb-4">Datos Bancarios</h2> {/* Título más pequeño */}
-            <div className="bank-info">
+            <h2 className="mb-4 mt-3">Datos de Transferencia</h2> {/* Título más pequeño */}
+            <div className=" text-center">
               <p>
-                <strong>Banco:</strong> {bankDetails.bankName}
+                <strong>Club de Tenis Viña del Mar</strong> 
               </p>
               <p>
-                <strong>Número de cuenta:</strong> {bankDetails.accountNumber}
+                <strong>11.111.111-1</strong> 
               </p>
               <p>
-                <strong>Código SWIFT:</strong> {bankDetails.swiftCode}
+                <strong>N° de cuenta: 11-111-11111-11</strong> 
               </p>
               <p>
-                <strong>IBAN:</strong> {bankDetails.iban}
+                <strong>Banco Imaginario</strong> 
               </p>
               <p>
-                <strong>Titular de la cuenta:</strong> {bankDetails.accountHolder}
+                <strong>correo@correo.com</strong>
               </p>
             </div>
           </div>

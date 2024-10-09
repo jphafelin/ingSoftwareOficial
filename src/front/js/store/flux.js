@@ -178,7 +178,7 @@ const getState = ({
 					})
 				};
 				try {
-					const resp = await fetch(`${BACKEND_URL}/api/login`, requestOptions)
+					const resp = await fetch(`https://3000-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/login`, requestOptions)
 				
 					if (resp.status != 200) {
 						console.log("An error has occurred");

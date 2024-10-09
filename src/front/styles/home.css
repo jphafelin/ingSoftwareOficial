@@ -5,3 +5,26 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+.home {
+    font-family: sans-serif;
+    min-height: 100vh;
+    /* Asegura que ocupe toda la altura de la ventana */
+    background-image: url('../img/fondo_home.jpg');
+    /* Puedes establecer la imagen aquí o en el estilo en línea */
+    background-size: cover;
+    /* Cubre todo el fondo */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    background-attachment: fixed;
+    /* Fija la imagen al hacer scroll EL DE ABAJO */
+
+    /* Usar flexbox para centrar el contenido */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    padding-top: 10px;
+}
