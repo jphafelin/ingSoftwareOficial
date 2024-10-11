@@ -26,7 +26,7 @@ export const Tipo_de_Eventos = () => {
     function registerTipoEvento(e,) {
         e.preventDefault();
         const host= process.env.BACKEND_URL; // Cambiar a la URL del Front
-        const url= "https://3000-jphafelin-rutgreen-b2q87zot1t2.ws-eu93.gitpod.io/crear_tipo_evento"; // Cambiar por host +"/register_administrador"
+        const url= "https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio"; // Cambiar por host +"/register_administrador"
         return (location.href = url);
     }
     console.log(myArray);

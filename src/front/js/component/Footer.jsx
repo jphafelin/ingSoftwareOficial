@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import '../../styles/style.scss';
 
 export const Footer = () => (
-	<nav className="navbar footer fixed-bottom rg-background justify-content-center">
+	<nav className="navbar footer  bg-primary justify-content-center mb-4">
 	<ul className="nav ">
 		
 		<li className="nav-item">

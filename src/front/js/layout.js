@@ -14,6 +14,7 @@ import { EventosCiclismo } from "./pages/EventosCiclismo.jsx";
 import { Transferir } from "./pages/Transferir.jsx";
 import { Single } from "./pages/single";
 import { Login } from "./pages/Login.jsx";
+import { Programacion } from "./pages/Programacion.jsx";
 import { Register2 } from "./pages/Register2.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
@@ -24,7 +25,7 @@ import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar.jsx";
-import { Footer } from "./component/footer";
+import { Footer } from "./component/Footer.jsx";
 import {AppSlider} from "./component/AppSlider";
 
 
@@ -41,7 +42,7 @@ const Layout = () => {
                 <Navbar />   
                 
                     <Routes>
-                        <Route element={<Home />} path="/" />
+                        <Route element={<Login />} path="/" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Enrolled />} path="/Enrolled" />
                         <Route element={<Monitor />} path="/Monitor" />
@@ -52,6 +53,7 @@ const Layout = () => {
                         <Route element={<EventosTriatlon />} path="/eventos-triatlon" />
                         <Route element={<EventosCiclismo />} path="/eventos-ciclismo" />
                         <Route element={<Transferir />} path="/transferir" />
+                        <Route element={<Programacion />} path="/programacion" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register2 />} path="/register" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
