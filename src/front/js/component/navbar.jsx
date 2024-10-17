@@ -20,12 +20,12 @@ export const Navbar = () => {
         return <Navbar_Admin />;
     } else {
         return (
-            <nav className="navbar rg-header">
-                <div className="container-fluid d-flex justify-content-between mx-md-4 mt-2 mb-2">
+            <nav className="navbar rg-header fixed-top">
+                <div className="container-fluid d-flex justify-content-between ">
                     <div className="conteiner-logo">
                         <div className="navbar-brand">
                             <Link className="nav-link" to={store.token ? "/programacion" : "/"}>
-                                <img src={logoClubTenisVdM} width={100} height={100} />
+                                <img src={logoClubTenisVdM} width={70} height={70} />
                             </Link>
                         </div>
                     </div>

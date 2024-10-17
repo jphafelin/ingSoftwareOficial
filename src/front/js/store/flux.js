@@ -126,86 +126,91 @@ const getState = ({
             monitores: [],
             administradores: [],
             tipo_evento: [],
-			evento: [],
+            evento: [],
         },
         actions: {
 
-            register: async (email, password, name, last_name, numero_telefono, nombre_contacto_emergencia, numero_contacto_emergencia, asistencia_medica) => {
-				const requestOptions = {
-					method: "POST",
-					headers: {
-						"Content-type": "application/json"
-					},
-					body: JSON.stringify({
-						email: email,
-						password: password,
-						name: name,
-						last_name: last_name,
-						numero_telefono: numero_telefono,
-						nombre_contacto_emergencia: nombre_contacto_emergencia,
-						numero_contacto_emergencia: numero_contacto_emergencia,
-						asistencia_medica: asistencia_medica,
+            register: async (nombre, apellido, email, password, rut, numero_telefono, genero) => {
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        apellido: apellido,
+                        email: email,
+                        password: password,
+                        numero_telefono: numero_telefono,
+                        rut: rut,
+                        genero: genero
 
 
-					})
-				};
-				try {
-					const resp = await fetch(`${BACKEND_URL}/api/register-participante`, requestOptions)
-					if (resp.status != 200) {
-						alert("An error has occurred while creating the user");
-						return false;
-					}
-					const data = await resp.json();
-					console.log(data);
+                    })
+                };
+                try {
+                    const resp = await fetch(`${BACKEND_URL}/api/register-participante`, requestOptions)
+                    if (resp.status != 200) {
+                        alert("An error has occurred while creating the user");
+                        return false;
+                    }
+                    const data = await resp.json();
+                    console.log(data);
 
-					return true;
-				}
-				catch (error) {
-					console.error("There has been an error creating a user")
-				}
-			},
+                    return true;
+                } catch (error) {
+                    console.error("There has been an error creating a user")
+                }
+            },
 
-			login: async (email, password) => {
+            login: async (email, password) => {
 
-				const requestOptions = {
-					method: "POST",
-					headers: {
-						"Content-type": "application/json"
-					},
-					body: JSON.stringify({
-						email: email,
-						password: password
-					})
-				};
-				try {
-					const resp = await fetch(`https://3000-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/login`, requestOptions)
-				
-					if (resp.status != 200) {
-						console.log("An error has occurred");
-						return false;
-					}
-					const data = await resp.json();
-					const userId = { id: data.id }
-					console.log(data)
-					localStorage.setItem("userId", JSON.stringify(userId))
-					localStorage.setItem("token", data.access_token);
-					setStore({ token: data.access_token })
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                };
+                try {
+                    const resp = await fetch(`https://3000-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/login`, requestOptions)
 
-					return true;
-				}
-				catch (error) {
-					console.error("There has been an error login in")
-				}
-			},
-			synctoken: () => {
-				const token = localStorage.getItem("token");
-				console.log("App just loaded, synching the local storage");
-				if (token && token != "" && token != undefined) setStore({ token: token });
-			},
-			logout: () => {
-				const token = localStorage.removeItem("token");
-				setStore({ token: null });
-			},
+                    if (resp.status != 200) {
+                        console.log("An error has occurred");
+                        return false;
+                    }
+                    const data = await resp.json();
+                    const userId = {
+                        id: data.id
+                    }
+                    console.log(data)
+                    localStorage.setItem("userId", JSON.stringify(userId))
+                    localStorage.setItem("token", data.access_token);
+                    setStore({
+                        token: data.access_token
+                    })
+
+                    return true;
+                } catch (error) {
+                    console.error("There has been an error login in")
+                }
+            },
+            synctoken: () => {
+                const token = localStorage.getItem("token");
+                console.log("App just loaded, synching the local storage");
+                if (token && token != "" && token != undefined) setStore({
+                    token: token
+                });
+            },
+            logout: () => {
+                const token = localStorage.removeItem("token");
+                setStore({
+                    token: null
+                });
+            },
 
 
             // Use getActions to call a function within a fuction
@@ -315,7 +320,7 @@ const getState = ({
                     });
                 }
             },
-			getEvento: async () => {
+            getEvento: async () => {
                 const store = getStore();
                 const host = process.env.BACKEND_URL;
                 const url = host + "/api/evento";

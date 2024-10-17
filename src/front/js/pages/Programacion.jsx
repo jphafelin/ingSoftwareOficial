@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css"
+import "../../styles/programacion.css"
 import logoClubTenisVdM from "../../img/logo.png";
 import claseTenis from "../../img/clasetenis.jpg";
 import torneoTenis from "../../img/torneotenis.jpg";
@@ -19,9 +20,9 @@ export const Programacion = () => {
     
   
     return (
-      <div className="container mt-4">
+      <div className="container">
         
-        <table class="table table-bordered border-dark ">
+        <table class="table table-bordered border-dark programacion">
 <thead>
 <tr><th colspan="12" class="text-center border border-dark">Octubre 2024</th></tr>
 </thead>
@@ -91,7 +92,7 @@ export const Programacion = () => {
                                         className="btn btn-primary"
                                         onClick={handleEnrollClick}
                                     >
-                                        {isEnrolled ? "Desinscribirme" : "Inscribirme"}
+                                        {isEnrolled ? "Desinscribir" : "Inscribir"}
                                     </a>
 
     </div>

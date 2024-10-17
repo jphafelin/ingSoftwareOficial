@@ -11,6 +11,7 @@ export const Register2 = () => {
     
     
     const handleClick = () =>{
+        
         var myHeaders = new Headers();
          myHeaders.append("Content-Type", "application/json");
  
@@ -38,12 +39,14 @@ export const Register2 = () => {
            .then(response => response.text())
            .then(result => console.log(result))
            .catch(error => console.log('error', error));
+         
  
          
-         
+        
          setEmail("") 
          setPassword("")
          console.log("Estas registrado") 
+         
  
          //return (
          //    <div class="alert alert-primary" role="alert">
