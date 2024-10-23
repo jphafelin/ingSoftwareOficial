@@ -266,10 +266,29 @@ const getState = ({
                     });
                 }
             },
+
+            getSocios: async () => {
+                const store = getStore();
+                const host = process.env.BACKEND_URL;
+                const url = host + "/api/socio";
+                const requestOptions = {
+                    method: "GET",
+                    ContentType: "application/json",
+                }
+                const response = await fetch(url, requestOptions);
+                console.log(response)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(" Data User: ", data.results);
+                    setStore({
+                        socios: data.results,
+                    });
+                }
+            },
             getMonitores: async () => {
                 const store = getStore();
                 const host = process.env.BACKEND_URL;
-                const url = host + "/api/register-monitor";
+                const url = host + "/api/socio";
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",

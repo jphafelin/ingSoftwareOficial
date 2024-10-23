@@ -16,6 +16,7 @@ import { Single } from "./pages/single";
 import { Login } from "./pages/Login.jsx";
 import { Programacion } from "./pages/Programacion.jsx";
 import { Register2 } from "./pages/Register2.jsx";
+import { ListadoSocios } from "./pages/ListadoSocios.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
@@ -56,6 +57,7 @@ const Layout = () => {
                         <Route element={<Programacion />} path="/programacion" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register2 />} path="/register" />
+                        <Route element={<ListadoSocios />} path="/listadosocios" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />

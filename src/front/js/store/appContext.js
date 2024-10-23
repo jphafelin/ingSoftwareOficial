@@ -35,6 +35,7 @@ const injectContext = PassedComponent => {
 			state.actions.getTipo_de_Eventos();
 			state.actions.synctoken();
 			state.actions.getEvento();
+			state.actions.getSocios();
 			
 		}, []);
 
