@@ -20,7 +20,8 @@ import { ListadoSocios } from "./pages/ListadoSocios.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
-import { EditMonitor } from "./pages/Editar_Monitor.jsx";
+import { DetalleSocio } from "./pages/DetalleSocio.jsx";
+import { EditarSocio } from "./pages/EditarSocio.jsx";
 import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
@@ -61,7 +62,8 @@ const Layout = () => {
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
-                        <Route element={<EditMonitor />} path="/editar_monitor" />
+                        <Route element={<DetalleSocio />} path="/listadosocios/:id" />
+                        <Route element={<EditarSocio />} path="/editar_socio/:id" />
                         <Route element={<CrearTipoEvento />} path="/crear_tipo_evento" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
                         <Route element={<Single />} path="/single/:theid" />

@@ -79,15 +79,16 @@
 
 
 .login-box {
-    width: 320px;
+    width: 520px;
     padding: 20px;
     position: absolute;
-    top: 67%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
     border-radius: 10px;
+    color: azure;
 }
 
 .login-box h2 {

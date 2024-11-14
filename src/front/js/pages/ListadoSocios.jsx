@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/listadosocios.css';
-
-
 
 export const ListadoSocios = () => {
   const [searchNombre, setSearchNombre] = useState('');
@@ -12,11 +11,13 @@ export const ListadoSocios = () => {
   const [sociosData, setSociosData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 13;
+  const navigate = useNavigate();
 
-  var requestOptions = {
+  const requestOptions = {
     method: 'GET',
   };
 
+  // Fetch de los datos de los socios
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -24,7 +25,7 @@ export const ListadoSocios = () => {
     fetch('https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio', { ...requestOptions, signal })
       .then((response) => response.json())
       .then((data) => {
-        setSociosData(data.results); // Accede a "results" dentro de la respuesta
+        setSociosData(data.results);
       })
       .catch((error) => {
         if (error.name === 'AbortError') {
@@ -39,6 +40,7 @@ export const ListadoSocios = () => {
     };
   }, []);
 
+  // Paginación
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
@@ -58,125 +60,130 @@ export const ListadoSocios = () => {
     })
     .slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(
-    sociosData.filter((item) => {
-      const searchRegexNombre = new RegExp(searchNombre, 'i');
-      const searchRegexApellido = new RegExp(searchApellido, 'i');
-      const searchRegexEmail = new RegExp(searchEmail, 'i');
-      const searchRegexGenero = new RegExp('^' + searchGenero, 'i');
-
-      return (
-        searchRegexNombre.test(item.nombre) &&
-        searchRegexApellido.test(item.apellido) &&
-        searchRegexEmail.test(item.email) &&
-        searchRegexGenero.test(item.genero)
-      );
-    }).length / itemsPerPage
-  );
-
-  const goToPreviousPage = () => {
-    setCurrentPage(currentPage - 1);
+  // Manejar el clic en una fila de la tabla
+  const handleRowClick = (id) => {
+    localStorage.setItem('id_socio', id); // Guarda el ID del socio en localStorage
+    navigate(`/listadosocios/${id}`);
   };
 
-  const goToNextPage = () => {
-    setCurrentPage(currentPage + 1);
+  // Manejar el clic en el lápiz para editar
+  const handleEditClick = (id) => {
+    localStorage.setItem('id_socio', id); // Guarda el ID del socio en localStorage
+    navigate(`/editar_socio/${id}`);
   };
 
-  const renderPagination = () => {
-    return (
-      <div className="pagination">
+  return (
+    <div className="container listadosocios">
+      <h3>CONSULTAR SOCIOS</h3>
+
+      <table className="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Género</th>
+            <th>Editar</th> {/* Columna para el lápiz */}
+          </tr>
+        </thead>
+        <tbody>
+          {/* Fila de búsqueda */}
+          <tr>
+            <td></td>
+            <td>
+              <input
+                type="text"
+                placeholder="Buscar Nombre"
+                value={searchNombre}
+                onChange={(e) => setSearchNombre(e.target.value)}
+                className="search-input"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Buscar Apellido"
+                value={searchApellido}
+                onChange={(e) => setSearchApellido(e.target.value)}
+                className="search-input"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Buscar Email"
+                value={searchEmail}
+                onChange={(e) => setSearchEmail(e.target.value)}
+                className="search-input"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Buscar Género"
+                value={searchGenero}
+                onChange={(e) => setSearchGenero(e.target.value)}
+                className="search-input"
+              />
+            </td>
+            <td></td>
+          </tr>
+
+          {/* Filas de los socios */}
+          {currentItems.map((item) => (
+            <tr
+              key={item.id}
+              className="table-row"
+              onClick={() => handleRowClick(item.id)} // Clic en la fila
+            >
+              <td>{item.id}</td>
+              <td>{item.nombre}</td>
+              <td>{item.apellido}</td>
+              <td>{item.email}</td>
+              <td>{item.genero}</td>
+              <td>
+                {/* Ícono de lápiz para editar */}
+                <button
+                  className="edit-btn"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Evitar que el clic se propague a la fila
+                    handleEditClick(item.id);
+                  }}
+                >
+                  <i className="fas fa-pencil-alt"></i> {/* Lápiz FontAwesome */}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Controles de paginación */}
+      <div className="pagination-container">
         <button
           className="btn"
-          onClick={goToPreviousPage}
+          onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Anterior
         </button>
         <span>
-          Página {currentPage} de {totalPages}
+          Página {currentPage} de {Math.ceil(sociosData.length / itemsPerPage)}
         </span>
         <button
           className="btn"
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === Math.ceil(sociosData.length / itemsPerPage)}
         >
           Siguiente
         </button>
       </div>
-    );
-  };
-
-  return (
-    <div className="container listadosocios">
-      <div>
-        <h3>CONSULTAR SOCIOS</h3>
-      </div>
-
-      <div className="d-flex">
-        <div className='col-1'></div>
-        <input
-          className="col-2"
-          type="text"
-          placeholder="Buscar por Nombre"
-          value={searchNombre}
-          onChange={(e) => setSearchNombre(e.target.value)}
-        />
-        <input
-          className="col-2"
-          type="text"
-          placeholder="Buscar por Apellido"
-          value={searchApellido}
-          onChange={(e) => setSearchApellido(e.target.value)}
-        />
-        <input
-          className="col-2"
-          type="text"
-          placeholder="Buscar por Email"
-          value={searchEmail}
-          onChange={(e) => setSearchEmail(e.target.value)}
-        />
-        <input
-          className="col-2"
-          type="text"
-          placeholder="Buscar por Género"
-          value={searchGenero}
-          onChange={(e) => setSearchGenero(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <div className="d-flex">
-          <div className="col-1">
-            <b>ID</b>
-          </div>
-          <div className="col-2">
-            <b>Nombre</b>
-          </div>
-          <div className="col-2">
-            <b>Apellido</b>
-          </div>
-          <div className="col-3">
-            <b>Email</b>
-          </div>
-          <div className="col-1">
-            <b>Género</b>
-          </div>
-        </div>
-
-        {currentItems.map((item) => (
-          <div key={item.id} className="d-flex">
-            <div className="col-1">{item.id}</div>
-            <div className="col-2">{item.nombre}</div>
-            <div className="col-2">{item.apellido}</div>
-            <div className="col-3">{item.email}</div>
-            <div className="col-1">{item.genero}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="pagination-container">
-        {renderPagination()}
-      </div>
     </div>
   );
 };
+
+
+
+
+

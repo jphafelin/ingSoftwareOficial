@@ -352,6 +352,14 @@ def delete_socio(socio_id):
     db.session.commit()
     return jsonify('OK'), 200
 
+@api.route('/socio/<int:socio_id>', methods=['GET'])
+def get_socio_by_id(socio_id):
+    socio = Socio.query.get(socio_id)
+    if not socio:
+        return jsonify({"message": "Socio not found"}), 404
+
+    return jsonify(socio.serialize()), 200
+
 
 @api.route('/socio/<int:client_id>', methods=['PUT'])
 def update_socio(client_id):
