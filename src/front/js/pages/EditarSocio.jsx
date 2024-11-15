@@ -1,47 +1,44 @@
 import React, { useState, useEffect } from "react";
-import '../../styles/detallesocio.css';
+import { useNavigate } from "react-router-dom";
+import '../../styles/editarsocio.css';
 
 export const EditarSocio = () => {
-    // Estados para los atributos del Socio
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [email, setEmail] = useState("");
     const [rut, setRut] = useState("");
     const [numero_telefono, setNumeroTelefono] = useState("");
     const [genero, setGenero] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const edit_id = localStorage.getItem("id_socio");
 
-    // Función para obtener los datos del socio por ID
+    // Función para obtener los datos del socio
     const get_socio = () => {
-        const requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`, requestOptions)
-            .then(response => response.json())
+        fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`)
+            .then(response => {
+                if (!response.ok) throw new Error("Error al obtener los datos del socio");
+                return response.json();
+            })
             .then(result => {
-                // Actualizar los estados con los datos del socio
                 setNombre(result.nombre);
                 setApellido(result.apellido);
                 setEmail(result.email);
                 setRut(result.rut);
                 setNumeroTelefono(result.numero_telefono);
                 setGenero(result.genero);
-                setPassword(result.password);
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.error(error));
     };
 
-    // Ejecutar la función para obtener los datos del socio al montar el componente
     useEffect(() => {
         get_socio();
     }, []);
 
-    // Manejar la actualización del socio
-    const handleClick = () => {
+    // Función para manejar la actualización del socio
+    const handleClick = (e) => {
+        e.preventDefault();
+
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -52,88 +49,124 @@ export const EditarSocio = () => {
             rut,
             numero_telefono,
             genero,
-            password
         });
 
         const requestOptions = {
             method: 'PUT',
             headers: myHeaders,
             body: raw,
-            redirect: 'follow'
         };
 
         fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-        console.log("Cambios Realizados");
+            .then(response => {
+                if (response.status === 200) {
+                    alert("Cambios guardados exitosamente");
+                    navigate("/listadosocios"); // Redireccionar al usuario
+                } else if (response.status === 400) {
+                    alert("El RUT o el email corresponden a otro socio");
+                } else {
+                    alert("Ocurrió un error al actualizar el socio");
+                }
+            })
+            .catch(error => {
+                console.error("Error de red:", error);
+                alert("No se pudo realizar la actualización. El RUT o el email corresponden a otro socio.");
+            });
     };
 
     return (
-        <div className="wrapper">
-            <form className="form-signin" onSubmit={handleClick}>
-                <h2 className="form-signin-heading">Editar Socio</h2>
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Apellido"
-                    value={apellido}
-                    onChange={(e) => setApellido(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="RUT"
-                    value={rut}
-                    onChange={(e) => setRut(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Número de Teléfono"
-                    value={numero_telefono}
-                    onChange={(e) => setNumeroTelefono(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Género"
-                    value={genero}
-                    onChange={(e) => setGenero(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button className="btn btn-lg btn-primary btn-block" type="submit">
-                    Guardar Cambios
-                </button>
-            </form>
+        <div className="form-wrapper">
+            <div className="card shadow-lg">
+                <div className="card-header bg-primary text-white text-center">
+                    <h2>Editar Socio</h2>
+                </div>
+                <div className="card-body">
+                    <form onSubmit={handleClick}>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">Nombre</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Nombre"
+                                    value={nombre}
+                                    onChange={(e) => setNombre(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">Apellido</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Apellido"
+                                    value={apellido}
+                                    onChange={(e) => setApellido(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">RUT</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="RUT"
+                                    value={rut}
+                                    onChange={(e) => setRut(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">Número de Teléfono</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Número de Teléfono"
+                                    value={numero_telefono}
+                                    onChange={(e) => setNumeroTelefono(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <label className="form-label">Género</label>
+                                <select
+                                    className="form-select"
+                                    value={genero}
+                                    onChange={(e) => setGenero(e.target.value)}
+                                    required
+                                >
+                                    <option value="">Seleccione Género</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button className="btn btn-primary w-100" type="submit">
+                            Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };
+
+
+
+

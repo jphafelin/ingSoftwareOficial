@@ -1,0 +1,14 @@
+/* Ajustar el ancho del formulario */
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 10%;
+
+}
+
+/* Mejorar la apariencia de la tarjeta */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+}

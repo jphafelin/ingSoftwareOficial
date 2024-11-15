@@ -25,7 +25,8 @@ export const ListadoSocios = () => {
     fetch('https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio', { ...requestOptions, signal })
       .then((response) => response.json())
       .then((data) => {
-        setSociosData(data.results);
+        const sortedData = data.results.sort((a, b) => b.id - a.id);
+        setSociosData(sortedData);
       })
       .catch((error) => {
         if (error.name === 'AbortError') {
