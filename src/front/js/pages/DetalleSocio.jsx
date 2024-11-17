@@ -9,7 +9,9 @@ export const DetalleSocio = () => {
     const [rut, setRut] = useState("");
     const [numero_telefono, setNumeroTelefono] = useState("");
     const [genero, setGenero] = useState("");
+    const [pago, setPago] = useState("");
     const edit_id = localStorage.getItem("id_socio");
+    const host= process.env.BACKEND_URL;
 
     // Función para obtener los datos del socio por ID
     const get_socio = () => {
@@ -18,7 +20,7 @@ export const DetalleSocio = () => {
             redirect: 'follow'
         };
 
-        fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`, requestOptions)
+        fetch(`${host}/api/socio/${edit_id}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setNombre(result.nombre);
@@ -27,6 +29,7 @@ export const DetalleSocio = () => {
                 setRut(result.rut);
                 setNumeroTelefono(result.numero_telefono);
                 setGenero(result.genero);
+                setPago(result.pago);
             })
             .catch(error => console.log('error', error));
     };
@@ -46,6 +49,7 @@ export const DetalleSocio = () => {
                 <p><strong>RUT:</strong> {rut}</p>
                 <p><strong>Número de Teléfono:</strong> {numero_telefono}</p>
                 <p><strong>Género:</strong> {genero}</p>
+                <p><strong>Estado del Pago:</strong> {pago}</p>
             </div>
         </div>
     );

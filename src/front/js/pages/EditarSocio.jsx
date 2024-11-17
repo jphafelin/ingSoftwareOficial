@@ -9,13 +9,16 @@ export const EditarSocio = () => {
     const [rut, setRut] = useState("");
     const [numero_telefono, setNumeroTelefono] = useState("");
     const [genero, setGenero] = useState("");
+    const [pago, setPago] = useState("");
     const navigate = useNavigate();
+    
+    const host= process.env.BACKEND_URL;
 
     const edit_id = localStorage.getItem("id_socio");
 
     // Función para obtener los datos del socio
     const get_socio = () => {
-        fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`)
+        fetch(`${host}/api/socio/${edit_id}`)
             .then(response => {
                 if (!response.ok) throw new Error("Error al obtener los datos del socio");
                 return response.json();
@@ -27,6 +30,7 @@ export const EditarSocio = () => {
                 setRut(result.rut);
                 setNumeroTelefono(result.numero_telefono);
                 setGenero(result.genero);
+                setPago(result.pago);
             })
             .catch(error => console.error(error));
     };
@@ -49,6 +53,7 @@ export const EditarSocio = () => {
             rut,
             numero_telefono,
             genero,
+            pago,
         });
 
         const requestOptions = {
@@ -57,7 +62,7 @@ export const EditarSocio = () => {
             body: raw,
         };
 
-        fetch(`https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio/${edit_id}`, requestOptions)
+        fetch(`${host}/api/socio/${edit_id}`, requestOptions)
             .then(response => {
                 if (response.status === 200) {
                     alert("Cambios guardados exitosamente");
@@ -156,6 +161,22 @@ export const EditarSocio = () => {
                                     <option value="Otro">Otro</option>
                                 </select>
                             </div>
+                        </div>
+                        <div className="row">
+                        <div className="col-md-6 mb-3">
+                                <label className="form-label">Estado del Pago</label>
+                                <select
+                                    className="form-select"
+                                    value={pago}
+                                    onChange={(e) => setPago(e.target.value)}
+                                    required
+                                >
+                                    <option value="VIGENTE">VIGENTE</option>
+                                    <option value="NO VIGENTE">NO VIGENTE</option>
+                                    
+                                </select>
+                            </div>
+                            
                         </div>
                         <button className="btn btn-primary w-100" type="submit">
                             Guardar Cambios

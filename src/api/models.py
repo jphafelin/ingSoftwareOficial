@@ -94,6 +94,8 @@ class Socio(db.Model):
     numero_telefono = db.Column(db.String(120), unique=False, nullable=False)
     genero = db.Column(db.String(120), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    pago = db.Column(db.String(80), unique=False, nullable=True)
+    admin = db.Column(db.Boolean, default=False, nullable=False, unique=False)
     
 
 
@@ -110,7 +112,10 @@ class Socio(db.Model):
             "email": self.email,
             "rut": self.rut,
             "numero_telefono": self.numero_telefono,
-            "genero": self.genero
+            "genero": self.genero,
+            "pago": self.pago,
+            "admin": self.admin
+            
             # do not serialize the password, its a security breach
         }
 

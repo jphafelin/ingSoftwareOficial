@@ -7,11 +7,14 @@ export const ListadoSocios = () => {
   const [searchApellido, setSearchApellido] = useState('');
   const [searchEmail, setSearchEmail] = useState('');
   const [searchGenero, setSearchGenero] = useState('');
+  const [searchPago, setSearchPago] = useState('');
 
   const [sociosData, setSociosData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 13;
   const navigate = useNavigate();
+
+  const host = process.env.BACKEND_URL;
 
   const requestOptions = {
     method: 'GET',
@@ -22,7 +25,7 @@ export const ListadoSocios = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    fetch('https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio', { ...requestOptions, signal })
+    fetch(`${host}/api/socio`, { ...requestOptions, signal })
       .then((response) => response.json())
       .then((data) => {
         const sortedData = data.results.sort((a, b) => b.id - a.id);
@@ -51,25 +54,29 @@ export const ListadoSocios = () => {
       const searchRegexApellido = new RegExp(searchApellido, 'i');
       const searchRegexEmail = new RegExp(searchEmail, 'i');
       const searchRegexGenero = new RegExp('^' + searchGenero, 'i');
+      const searchRegexPago = new RegExp('^' + searchPago, 'i');
+
+      const matchesPago = searchRegexPago.test(item.pago);
 
       return (
         searchRegexNombre.test(item.nombre) &&
         searchRegexApellido.test(item.apellido) &&
         searchRegexEmail.test(item.email) &&
-        searchRegexGenero.test(item.genero)
+        searchRegexGenero.test(item.genero) &&
+        matchesPago
       );
     })
     .slice(indexOfFirstItem, indexOfLastItem);
 
   // Manejar el clic en una fila de la tabla
   const handleRowClick = (id) => {
-    localStorage.setItem('id_socio', id); // Guarda el ID del socio en localStorage
+    localStorage.setItem('id_socio', id);
     navigate(`/listadosocios/${id}`);
   };
 
   // Manejar el clic en el lápiz para editar
   const handleEditClick = (id) => {
-    localStorage.setItem('id_socio', id); // Guarda el ID del socio en localStorage
+    localStorage.setItem('id_socio', id);
     navigate(`/editar_socio/${id}`);
   };
 
@@ -85,7 +92,8 @@ export const ListadoSocios = () => {
             <th>Apellido</th>
             <th>Email</th>
             <th>Género</th>
-            <th>Editar</th> {/* Columna para el lápiz */}
+            <th>Pago</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>
@@ -128,35 +136,48 @@ export const ListadoSocios = () => {
                 className="search-input"
               />
             </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Buscar Pago"
+                value={searchPago}
+                onChange={(e) => setSearchPago(e.target.value)}
+                className="search-input"
+              />
+            </td>
             <td></td>
           </tr>
 
           {/* Filas de los socios */}
-          {currentItems.map((item) => (
-            <tr
-              key={item.id}
-              className="table-row"
-              onClick={() => handleRowClick(item.id)} // Clic en la fila
-            >
-              <td>{item.id}</td>
-              <td>{item.nombre}</td>
-              <td>{item.apellido}</td>
-              <td>{item.email}</td>
-              <td>{item.genero}</td>
-              <td>
-                {/* Ícono de lápiz para editar */}
-                <button
-                  className="edit-btn"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Evitar que el clic se propague a la fila
-                    handleEditClick(item.id);
-                  }}
-                >
-                  <i className="fas fa-pencil-alt"></i> {/* Lápiz FontAwesome */}
-                </button>
-              </td>
-            </tr>
-          ))}
+          {currentItems.map((item) => {
+            const rowColor = item.pago === 'VIGENTE' ? 'green-row' : item.pago === 'NO VIGENTE' ? 'red-row' : '';
+
+            return (
+              <tr
+                key={item.id}
+                className={`table-row ${rowColor}`}
+                onClick={() => handleRowClick(item.id)}
+              >
+                <td>{item.id}</td>
+                <td>{item.nombre}</td>
+                <td>{item.apellido}</td>
+                <td>{item.email}</td>
+                <td>{item.genero}</td>
+                <td>{item.pago}</td>
+                <td>
+                  <button
+                    className="edit-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleEditClick(item.id);
+                    }}
+                  >
+                    <i className="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
@@ -180,11 +201,12 @@ export const ListadoSocios = () => {
           Siguiente
         </button>
       </div>
+
+      {/* Mostrar cantidad de registros encontrados */}
+      <div className="record-count">
+        Registros encontrados: {currentItems.length}
+      </div>
     </div>
   );
 };
-
-
-
-
 

@@ -23,3 +23,16 @@
 .detalle-socio-card strong {
     color: #333;
 }
+
+.green-row {
+    background-color: #a4eeb6;
+}
+
+.red-row {
+    background-color: #f7b6bb;
+}
+
+.record-count {
+    margin-top: 10px;
+    font-weight: bold;
+}

@@ -11,6 +11,8 @@ export const Register2 = () => {
     const [genero, setGenero] = useState("");
     const [password, setPassword] = useState("");
 
+    const host= process.env.BACKEND_URL;
+
     const navigate = useNavigate(); // Inicializa el hook useNavigate
 
     const handleClick = (e) => {
@@ -36,7 +38,7 @@ export const Register2 = () => {
             redirect: 'follow',
         };
 
-        fetch("https://3001-jphafelin-ingsoftwareof-je87mcfudu9.ws-us116.gitpod.io/api/socio", requestOptions)
+        fetch(`${host}/api/socio`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);

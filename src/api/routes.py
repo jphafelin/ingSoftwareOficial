@@ -221,17 +221,21 @@ def update_evento(client_id):
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = Socio.query.filter_by(email = email).first()
+    user = Socio.query.filter_by(email=email).first()
+
     if not email or not password:
-        return jsonify({"msg": "You need to send username and password"}), 400
+        return jsonify({"msg": "You need to send email and password"}), 400
     if not user:
         return jsonify({"msg": "User doesn't exist"}), 404
     if user and user.password == password:
-        access_token = create_access_token(identity=email)
-        response_body = {"access_token": access_token, "msg":"usuario logeado ok"}
-        return response_body, 200
+        access_token = create_access_token(identity=user.email)
+        response_body = {
+            "access_token": access_token,
+            "msg": "User logged in successfully"
+        }
+        return jsonify(response_body), 200
     else:
-        return jsonify({"msg": "Error. Password is wrong."}), 400
+        return jsonify({"msg": "Error. Password is incorrect."}), 400
 
 
 # Protect a route with jwt_required, which will kick out requests
@@ -333,7 +337,9 @@ def socio():
                      rut=request_body['rut'],
                      numero_telefono=request_body['numero_telefono'],
                      genero=request_body['genero'],
-                     password=request_body['password']
+                     password=request_body['password'],
+                     pago = 'NO VIGENTE',
+                     
                     )
          db.session.add(socio)
          db.session.commit()
@@ -375,6 +381,8 @@ def update_socio(client_id):
     client.numero_telefono = request.json.get('numero_telefono', client.numero_telefono)
     client.genero = request.json.get('genero', client.genero)
     client.password = request.json.get('password', client.password)
+    client.pago = request.json.get('pago', client.pago)
+    client.admin = request.json.get('admin', client.admin)
     
     db.session.commit()
 
@@ -384,7 +392,9 @@ def update_socio(client_id):
                      'email': client.email,
                      'rut': client.rut,
                      'numero_telefono': client.numero_telefono,
-                     'genero': client.genero
+                     'genero': client.genero,
+                     'pago': client.pago,
+                     'admin': client.admin,
                      }
 
     return jsonify(response_body), 200
@@ -456,3 +466,13 @@ def update_administrador(client_id):
                      }
 
     return jsonify(response_body), 200
+
+@api.route("/check_role", methods=["GET"])
+@jwt_required()
+def check_role():
+    current_user = get_jwt_identity()
+    user = Socio.query.filter_by(email=current_user).first()
+    if user:
+        # Verificar si el usuario tiene el rol de administrador
+        return jsonify({"isAdmin": user.is_admin}), 200
+    return jsonify({"msg": "User not found"}), 404
