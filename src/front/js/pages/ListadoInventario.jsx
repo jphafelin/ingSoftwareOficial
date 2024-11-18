@@ -72,9 +72,20 @@ export const ListadoInventario = () => {
     navigate(`/editar_inventario/${id}`);
   };
 
+  // Manejar clic en el botón "Crear Inventario"
+  const handleCreateClick = () => {
+    navigate('/crearinventario');
+  };
+
   return (
     <div className="container listadoinventario">
-      <h3>CONSULTAR INVENTARIO</h3>
+      {/* Encabezado con botón "Crear Inventario" */}
+      <div className="header-container">
+        <h3>CONSULTAR INVENTARIO</h3>
+        <button className="btn crear-btn" onClick={handleCreateClick}>
+          Crear Inventario
+        </button>
+      </div>
 
       <table className="table">
         <thead>

@@ -37,6 +37,9 @@ export const Navbar = () => {
                                         <Link className="nav-link rg-textlink link-secondary" to="/listadosocios">Socios</Link>
                                     </li>
                                     <li className="nav-item">
+                                        <Link className="nav-link rg-textlink link-secondary" to="/listadoinventario">Inventario</Link>
+                                    </li>
+                                    <li className="nav-item">
                                         <Link className="nav-link rg-textlink link-secondary" to="/transferir">Datos de Transferencia</Link>
                                     </li>
                                     <li className="nav-item">

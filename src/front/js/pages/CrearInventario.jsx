@@ -1,38 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../styles/editarinventario.css';
+import '../../styles/crearinventario.css';
 
-export const EditarInventario = () => {
+export const CrearInventario = () => {
     const [elemento, setElemento] = useState("");
     const [lugar, setLugar] = useState("");
-    const [estado, setEstado] = useState("");
+    const [estado, setEstado] = useState("VIGENTE");
     const navigate = useNavigate();
-    
+
     const host = process.env.BACKEND_URL;
 
-    const edit_id = localStorage.getItem("id_inventario");
-
-    // Función para obtener los datos del inventario
-    const get_inventario = () => {
-        fetch(`${host}/api/inventario/${edit_id}`)
-            .then(response => {
-                if (!response.ok) throw new Error("Error al obtener los datos del inventario");
-                return response.json();
-            })
-            .then(result => {
-                setElemento(result.elemento);
-                setLugar(result.lugar);
-                setEstado(result.estado);
-            })
-            .catch(error => console.error(error));
-    };
-
-    useEffect(() => {
-        get_inventario();
-    }, []);
-
-    // Función para manejar la actualización del inventario
-    const handleClick = (e) => {
+    // Función para manejar la creación del inventario
+    const handleCreateClick = (e) => {
         e.preventDefault();
 
         const myHeaders = new Headers();
@@ -45,34 +24,34 @@ export const EditarInventario = () => {
         });
 
         const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: myHeaders,
             body: raw,
         };
 
-        fetch(`${host}/api/inventario/${edit_id}`, requestOptions)
+        fetch(`${host}/api/inventario`, requestOptions)
             .then(response => {
                 if (response.status === 200) {
-                    alert("Cambios guardados exitosamente");
+                    alert("Inventario creado exitosamente");
                     navigate("/listadoinventario"); // Redireccionar al usuario
                 } else {
-                    alert("Ocurrió un error al actualizar el inventario");
+                    alert("Ocurrió un error al crear el inventario");
                 }
             })
             .catch(error => {
                 console.error("Error de red:", error);
-                alert("No se pudo realizar la actualización.");
+                alert("No se pudo realizar la creación.");
             });
     };
 
     return (
         <div className="form-wrapper">
             <div className="card shadow-lg">
-                <div className="card-header bg-primary text-white text-center">
-                    <h2>Editar Inventario</h2>
+                <div className="card-header bg-success text-white text-center">
+                    <h2>Crear Inventario</h2>
                 </div>
                 <div className="card-body">
-                    <form onSubmit={handleClick}>
+                    <form onSubmit={handleCreateClick}>
                         <div className="mb-3">
                             <label className="form-label">Elemento</label>
                             <input
@@ -108,8 +87,8 @@ export const EditarInventario = () => {
                                 <option value="NO VIGENTE">NO VIGENTE</option>
                             </select>
                         </div>
-                        <button className="btn btn-primary w-100" type="submit">
-                            Guardar Cambios
+                        <button className="btn btn-success w-100" type="submit">
+                            Crear Inventario
                         </button>
                     </form>
                 </div>
@@ -117,3 +96,4 @@ export const EditarInventario = () => {
         </div>
     );
 };
+

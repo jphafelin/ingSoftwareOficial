@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
+from datetime import date
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy import JSON
 
 
 db = SQLAlchemy()
@@ -56,6 +59,7 @@ class Evento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), unique=False, nullable=False)
     fecha = db.Column(db.String(80), unique=False, nullable=False)
+    hora = db.Column(db.String(80), unique=False, nullable=False)
     lugar = db.Column(db.String(120), unique=False, nullable=False)
     id_monitor = db.Column(db.Integer, ForeignKey(Monitor.id), unique=False, nullable=False)
     descripcion = db.Column(db.String(1000), unique=False, nullable=False)
@@ -75,6 +79,7 @@ class Evento(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "fecha": self.fecha,
+            "hora": self.hora,
             "lugar": self.lugar,
             "id_monitor": self.id_monitor,
             "descripcion": self.descripcion,
@@ -119,6 +124,34 @@ class Socio(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Programacion(db.Model):
+    __tablename__ = 'programacion'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(999), unique=False, nullable=False)
+    fecha = db.Column(db.Date, nullable=False)  # Campo de fecha
+    lugar = db.Column(db.String(120), unique=False, nullable=False)
+    participantes = db.Column(JSON, nullable=False, default=[])  # Lista de IDs de participantes
+    realizado = db.Column(db.Boolean, default=False, nullable=False)
+    
+
+
+    
+
+    def __repr__(self):
+        return f'<Programacion {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "fecha": self.fecha,
+            "lugar": self.lugar,
+            "realizado": self.realizado,
+            "participantes": self.participantes
+            
+            
+            # do not serialize the password, its a security breach
+        }
 class Administrador(db.Model):
     __tablename__ = 'administradores'
     id = db.Column(db.Integer, primary_key=True)
