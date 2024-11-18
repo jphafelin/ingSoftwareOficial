@@ -146,3 +146,21 @@ class Administrador(db.Model):
             "numero_telefono": self.numero_telefono
             # do not serialize the password, its a security breach
         }
+
+class Inventario(db.Model):
+    _tablename_ = 'inventario'
+    id = db.Column(db.Integer, primary_key=True)
+    estado = db.Column(db.String(120), unique=False, nullable=False)
+    lugar = db.Column(db.String(120), unique=False, nullable=False)
+    elemento = db.Column(db.String(120), unique=False, nullable=False)
+
+    def _repr_(self):
+        return f'<Inventario {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "estado": self.estado,
+            "lugar": self.lugar,
+            "elemento": self.elemento
+        }

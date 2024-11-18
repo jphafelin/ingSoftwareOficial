@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Monitor,Administrador, Evento, Socio
+from api.models import db, User, Monitor,Administrador, Evento, Socio, Inventario
 from api.utils import generate_sitemap, APIException
 import requests
 import json
@@ -476,3 +476,70 @@ def check_role():
         # Verificar si el usuario tiene el rol de administrador
         return jsonify({"isAdmin": user.is_admin}), 200
     return jsonify({"msg": "User not found"}), 404
+
+#INVENTARIO
+@api.route('/inventario', methods=['GET', 'POST'])
+#@jwt_required()
+def inventario():
+    # Verifica que el usuario sea administrador
+    #current_user = get_jwt_identity()
+    #user = Socio.query.filter_by(email=current_user).first()
+    #if not user:
+     #   return jsonify({"msg": "Unauthorized. Admins only."}), 403
+
+    if request.method == "GET":
+        inventarios = Inventario.query.all()
+        results = [inventario.serialize() for inventario in inventarios]
+        response_body = {
+            "message": "ok",
+            "results": results,
+            "Total_records": len(results)
+        }
+        return response_body, 200
+
+    elif request.method == "POST":
+        request_body = request.get_json()
+        inventario = Inventario(
+            estado=request_body['estado'],
+            lugar=request_body['lugar'],
+            elemento=request_body['elemento']
+        )
+        db.session.add(inventario)
+        db.session.commit()
+        return jsonify(inventario.serialize()), 200
+
+    else:
+        return jsonify({"msg": "Error. Method not allowed."}), 405
+
+
+@api.route('/inventario/<int:inventario_id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
+def manage_inventario(inventario_id):
+    # Verifica que el usuario sea administrador
+    # current_user = get_jwt_identity()
+    # if not user:
+    #     return jsonify({"msg": "Unauthorized. Admins only."}), 403
+
+    inventario = Inventario.query.get(inventario_id)
+    if not inventario:
+        return jsonify({"msg": "Inventario not found."}), 404
+
+    # Método GET para obtener un elemento del inventario
+    if request.method == "GET":
+        return jsonify(inventario.serialize()), 200
+
+    # Método PUT para actualizar un elemento del inventario
+    elif request.method == "PUT":
+        request_body = request.get_json()
+        inventario.estado = request_body.get('estado', inventario.estado)
+        inventario.lugar = request_body.get('lugar', inventario.lugar)
+        inventario.elemento = request_body.get('elemento', inventario.elemento)
+        db.session.commit()
+        return jsonify(inventario.serialize()), 200
+
+    # Método DELETE para eliminar un elemento del inventario
+    elif request.method == "DELETE":
+        db.session.delete(inventario)
+        db.session.commit()
+        return jsonify({"msg": "Inventario deleted."}), 200
+

@@ -17,11 +17,14 @@ import { Login } from "./pages/Login.jsx";
 import { Programacion } from "./pages/Programacion.jsx";
 import { Register2 } from "./pages/Register2.jsx";
 import { ListadoSocios } from "./pages/ListadoSocios.jsx";
+import { ListadoInventario } from "./pages/ListadoInventario.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 import { DetalleSocio } from "./pages/DetalleSocio.jsx";
+import { DetalleInventario } from "./pages/DetalleInventario.jsx";
 import { EditarSocio } from "./pages/EditarSocio.jsx";
+import { EditarInventario } from "./pages/EditarInventario.jsx";
 import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
@@ -59,11 +62,14 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Register2 />} path="/register" />
                         <Route element={<ListadoSocios />} path="/listadosocios" />
+                        <Route element={<ListadoInventario />} path="/listadoinventario" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
                         <Route element={<DetalleSocio />} path="/listadosocios/:id" />
+                        <Route element={<DetalleInventario />} path="/listadoinventario/:id" />
                         <Route element={<EditarSocio />} path="/editar_socio/:id" />
+                        <Route element={<EditarInventario />} path="/editar_inventario/:id" />
                         <Route element={<CrearTipoEvento />} path="/crear_tipo_evento" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />
                         <Route element={<Single />} path="/single/:theid" />

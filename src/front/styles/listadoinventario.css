@@ -1,0 +1,73 @@
+/*
+    home.css: This website contains selectors only used in home.css
+
+    All pages share the styles on index.css but you should create 
+    one more css for each page that will contain the selected used 
+    on that page only (the ones not reused in other pages).
+*/
+
+.listadoinventario {
+    font-family: sans-serif;
+    margin-top: 10%;
+
+}
+
+.search-input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.table {
+
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.table-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.table-row:hover {
+    background-color: #f0f0f0;
+}
+
+.green-row {
+    background-color: #a4eeb6;
+}
+
+.red-row {
+    background-color: #f7b6bb;
+}
+
+.record-count {
+    margin-top: 10px;
+    font-weight: bold;
+}

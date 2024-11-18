@@ -1,0 +1,32 @@
+.detalle-inventario-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.detalle-inventario-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-inventario-card p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+
+.green-row {
+    background-color: #a4eeb6;
+}
+
+.red-row {
+    background-color: #f7b6bb;
+}
+
+.record-count {
+    margin-top: 10px;
+    font-weight: bold;
+}
