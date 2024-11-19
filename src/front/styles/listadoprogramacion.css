@@ -1,0 +1,147 @@
+/* Contenedor principal */
+.container.listadoprogramacion {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-container h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.header-container .crear-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-container .crear-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+}
+
+.table td {
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.table-row:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Colores de estado */
+.green-row {
+    background-color: #e6ffed;
+    color: #2d8a4b;
+}
+
+.red-row {
+    background-color: #ffe6e6;
+    color: #d32f2f;
+}
+
+/* Botón de edición */
+.edit-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.edit-btn:hover {
+    color: #0056b3;
+}
+
+/* Inputs de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Controles de paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-container .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-container .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-container .btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Contador de registros */
+.record-count {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}

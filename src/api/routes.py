@@ -543,3 +543,74 @@ def manage_inventario(inventario_id):
         db.session.commit()
         return jsonify({"msg": "Inventario deleted."}), 200
 
+#PROGRAMACION
+@api.route('/programacion', methods=['GET', 'POST'])
+#@jwt_required()
+def programacion():
+    # Verifica que el usuario sea administrador
+    #current_user = get_jwt_identity()
+    #user = Socio.query.filter_by(email=current_user).first()
+    #if not user:
+     #   return jsonify({"msg": "Unauthorized. Admins only."}), 403
+
+    if request.method == "GET":
+        programaciones = Programacion.query.all()
+        results = [programacion.serialize() for programacion in programaciones]
+        response_body = {
+            "message": "ok",
+            "results": results,
+            "Total_records": len(results)
+        }
+        return response_body, 200
+
+    elif request.method == "POST":
+        request_body = request.get_json()
+        programacion = Programacion(
+            nombre=request_body['nombre'],
+            fecha=request_body['fecha'],
+            hora=request_body['hora'],
+            lugar=request_body['lugar'],
+            participantes=request_body['participantes'],
+            realizado=request_body['realizado']
+        )
+        db.session.add(programacion)
+        db.session.commit()
+        return jsonify(programacion.serialize()), 200
+
+    else:
+        return jsonify({"msg": "Error. Method not allowed."}), 405
+
+
+@api.route('/programacion/<int:programacion_id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
+def manage_programacion(programacion_id):
+    # Verifica que el usuario sea administrador
+    # current_user = get_jwt_identity()
+    # if not user:
+    #     return jsonify({"msg": "Unauthorized. Admins only."}), 403
+
+    programacion = Programacion.query.get(programacion_id)
+    if not programacion:
+        return jsonify({"msg": "Programacion not found."}), 404
+
+    # Método GET para obtener un elemento del inventario
+    if request.method == "GET":
+        return jsonify(Programacion.serialize()), 200
+
+    # Método PUT para actualizar un elemento del inventario
+    elif request.method == "PUT":
+        request_body = request.get_json()
+        programacion.nombre = request_body.get('nombre', programacion.nombre)
+        programacion.fecha = request_body.get('fecha', programacion.fecha)
+        programacion.hora = request_body.get('hora', programacion.hora)
+        programacion.lugar = request_body.get('lugar', programacion.lugar)
+        programacion.participantes = request_body.get('participantes', programacion.participantes)
+        programacion.realizado = request_body.get('realizado', programacion.realizado)
+        db.session.commit()
+        return jsonify(programacion.serialize()), 200
+
+    # Método DELETE para eliminar un elemento del inventario
+    elif request.method == "DELETE":
+        db.session.delete(programacion)
+        db.session.commit()
+        return jsonify({"msg": "Programacion deleted."}), 200

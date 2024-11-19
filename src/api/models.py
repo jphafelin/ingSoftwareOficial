@@ -129,6 +129,7 @@ class Programacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(999), unique=False, nullable=False)
     fecha = db.Column(db.Date, nullable=False)  # Campo de fecha
+    hora = db.Column(db.String(120), unique=False, nullable=False)
     lugar = db.Column(db.String(120), unique=False, nullable=False)
     participantes = db.Column(JSON, nullable=False, default=[])  # Lista de IDs de participantes
     realizado = db.Column(db.Boolean, default=False, nullable=False)
@@ -145,6 +146,7 @@ class Programacion(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "fecha": self.fecha,
+            "hora": self.hora,
             "lugar": self.lugar,
             "realizado": self.realizado,
             "participantes": self.participantes
@@ -197,3 +199,4 @@ class Inventario(db.Model):
             "lugar": self.lugar,
             "elemento": self.elemento
         }
+
