@@ -1,0 +1,18 @@
+.detalle-programacion-container {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.detalle-programacion-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-programacion-card p {
+    margin: 10px 0;
+    font-size: 16px;
+}

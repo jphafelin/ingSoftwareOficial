@@ -1,6 +1,6 @@
 /* Contenedor principal */
 .container.listadoprogramacion {
-    margin: 20px auto;
+    margin: 10% auto;
     max-width: 1200px;
     padding: 20px;
     background-color: #ffffff;
@@ -76,9 +76,9 @@
     color: #2d8a4b;
 }
 
-.red-row {
-    background-color: #ffe6e6;
-    color: #d32f2f;
+.yellow-row {
+    background-color: #ffecae;
+    color: #d32f2d;
 }
 
 /* Botón de edición */

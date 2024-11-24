@@ -20,13 +20,16 @@ import { ListadoSocios } from "./pages/ListadoSocios.jsx";
 import { ListadoInventario } from "./pages/ListadoInventario.jsx";
 import { ListadoProgramacion } from "./pages/ListadoProgramacion.jsx";
 import { CrearInventario } from "./pages/CrearInventario.jsx";
+import { CrearProgramacion } from "./pages/CrearProgramacion.jsx";
 import { RegisterAdmin } from "./pages/Registrar_Administrador.jsx";
 import { EditAdmin } from "./pages/Editar_Administrador.jsx";
 import { RegisterMonitor } from "./pages/Registrar_Monitor.jsx";
 import { DetalleSocio } from "./pages/DetalleSocio.jsx";
+import { DetalleProgramacion } from "./pages/DetalleProgramacion.jsx";
 import { DetalleInventario } from "./pages/DetalleInventario.jsx";
 import { EditarSocio } from "./pages/EditarSocio.jsx";
 import { EditarInventario } from "./pages/EditarInventario.jsx";
+import { EditarProgramacion } from "./pages/EditarProgramacion.jsx";
 import { CrearTipoEvento } from "./pages/Crear_Tipo_Evento.jsx";
 import { EditarTipoEvento } from "./pages/Editar_Tipo_Evento.jsx";
 import injectContext from "./store/appContext";
@@ -67,12 +70,15 @@ const Layout = () => {
                         <Route element={<ListadoInventario />} path="/listadoinventario" />
                         <Route element={<ListadoProgramacion />} path="/listadoprogramacion" />
                         <Route element={<CrearInventario />} path="/crearinventario" />
+                        <Route element={<CrearProgramacion />} path="/crearprogramacion" />
                         <Route element={<RegisterAdmin />} path="/register_administrador" />
                         <Route element={<EditAdmin />} path="/editar_administrador" />
                         <Route element={<RegisterMonitor />} path="/register_monitor" />
                         <Route element={<DetalleSocio />} path="/listadosocios/:id" />
+                        <Route element={<DetalleProgramacion />} path="/listadoprogramacion/:id" />
                         <Route element={<DetalleInventario />} path="/listadoinventario/:id" />
                         <Route element={<EditarSocio />} path="/editar_socio/:id" />
+                        <Route element={<EditarProgramacion />} path="/editar_programacion/:id" />
                         <Route element={<EditarInventario />} path="/editar_inventario/:id" />
                         <Route element={<CrearTipoEvento />} path="/crear_tipo_evento" />
                         <Route element={<EditarTipoEvento />} path="/editar_tipo_evento" />

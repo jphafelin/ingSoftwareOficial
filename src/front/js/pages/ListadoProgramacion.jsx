@@ -137,7 +137,7 @@ export const ListadoProgramacion = () => {
 
           {/* Filas de la programación */}
           {currentItems.map((item) => {
-            const rowColor = item.realizado ? 'green-row' : 'red-row';
+            const rowColor = item.realizado ? 'green-row' : 'yellow-row';
 
             return (
               <tr

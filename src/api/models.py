@@ -131,7 +131,7 @@ class Programacion(db.Model):
     fecha = db.Column(db.Date, nullable=False)  # Campo de fecha
     hora = db.Column(db.String(120), unique=False, nullable=False)
     lugar = db.Column(db.String(120), unique=False, nullable=False)
-    participantes = db.Column(JSON, nullable=False, default=[])  # Lista de IDs de participantes
+    participantes = db.Column(JSON, nullable=False, default={"results": []})  # Lista de IDs de participantes
     realizado = db.Column(db.Boolean, default=False, nullable=False)
     
 

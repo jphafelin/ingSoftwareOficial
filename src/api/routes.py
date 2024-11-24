@@ -572,6 +572,7 @@ def programacion():
             lugar=request_body['lugar'],
             participantes=request_body['participantes'],
             realizado=request_body['realizado']
+            
         )
         db.session.add(programacion)
         db.session.commit()
